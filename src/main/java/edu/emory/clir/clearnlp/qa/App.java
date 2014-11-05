@@ -1,4 +1,4 @@
-package edu.emory.clir;
+package edu.emory.clir.clearnlp.qa;
 
 /**
  * Hello world!

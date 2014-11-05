@@ -1,4 +1,4 @@
-package edu.emory.clir;
+package edu.emory.clir.clearnlp.qa;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
