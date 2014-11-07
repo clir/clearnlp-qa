@@ -10,6 +10,6 @@
   <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/18.0/guava-18.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/carrotsearch/hppc/0.6.1/hppc-0.6.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
-  <classpathentry kind="var" path="M2_REPO/edu/emory/clir/clearnlp/3.0.0-SNAPSHOT/clearnlp-3.0.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/edu/emory/clir/clearnlp-dictionary/3.0-SNAPSHOT/clearnlp-dictionary-3.0-SNAPSHOT.jar"/>
+  <classpathentry kind="src" path="/clearnlp"/>
+  <classpathentry kind="src" path="/clearnlp-dictionary"/>
 </classpath>
