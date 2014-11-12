@@ -27,6 +27,12 @@
       <email>{id}@emory.edu</email>
     </developer>
   </developers>
+  
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
