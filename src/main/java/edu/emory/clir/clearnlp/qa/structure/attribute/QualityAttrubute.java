@@ -16,10 +16,19 @@
 package edu.emory.clir.clearnlp.qa.structure.attribute;
 
 
-public enum AttributeType
-{
-	LOCATIVE,
-    TEMPORAL,
-    QUALITY,
-    QUANTITY;
+/**
+ * @author 	Yu-Hsin(Henry) Chen ({@code yu-hsin.chen@emory.edu})
+ * @version	1.0
+ * @since	Dec 1, 2014
+ */
+public class QualityAttrubute extends AbstractAttribute{
+
+	private static final long serialVersionUID = 8544972933716997930L;
+	
+	public QualityAttrubute(AttributeType type) {
+		super(AttributeType.QUALITY);
+	}
+
+
+
 }

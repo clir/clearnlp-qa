@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.emory.clir.clearnlp.qa.structure.attribute;
+package edu.emory.clir.clearnlp.qa.structure.document.utils;
 
 
-public enum AttributeType
-{
-	LOCATIVE,
-    TEMPORAL,
-    QUALITY,
-    QUANTITY;
+/**
+ * @author 	Yu-Hsin(Henry) Chen ({@code yu-hsin.chen@emory.edu})
+ * @version	1.0
+ * @since	Dec 2, 2014
+ */
+public class DocumentIterator {
+
 }

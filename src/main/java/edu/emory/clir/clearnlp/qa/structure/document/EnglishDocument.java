@@ -15,8 +15,12 @@
  */
 package edu.emory.clir.clearnlp.qa.structure.document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
+import edu.emory.clir.clearnlp.qa.structure.Instance;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -24,14 +28,30 @@ import edu.emory.clir.clearnlp.dependency.DEPTree;
 public class EnglishDocument extends AbstractDocument
 {
 	private static final long serialVersionUID = -1190545348244741736L;
-
+	
 	@Override
-	public void addInstances(DEPTree tree)
-	{
-		for (DEPNode node : tree)
-		{
-			// DO SOMETHING
-			node.getLemma();
+	public void addInstances(DEPTree tree){
+		
+		for (DEPNode head : tree.getRoots())
+			search(head);
+
+		for(DEPNode node : tree){
+			Instance instance = new Instance();
+			
+			
+			
+		
+		
+		
 		}
 	}
+	
+	public void search(DEPNode head)
+	{
+		for (DEPNode node : head.getDependentList())
+		{
+			search(node);
+		}
+	}
+	
 }
