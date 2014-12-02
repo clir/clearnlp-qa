@@ -15,12 +15,8 @@
  */
 package edu.emory.clir.clearnlp.qa.structure.document;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
-import edu.emory.clir.clearnlp.qa.structure.Instance;
+import edu.emory.clir.clearnlp.qa.structure.document.utils.iterator.DocuemntDEPTreeTopDownIterator;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -31,27 +27,12 @@ public class EnglishDocument extends AbstractDocument
 	
 	@Override
 	public void addInstances(DEPTree tree){
+		DocuemntDEPTreeTopDownIterator iterator = new DocuemntDEPTreeTopDownIterator(tree);
+//		DocumentDEPTreeButtomUpIterator iterator = new DocumentDEPTreeButtomUpIterator(tree);
 		
-		for (DEPNode head : tree.getRoots())
-			search(head);
-
-		for(DEPNode node : tree){
-			Instance instance = new Instance();
-			
-			
-			
-		
-		
-		
+		while(iterator.hasNext()){
+			System.out.println(iterator.getNext());
 		}
+		
 	}
-	
-	public void search(DEPNode head)
-	{
-		for (DEPNode node : head.getDependentList())
-		{
-			search(node);
-		}
-	}
-	
 }

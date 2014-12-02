@@ -1,0 +1,46 @@
+/**
+ * Copyright 2014, Emory University
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package edu.emory.clir.clearnlp.qa.structure.document.utils.iterator;
+
+import java.io.Serializable;
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+
+/**
+ * @author 	Yu-Hsin(Henry) Chen ({@code yu-hsin.chen@emory.edu})
+ * @version	1.0
+ * @since	Dec 2, 2014
+ */
+public abstract class AbstractDocumentIterator<T, N> implements Serializable{
+	
+	private static final long serialVersionUID = -5539798167561347424L;
+	protected Deque<N> l_nodes;
+	
+	public AbstractDocumentIterator(){
+		l_nodes = new ArrayDeque<>();
+	}
+	
+	public abstract void init(T structure);
+
+	public N getNext(){
+		if(hasNext()) return l_nodes.poll();
+		return null;
+	}
+	public boolean hasNext(){
+		return (l_nodes.size() > 0)? true : false;
+	}
+}
