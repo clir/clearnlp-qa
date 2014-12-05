@@ -78,6 +78,16 @@ public abstract class AbstractDocument implements Serializable
 			}
 		}
 	}
+
+    public Instance getInstance(DEPNode node)
+    {
+        return m_instances.get(node);
+    }
+
+    public void addInstance(DEPNode node, Instance instance)
+    {
+        m_instances.put(node, instance);
+    }
 	
 	private void addInstance(Instance instance)
 	{

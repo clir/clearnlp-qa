@@ -15,8 +15,14 @@
  */
 package edu.emory.clir.clearnlp.qa.structure.document;
 
+import edu.emory.clir.clearnlp.dependency.DEPLib;
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
+import edu.emory.clir.clearnlp.qa.structure.Instance;
+import edu.emory.clir.clearnlp.qa.structure.SemanticType;
+import edu.emory.clir.clearnlp.util.arc.SRLArc;
+
+import java.util.List;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -30,8 +36,17 @@ public class EnglishDocument extends AbstractDocument
 	{
 		for (DEPNode node : tree)
 		{
-			// DO SOMETHING
-			node.getLemma();
+            Instance instance = new Instance();
+
+            if (! node.getSecondaryHeadArcList().isEmpty())
+            {
+                for (SRLArc arc : node.getSemanticHeadArcList()) {
+                    System.out.println(arc.getNode());
+                }
+            } else
+            {
+
+            }
 		}
 	}
 }
