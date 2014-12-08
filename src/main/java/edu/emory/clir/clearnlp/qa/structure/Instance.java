@@ -101,16 +101,16 @@ public class Instance implements Serializable
 	
 	private List<Instance> putInstance(Map<SemanticType,List<Instance>> map, SemanticType type, Instance instance)
 	{
-		List<Instance> arguments = map.get(type);
+		List<Instance> list_instances = map.get(type);
 		
-		if (arguments == null)
+		if (list_instances == null)
 		{
-			arguments = new ArrayList<>();
-			m_arguments.put(type, arguments);
+            list_instances = new ArrayList<>();
+            map.put(type, list_instances);
 		}
 		
-		arguments.add(instance);
-		return arguments;
+		list_instances.add(instance);
+		return list_instances;
 	}
 	
 	public boolean removeInstance(Map<SemanticType,List<Instance>> map, Instance instance)
