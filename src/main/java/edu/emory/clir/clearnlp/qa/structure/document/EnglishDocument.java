@@ -22,6 +22,7 @@ import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.util.arc.SRLArc;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -36,17 +37,42 @@ public class EnglishDocument extends AbstractDocument
 	{
 		for (DEPNode node : tree)
 		{
-            Instance instance = new Instance();
+            Instance instance;
 
-            if (! node.getSecondaryHeadArcList().isEmpty())
+            if ((instance = getInstance(node)) == null)
+            {
+                instance = new Instance();
+                addInstance(node, instance);
+            }
+
+            Instance headInstance;
+
+            if (! node.getSemanticHeadArcList().isEmpty())
             {
                 for (SRLArc arc : node.getSemanticHeadArcList()) {
-                    System.out.println(arc.getNode());
-                }
-            } else
-            {
 
+                    headInstance = getInstance(arc.getNode());
+                    if (headInstance == null) {
+                        headInstance = new Instance();
+                        addInstance(arc.getNode(), headInstance);
+                    }
+
+                    headInstance.putArgumentList(SemanticType.AGENT, instance);
+                    instance.putPredicateList(SemanticType.AGENT, headInstance);
+                }
             }
+//            else if (! node.isLabel("root"))
+//            {
+//                System.out.println("For node: " + node.getWordForm());
+//                if ((headInstance = getInstance(node.getHead())) == null)
+//                {
+//                    headInstance = new Instance();
+//                    addInstance(node.getHead(), instance);
+//                }
+//
+//                headInstance.putArgumentList(SemanticType.OTHER, instance);
+//                instance.putPredicateList(SemanticType.OTHER, headInstance);
+//            }
 		}
 	}
 }

@@ -22,5 +22,6 @@ public enum SemanticType
 {
     PREDICATE,
 	AGENT,
-	THEME;
+	THEME,
+    OTHER;
 }
