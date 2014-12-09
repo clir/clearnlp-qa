@@ -136,31 +136,30 @@ public abstract class AbstractDocument implements Serializable
             {
                 for (Instance instance : entry.getValue().getArgumentList(SemanticType.AGENT))
                 {
-                    sb.append("is an argument (AGENT) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                    sb.append("has an argument relation (AGENT) to -> " + getDEPNode(instance).getWordForm() + "\n");
                 }
             }
-//            if (entry.getValue().getArgumentList(SemanticType.OTHER) != null)
-//            {
-//                for (Instance instance : entry.getValue().getArgumentList(SemanticType.OTHER))
-//                {
-//                    sb.append("is an argument (OTHER) to -> " + getDEPNode(instance).getWordForm() + "\n");
-//                }
-//            }
+            if (entry.getValue().getArgumentList(SemanticType.OTHER) != null)
+            {
+                for (Instance instance : entry.getValue().getArgumentList(SemanticType.OTHER))
+                {
+                    sb.append("has an argument relation (OTHER) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                }
+            }
             if (entry.getValue().getPredicateList(SemanticType.AGENT) != null)
             {
-                System.out.println("AAAAAA");
                 for (Instance instance : entry.getValue().getPredicateList(SemanticType.AGENT))
                 {
-                    sb.append("is a predicate (AGENT) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                    sb.append("has a predicate relation (AGENT) to -> " + getDEPNode(instance).getWordForm() + "\n");
                 }
             }
-//            if (entry.getValue().getPredicateList(SemanticType.OTHER) != null)
-//            {
-//                for (Instance instance : entry.getValue().getPredicateList(SemanticType.OTHER))
-//                {
-//                    sb.append("is a predicate (OTHER) to -> " + getDEPNode(instance).getWordForm() + "\n");
-//                }
-//            }
+            if (entry.getValue().getPredicateList(SemanticType.OTHER) != null)
+            {
+                for (Instance instance : entry.getValue().getPredicateList(SemanticType.OTHER))
+                {
+                    sb.append("has a predicate relation (OTHER) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                }
+            }
 
             sb.append("\n");
         }

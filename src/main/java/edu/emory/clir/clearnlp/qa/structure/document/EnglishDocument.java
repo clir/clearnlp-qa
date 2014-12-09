@@ -15,15 +15,11 @@
  */
 package edu.emory.clir.clearnlp.qa.structure.document;
 
-import edu.emory.clir.clearnlp.dependency.DEPLib;
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.util.arc.SRLArc;
-
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -61,18 +57,17 @@ public class EnglishDocument extends AbstractDocument
                     instance.putPredicateList(SemanticType.AGENT, headInstance);
                 }
             }
-//            else if (! node.isLabel("root"))
-//            {
-//                System.out.println("For node: " + node.getWordForm());
-//                if ((headInstance = getInstance(node.getHead())) == null)
-//                {
-//                    headInstance = new Instance();
-//                    addInstance(node.getHead(), instance);
-//                }
-//
-//                headInstance.putArgumentList(SemanticType.OTHER, instance);
-//                instance.putPredicateList(SemanticType.OTHER, headInstance);
-//            }
+            else if (! node.isLabel("root"))
+            {
+                if ((headInstance = getInstance(node.getHead())) == null)
+                {
+                    headInstance = new Instance();
+                    addInstance(node.getHead(), headInstance);
+                }
+
+                headInstance.putArgumentList(SemanticType.OTHER, instance);
+                instance.putArgumentList(SemanticType.OTHER, headInstance);
+            }
 		}
 	}
 }
