@@ -20,6 +20,8 @@ package edu.emory.clir.clearnlp.qa.structure;
  */
 public enum SemanticType
 {
+    PREDICATE,
 	AGENT,
-	THEME;
+	THEME,
+    OTHER;
 }

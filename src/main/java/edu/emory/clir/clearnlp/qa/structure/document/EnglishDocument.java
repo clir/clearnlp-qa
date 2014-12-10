@@ -16,7 +16,13 @@
 package edu.emory.clir.clearnlp.qa.structure.document;
 
 import edu.emory.clir.clearnlp.dependency.DEPTree;
+<<<<<<< HEAD
 import edu.emory.clir.clearnlp.qa.structure.document.utils.iterator.DocuemntDEPTreeTopDownIterator;
+=======
+import edu.emory.clir.clearnlp.qa.structure.Instance;
+import edu.emory.clir.clearnlp.qa.structure.SemanticType;
+import edu.emory.clir.clearnlp.util.arc.SRLArc;
+>>>>>>> tomasz
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -26,12 +32,45 @@ public class EnglishDocument extends AbstractDocument
 	private static final long serialVersionUID = -1190545348244741736L;
 	
 	@Override
-	public void addInstances(DEPTree tree){
-		DocuemntDEPTreeTopDownIterator iterator = new DocuemntDEPTreeTopDownIterator(tree);
-//		DocumentDEPTreeButtomUpIterator iterator = new DocumentDEPTreeButtomUpIterator(tree);
-		
-		while(iterator.hasNext()){
-			System.out.println(iterator.getNext());
+	public void addInstances(DEPTree tree)
+	{
+		for (DEPNode node : tree)
+		{
+            Instance instance;
+
+            if ((instance = getInstance(node)) == null)
+            {
+                instance = new Instance();
+                addInstance(node, instance);
+            }
+
+            Instance headInstance;
+
+            if (! node.getSemanticHeadArcList().isEmpty())
+            {
+                for (SRLArc arc : node.getSemanticHeadArcList()) {
+
+                    headInstance = getInstance(arc.getNode());
+                    if (headInstance == null) {
+                        headInstance = new Instance();
+                        addInstance(arc.getNode(), headInstance);
+                    }
+
+                    headInstance.putArgumentList(SemanticType.AGENT, instance);
+                    instance.putPredicateList(SemanticType.AGENT, headInstance);
+                }
+            }
+            else if (! node.isLabel("root"))
+            {
+                if ((headInstance = getInstance(node.getHead())) == null)
+                {
+                    headInstance = new Instance();
+                    addInstance(node.getHead(), headInstance);
+                }
+
+                headInstance.putArgumentList(SemanticType.OTHER, instance);
+                instance.putArgumentList(SemanticType.OTHER, headInstance);
+            }
 		}
 		
 	}

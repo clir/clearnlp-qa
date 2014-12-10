@@ -23,6 +23,7 @@ import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.qa.structure.Entity;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
+import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 
 public abstract class AbstractDocument implements Serializable
 {
@@ -78,6 +79,37 @@ public abstract class AbstractDocument implements Serializable
 			}
 		}
 	}
+
+    public Instance getInstance(DEPNode node)
+    {
+        return m_instances.get(node);
+    }
+
+    public DEPNode getDEPNode(Instance instance)
+    {
+        for (Map.Entry<DEPNode, Instance> entry : m_instances.entrySet())
+        {
+            if (entry.getValue().equals(instance))
+            {
+                return entry.getKey();
+            }
+        }
+
+        return null;
+    }
+
+    public void addInstance(DEPNode node, Instance instance)
+    {
+        m_instances.put(node, instance);
+    }
+
+    public void printInstances()
+    {
+        for (Map.Entry<DEPNode, Instance> entry : m_instances.entrySet())
+        {
+            System.out.println("Node: " + entry.getKey().getWordForm() + " has an instance: " + entry.getValue());
+        }
+    }
 	
 	private void addInstance(Instance instance)
 	{
@@ -91,4 +123,47 @@ public abstract class AbstractDocument implements Serializable
 		
 		entity.addInstance(instance);		
 	}
+
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder("Instances:\n\n");
+
+        for (Map.Entry<DEPNode, Instance> entry : m_instances.entrySet())
+        {
+            sb.append("Instance: " + entry.getKey().getWordForm() + "\n");
+
+            if (entry.getValue().getArgumentList(SemanticType.AGENT) != null)
+            {
+                for (Instance instance : entry.getValue().getArgumentList(SemanticType.AGENT))
+                {
+                    sb.append("has an argument relation (AGENT) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                }
+            }
+            if (entry.getValue().getArgumentList(SemanticType.OTHER) != null)
+            {
+                for (Instance instance : entry.getValue().getArgumentList(SemanticType.OTHER))
+                {
+                    sb.append("has an argument relation (OTHER) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                }
+            }
+            if (entry.getValue().getPredicateList(SemanticType.AGENT) != null)
+            {
+                for (Instance instance : entry.getValue().getPredicateList(SemanticType.AGENT))
+                {
+                    sb.append("has a predicate relation (AGENT) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                }
+            }
+            if (entry.getValue().getPredicateList(SemanticType.OTHER) != null)
+            {
+                for (Instance instance : entry.getValue().getPredicateList(SemanticType.OTHER))
+                {
+                    sb.append("has a predicate relation (OTHER) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                }
+            }
+
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
 }
