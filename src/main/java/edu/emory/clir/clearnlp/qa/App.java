@@ -33,13 +33,12 @@ public class App
 
         DEPTree tree = null;
 
-        tree = reader.next();
-        document.addInstances(tree);
-        System.out.println(document);
-        /*while ((tree = reader.next()) != null)
+        while ((tree = reader.next()) != null)
         {
             document.addInstances(tree);
-        }*/
+            System.out.println("Document mapped to structure:");
+            System.out.println(document);
+        }
     }
 
 
