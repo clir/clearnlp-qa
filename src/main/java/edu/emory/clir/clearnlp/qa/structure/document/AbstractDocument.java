@@ -24,6 +24,7 @@ import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.qa.structure.Entity;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
+import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 
 public abstract class AbstractDocument implements Serializable
 {
@@ -132,32 +133,27 @@ public abstract class AbstractDocument implements Serializable
         {
             sb.append("Instance: " + entry.getKey().getWordForm() + "\n");
 
-            if (entry.getValue().getArgumentList(SemanticType.AGENT) != null)
+            for (SemanticType type : entry.getValue().getArgumentTypeSet())
             {
-                for (Instance instance : entry.getValue().getArgumentList(SemanticType.AGENT))
+                for (Instance i : entry.getValue().getArgumentList(type))
                 {
-                    sb.append("has an argument relation (AGENT) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                    sb.append("has an argument relation " + type.toString() + " to -> " + getDEPNode(i).getWordForm() + "\n");
                 }
             }
-            if (entry.getValue().getArgumentList(SemanticType.OTHER) != null)
+
+            for (SemanticType type : entry.getValue().getPredicateTypeSet())
             {
-                for (Instance instance : entry.getValue().getArgumentList(SemanticType.OTHER))
+                for (Instance i : entry.getValue().getPredicateList(type))
                 {
-                    sb.append("has an argument relation (OTHER) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                    sb.append("has a predicate relation " + type.toString() + " to -> " + getDEPNode(i).getWordForm() + "\n");
                 }
             }
-            if (entry.getValue().getPredicateList(SemanticType.AGENT) != null)
+
+            for (AttributeType type : entry.getValue().getAttributeTypeSet())
             {
-                for (Instance instance : entry.getValue().getPredicateList(SemanticType.AGENT))
+                for (Instance i : entry.getValue().getAttribute(type))
                 {
-                    sb.append("has a predicate relation (AGENT) to -> " + getDEPNode(instance).getWordForm() + "\n");
-                }
-            }
-            if (entry.getValue().getPredicateList(SemanticType.OTHER) != null)
-            {
-                for (Instance instance : entry.getValue().getPredicateList(SemanticType.OTHER))
-                {
-                    sb.append("has a predicate relation (OTHER) to -> " + getDEPNode(instance).getWordForm() + "\n");
+                    sb.append("has an attribute relation " + type.toString() + " to -> " + getDEPNode(i).getWordForm() + "\n");
                 }
             }
 

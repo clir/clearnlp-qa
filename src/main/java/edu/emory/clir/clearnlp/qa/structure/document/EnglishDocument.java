@@ -15,14 +15,12 @@
  */
 package edu.emory.clir.clearnlp.qa.structure.document;
 
+import edu.emory.clir.clearnlp.dependency.DEPLib;
+import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
-<<<<<<< HEAD
-import edu.emory.clir.clearnlp.qa.structure.document.utils.iterator.DocuemntDEPTreeTopDownIterator;
-=======
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.util.arc.SRLArc;
->>>>>>> tomasz
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -34,6 +32,7 @@ public class EnglishDocument extends AbstractDocument
 	@Override
 	public void addInstances(DEPTree tree)
 	{
+
 		for (DEPNode node : tree)
 		{
             Instance instance;
@@ -50,28 +49,45 @@ public class EnglishDocument extends AbstractDocument
             {
                 for (SRLArc arc : node.getSemanticHeadArcList()) {
 
+                    SemanticType type = SemanticType.valueOf(parseSemanticRelation(arc.getLabel()));
                     headInstance = getInstance(arc.getNode());
                     if (headInstance == null) {
                         headInstance = new Instance();
                         addInstance(arc.getNode(), headInstance);
                     }
 
-                    headInstance.putArgumentList(SemanticType.AGENT, instance);
-                    instance.putPredicateList(SemanticType.AGENT, headInstance);
+                    headInstance.putArgumentList(type, instance);
+                    instance.putPredicateList(type, headInstance);
                 }
             }
             else if (! node.isLabel("root"))
             {
+                SemanticType type = SemanticType.valueOf(parseSemanticRelation(node.getLabel()));
                 if ((headInstance = getInstance(node.getHead())) == null)
                 {
                     headInstance = new Instance();
                     addInstance(node.getHead(), headInstance);
                 }
 
-                headInstance.putArgumentList(SemanticType.OTHER, instance);
-                instance.putArgumentList(SemanticType.OTHER, headInstance);
+                headInstance.putArgumentList(type, instance);
+                instance.putArgumentList(type, headInstance);
             }
 		}
-		
 	}
+
+    private String parseSemanticRelation(String label)
+    {
+        if (label.contains("-"))
+        {
+            return label.split("-")[1];
+        }
+        else if (label.contains("="))
+        {
+            return label.split("=")[0];
+        }
+        else
+        {
+            return label;
+        }
+    }
 }
