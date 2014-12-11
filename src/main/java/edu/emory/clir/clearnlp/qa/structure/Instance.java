@@ -28,7 +28,7 @@ import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 public class Instance implements Serializable
 {
 	private static final long serialVersionUID = 17479620890779053L;
-	private Map<AttributeType,AbstractAttribute> m_attributes;
+	private Map<AttributeType,List<Instance>>    m_attributes;
 	private Map<SemanticType,List<Instance>>     m_predicates;
 	private Map<SemanticType,List<Instance>>     m_arguments;
 	
@@ -44,22 +44,31 @@ public class Instance implements Serializable
 		return m_attributes.keySet();
 	}
     
-	public AbstractAttribute getAttribute(AttributeType type)
+	public List<Instance> getAttribute(AttributeType type)
 	{
 		return m_attributes.get(type);
 	}
 	
-	public AbstractAttribute putAttribute(AttributeType type, AbstractAttribute attribute)
+	public List<Instance> putAttribute(AttributeType type, Instance instance)
 	{
-		return m_attributes.put(type, attribute);
+        List<Instance> list_instances = m_attributes.get(type);
+
+        if (list_instances == null)
+        {
+            list_instances = new ArrayList<>();
+            m_attributes.put(type, list_instances);
+        }
+
+        list_instances.add(instance);
+        return list_instances;
 	}
 	
-	public AbstractAttribute removeAttribute(AttributeType type)
+	public List<Instance> removeAttribute(AttributeType type)
 	{
 		return m_attributes.remove(type);
 	}
 	
-	public Set<SemanticType> getPredicdateTypeSet()
+	public Set<SemanticType> getPredicateTypeSet()
 	{
 		return m_predicates.keySet();
 	}
