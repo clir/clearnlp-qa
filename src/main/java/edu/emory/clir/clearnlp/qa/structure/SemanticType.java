@@ -32,6 +32,7 @@ public enum SemanticType
     LOC,
     MNR,
     PRP,
+    PRR,
     TMP,
     VOC,
 
