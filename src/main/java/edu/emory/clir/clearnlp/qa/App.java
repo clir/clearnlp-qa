@@ -10,6 +10,9 @@ import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.pos.POSTag;
 import edu.emory.clir.clearnlp.pos.POSTagEn;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.ArithmeticQuestion;
+import edu.emory.clir.clearnlp.qa.question.arithmetic.ArithmeticQuestions;
+import edu.emory.clir.clearnlp.qa.question.arithmetic.utils.*;
+import edu.emory.clir.clearnlp.qa.question.arithmetic.utils.Reader;
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
 import edu.emory.clir.clearnlp.reader.TSVReader;
 import edu.emory.clir.clearnlp.srl.SRLTree;
@@ -147,9 +150,21 @@ public class App
         App app = new App();
         //app.calculateIdf();
 
-        ArithmeticQuestion arithmeticQuestion = new ArithmeticQuestion();
-        //arithmeticQuestion
+        ArithmeticQuestions arithmeticQuestions = new ArithmeticQuestions();
 
+        edu.emory.clir.clearnlp.qa.question.arithmetic.utils.Reader areader = new Reader();
+
+        try {
+            ArithmeticQuestion aq;
+            while ((aq = areader.read()) != null)
+            {
+                System.out.println("Got arithmticquestion: " + aq);
+                arithmeticQuestions.add(aq);
+            }
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static double round(double value, int places) {
