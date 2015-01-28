@@ -54,7 +54,7 @@ public class ArithmeticQuestion {
 
     public String toString()
     {
-        return "Text: " + questionText + "\nStates: " + questionTextStates;
+        return "Text: " + questionText + "\nText states: " + questionTextStates + "\nQuestion state: " + questionState;
     }
 
 

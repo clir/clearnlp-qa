@@ -89,7 +89,36 @@ public class Parser {
     {
         if (depTree == null) return null;
 
+        /* Find predicate and parse the question */
+        DEPNode root = null;
+        for (DEPNode node : depTree)
+        {
+            if (node.getLabel().equals("root"))
+            {
+                root = node;
+                break;
+            }
+        }
+
+        if (root == null) return null;
+
+        DEPNode a1Node = null;
+        for (DEPNode node : root.getDependentList())
+        {
+            if (StringUtils.extractSemanticRelation(node.getSemanticLabel(root)) == SemanticType.A1)
+            {
+                a1Node = node;
+            }
+        }
+
+        if (a1Node == null) return null;
+
         State state = new State();
+        Instance rootInstance = new Instance();
+        Instance a1Instance = new Instance ();
+        rootInstance.putArgumentList(SemanticType.A1, a1Instance);
+        state.putInstance(root, rootInstance);
+        state.putInstance(a1Node, a1Instance);
 
         return state;
     }
