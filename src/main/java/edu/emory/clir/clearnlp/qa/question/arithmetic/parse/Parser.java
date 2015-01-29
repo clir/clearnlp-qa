@@ -68,7 +68,7 @@ public class Parser {
 
                         predicate.putArgumentList(SemanticType.A0, A0_inst);
                         predicate.putArgumentList(SemanticType.A1, A1_inst);
-                        predicate.putAttribute(AttributeType.QUANTITY, quantityAttribute);
+                        A1_inst.putAttribute(AttributeType.QUANTITY, quantityAttribute);
 
                         s = new State();
                         s.putInstance(depNode, predicate);

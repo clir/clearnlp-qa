@@ -5,26 +5,37 @@ import edu.emory.clir.clearnlp.qa.structure.Instance;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class State {
-    private HashMap<DEPNode, Instance> m_instances;
+    private HashMap<Instance, DEPNode> m_instances;
 
     public State()
     {
         m_instances = new HashMap();
     }
 
-    public Instance putInstance(DEPNode depNode, Instance instance)
+    public DEPNode putInstance(DEPNode depNode, Instance instance)
     {
-        return m_instances.put(depNode, instance);
+        return m_instances.put(instance, depNode);
+    }
+
+    public Set<Instance> keySet()
+    {
+        return m_instances.keySet();
+    }
+
+    public DEPNode get(Instance i)
+    {
+        return m_instances.get(i);
     }
 
     public String toString()
     {
         String s = "\n";
-        for (Map.Entry<DEPNode, Instance> entry : m_instances.entrySet())
+        for (Map.Entry<Instance, DEPNode> entry : m_instances.entrySet())
         {
-            s += entry.getKey().getLemma() + ": " + entry.getValue() + "\n";
+            s += entry.getKey() + ": " + entry.getValue().getLemma() + "\n";
         }
 
         return s;

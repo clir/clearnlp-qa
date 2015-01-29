@@ -144,8 +144,9 @@ public class App
             ArithmeticQuestion aq;
             while ((aq = areader.read()) != null)
             {
-                System.out.println("Got arithmticquestion: " + aq);
+                System.out.println("Question: " + aq);
                 arithmeticQuestions.add(aq);
+                aq.solveProblem();
             }
         } catch (IOException e)
         {

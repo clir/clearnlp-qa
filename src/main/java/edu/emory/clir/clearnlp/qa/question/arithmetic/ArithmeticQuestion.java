@@ -2,7 +2,11 @@ package edu.emory.clir.clearnlp.qa.question.arithmetic;
 
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
+import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.parse.Parser;
+import edu.emory.clir.clearnlp.qa.structure.Instance;
+import edu.emory.clir.clearnlp.qa.structure.SemanticType;
+import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +16,7 @@ public class ArithmeticQuestion {
     private List<DEPTree> questionTreeList;
     private List<State> questionTextStates;
     private State questionState;
-
-    public ArithmeticQuestion()
-    {
-    }
+    ArithmeticQuestionType arithmeticQuestionType;
 
     public ArithmeticQuestion(String questionText, List<DEPTree> depTreeList)
     {
@@ -23,6 +24,7 @@ public class ArithmeticQuestion {
         this.questionTreeList = depTreeList;
         questionTextStates = new ArrayList();
         prepareInstances();
+        detectQuestionType();
     }
 
     private void prepareInstances()
@@ -52,98 +54,76 @@ public class ArithmeticQuestion {
         }
     }
 
-    public String toString()
+    private void detectQuestionType()
     {
-        return "Text: " + questionText + "\nText states: " + questionTextStates + "\nQuestion state: " + questionState;
+        /*
+        TODO: question types parsing here
+         */
+        arithmeticQuestionType = ArithmeticQuestionType.SUM;
     }
 
+    public String toString()
+    {
+        //return "Text: " + questionText + "\nText states: " + questionTextStates + "\nQuestion state: " + questionState;
+        return questionText;
+    }
 
+    public void solveProblem()
+    {
+        switch (arithmeticQuestionType){
+            case SUM:
+                solveSumProblem();
+        }
 
-//    public void parseText(String file_dir, String file_wildcard) throws IOException {
-//        if (! (new File(file_dir).exists())) {
-//            throw new FileNotFoundException();
-//        }
-//
-//        for (char i = 'a'; i <= 'b'; i++) {
-//            for (char j = 'a'; j <= 'z'; j++) {
-//                BufferedReader bufferedReader;
-//
-//                try
-//                {
-//                    /* Read and store question text */
-//                    bufferedReader = new BufferedReader(new FileReader(file_dir + file_wildcard + i + j));
-//
-//                    String question = bufferedReader.readLine();
-//
-//                    questionsSet.put("" + i + j, question);
-//
-//                    /* Read and store DEPTree of question */
-//                    DEPTree tree;
-//                    tSVReader.open(IOUtils.createFileInputStream(file_dir + file_wildcard + i + j + ".cnlp"));
-//                    questionsSetTrees.put("" + i + j, new ArrayList());
-//
-//                    while((tree = tSVReader.next()) != null)
-//                    {
-//                        (questionsSetTrees.get("" + i + j)).add(tree);
-//                    }
-//
-//                } catch (FileNotFoundException e)
-//                {
-//                    break;
-//                } catch (IOException e)
-//                {
-//                    throw new IOException();
-//                }
-//            }
-//        }
-//    }
+    }
 
-//    public void splitIntoCategories()
-//    {
-//        sumQuestionList = new ArrayList();
-//
-//        for (String key : questionsSet.keySet())
-//        {
-//            if (isSumQuestion(key))
-//            {
-//                sumQuestionList.add(new SumQuestion(questionsSetTrees.get(key)));
-//            }
-//        }
-//    }
+    private void solveSumProblem()
+    {
+        /* Detect the container and predicate in question */
+        String container = null;
+        String predicate = null;
 
-//    private boolean isSumQuestion(String key)
-//    {
-//        DEPTree qTree = null;
-//        boolean found = false;
-//
-//        /* Select the tree with the question mark */
-//        for (DEPTree depTree : questionsSetTrees.get(key))
-//        {
-//            for (DEPNode node : depTree)
-//            {
-//                if (node.getLemma().equals("?"))
-//                {
-//                    qTree = depTree;
-//                    found = true;
-//                    break;
-//                }
-//            }
-//
-//            if (found)
-//            {
-//                break;
-//            }
-//        }
-//
-//        /* Iterate through faster */
-//        for (DEPNode node : qTree) {
-//            /* If question is sum-question, mark it */
-//            if (node.getLemma().equalsIgnoreCase("total") || node.getLemma().equalsIgnoreCase("all") ||
-//                    node.getLemma().equalsIgnoreCase("together")){
-//                return true;
-//            }
-//        }
-//
-//        return false;
-//    }
+        for (Instance i : questionState.keySet())
+        {
+            if (i.getArgumentList(SemanticType.A1) != null && i.getArgumentList(SemanticType.A1).size() > 0)
+            {
+                predicate = questionState.get(i).getLemma();
+                for (Instance j : i.getArgumentList(SemanticType.A1))
+                {
+                    container = questionState.get(j).getLemma();
+                }
+            }
+        }
+
+        /* Select numerals from states with matched predicates and containers */
+        List<String> matchingNumericals = new ArrayList();
+        for (State s : questionTextStates)
+        {
+            for (Instance i : s.keySet())
+            {
+                DEPNode i_node = s.get(i);
+                if (POSLibEn.isVerb(i_node.getPOSTag()) && i_node.getLemma().equals(predicate))
+                {
+                    Instance containerInstance = i.getArgumentList(SemanticType.A1).get(0);
+                    DEPNode containerNode = s.get(containerInstance);
+                    Instance numericalInstance = containerInstance.getAttribute(AttributeType.QUANTITY).get(0);
+                    DEPNode numericalNode = s.get(numericalInstance);
+                    if (container.equals(containerNode.getLemma()))
+                    {
+                        /* Get numerical and add */
+                        String numerical = numericalNode.getWordForm();
+                        matchingNumericals.add(numerical);
+                    }
+                }
+            }
+        }
+
+        double sum = 0;
+        for (String s : matchingNumericals)
+        {
+            sum += Double.parseDouble(s);
+        }
+
+        System.out.println("Answer is: " + sum);
+    }
 }
