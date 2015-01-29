@@ -3,7 +3,9 @@ package edu.emory.clir.clearnlp.qa.question.arithmetic;
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.pos.POSLibEn;
+import edu.emory.clir.clearnlp.qa.question.arithmetic.type.ArithmeticQuestionType;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.parse.Parser;
+import edu.emory.clir.clearnlp.qa.question.arithmetic.type.Detector;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
@@ -25,6 +27,11 @@ public class ArithmeticQuestion {
         questionTextStates = new ArrayList();
         prepareInstances();
         detectQuestionType();
+    }
+
+    public List<DEPTree> getDEPTrees()
+    {
+        return questionTreeList;
     }
 
     private void prepareInstances()
@@ -56,10 +63,8 @@ public class ArithmeticQuestion {
 
     private void detectQuestionType()
     {
-        /*
-        TODO: question types parsing here
-         */
-        arithmeticQuestionType = ArithmeticQuestionType.SUM;
+        Detector detector = new Detector(this);
+        arithmeticQuestionType = detector.detectQuestionType();
     }
 
     public String toString()
@@ -102,12 +107,14 @@ public class ArithmeticQuestion {
             for (Instance i : s.keySet())
             {
                 DEPNode i_node = s.get(i);
+
                 if (POSLibEn.isVerb(i_node.getPOSTag()) && i_node.getLemma().equals(predicate))
                 {
                     Instance containerInstance = i.getArgumentList(SemanticType.A1).get(0);
                     DEPNode containerNode = s.get(containerInstance);
                     Instance numericalInstance = containerInstance.getAttribute(AttributeType.QUANTITY).get(0);
                     DEPNode numericalNode = s.get(numericalInstance);
+
                     if (container.equals(containerNode.getLemma()))
                     {
                         /* Get numerical and add */
