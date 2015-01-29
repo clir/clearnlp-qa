@@ -4,7 +4,7 @@ import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.State;
-import edu.emory.clir.clearnlp.qa.question.arithmetic.utils.StringUtils;
+import edu.emory.clir.clearnlp.qa.question.arithmetic.util.StringUtils;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
