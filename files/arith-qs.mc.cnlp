@@ -1,0 +1,32 @@
+1	Sally	sally	NNP	p2=RB	2	nsubj	2:A0=PAG
+2	paid	pay	VBD	pb=pay.01	0	root	_
+3	$	$	$	_	4	nmod	_
+4	12.32	0	CD	_	5	nn	_
+5	total	total	NN	p2=JJ	2	dobj	2:A1=VSP
+6	for	for	IN	_	2	prep	2:A3=PPT
+7	peaches	peach	NNS	p2=NN	6	pobj	_
+8	,	,	,	_	2	punct	_
+9	after	after	IN	_	2	prep	2:AM-TMP
+10	a	a	DT	_	13	det	_
+11	3	0	CD	_	12	num	_
+12	dollar	dollar	NN	_	13	nn	_
+13	coupon	coupon	NN	_	9	pobj	_
+14	,	,	,	_	2	punct	_
+15	and	and	CC	_	2	cc	_
+16	$	$	$	_	17	nmod	_
+17	11.54	0	CD	_	2	conj	_
+18	for	for	IN	_	17	prep	_
+19	cherries	cherry	NNS	_	18	pobj	_
+20	.	.	.	_	2	punct	_
+
+1	In	in	IN	_	9	prep	9:AM-LOC
+2	total	total	NN	p2=JJ	1	pobj	_
+3	,	,	,	_	9	punct	_
+4	how	how	WRB	_	5	advmod	_
+5	much	much	JJ	_	6	amod	_
+6	money	money	NN	_	9	dobj	9:R-A1
+7	did	do	VBD	_	9	aux	_
+8	Sally	sally	NNP	_	9	nsubj	9:A0=PAG
+9	spend	spend	VB	pb=spend.01	0	root	_
+10	?	?	.	_	9	punct	_
+

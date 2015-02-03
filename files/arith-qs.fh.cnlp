@@ -1,0 +1,55 @@
+1	An	an	DT	_	3	det	_
+2	oil	oil	NN	_	3	nn	_
+3	pipe	pipe	NN	_	7	nsubj	7:A1=PPT
+4	in	in	IN	_	3	prep	_
+5	the	the	DT	_	6	det	_
+6	sea	sea	NN	_	4	pobj	_
+7	broke	break	VBD	pb=break.01	0	root	_
+8	.	.	.	_	7	punct	_
+
+1	Before	before	IN	_	3	mark	_
+2	engineers	engineer	NNS	_	3	nsubj	5:A0=PAG;3:A1=PPT
+3	started	start	VBD	pb=start.01	13	advcl	13:AM-TMP
+4	to	to	TO	_	5	aux	_
+5	fix	fix	VB	pb=fix.02	3	xcomp	3:C-A1
+6	the	the	DT	_	7	det	_
+7	pipe	pipe	NN	_	5	dobj	5:A1=PPT
+8	,	,	,	_	13	punct	_
+9	6522	0	CD	_	10	num	_
+10	liters	liter	NNS	_	13	nsubj	13:A1=PPT
+11	of	of	IN	_	10	prep	_
+12	oil	oil	NN	_	11	pobj	_
+13	leaked	leak	VBN	pb=leak.01	0	root	_
+14	into	into	IN	_	13	prep	13:A0=DIR
+15	the	the	DT	_	16	det	_
+16	water	water	NN	_	14	pobj	_
+17	.	.	.	_	13	punct	_
+
+1	While	while	IN	_	4	mark	_
+2	the	the	DT	_	3	det	_
+3	engineers	engineer	NNS	_	4	nsubj	4:A0=PAG
+4	worked	work	VBD	pb=work.01	8	advcl	8:AM-TMP
+5	,	,	,	_	8	punct	_
+6	the	the	DT	_	7	det	_
+7	pipe	pipe	NN	_	8	nsubj	8:A0=DIR
+8	leaked	leak	VBD	p2=VBN|pb=leak.01	0	root	_
+9	5165	0	CD	_	10	num	_
+10	liters	liter	NNS	_	8	dobj	8:A1=PPT
+11	of	of	IN	_	10	prep	_
+12	oil	oil	NN	_	11	pobj	_
+13	.	.	.	_	8	punct	_
+
+1	In	in	IN	_	9	prep	9:AM-DIS
+2	all	all	DT	_	1	pobj	_
+3	,	,	,	_	9	punct	_
+4	how	how	WRB	_	5	advmod	_
+5	many	many	JJ	_	6	amod	_
+6	liters	liter	NNS	_	9	nsubj	9:A1=PPT
+7	of	of	IN	_	6	prep	_
+8	oil	oil	NN	_	7	pobj	_
+9	leaked	leak	VBN	pb=leak.01	0	root	_
+10	into	into	IN	_	9	prep	9:A0=DIR
+11	the	the	DT	_	12	det	_
+12	water	water	NN	_	10	pobj	_
+13	?	?	.	_	9	punct	_
+

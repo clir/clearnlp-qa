@@ -1,0 +1,31 @@
+1	In	in	IN	_	8	prep	8:AM-TMP
+2	1	0	CD	_	3	num	_
+3	week	week	NN	_	1	pobj	_
+4	,	,	,	_	8	punct	_
+5	Mitch	mitch	NNP	_	7	poss	_
+6	's	's	POS	_	5	possessive	_
+7	family	family	NN	_	8	nsubj	8:A0=PAG
+8	drank	drink	VBD	pb=drink.01	0	root	_
+9	0.5	0	CD	_	10	num	_
+10	carton	carton	NN	p2=NNS	8	dobj	8:A1=PPT
+11	of	of	IN	_	10	prep	_
+12	regular	regular	JJ	_	13	amod	_
+13	milk	milk	NN	_	11	pobj	_
+14	and	and	CC	_	13	cc	_
+15	0.1	0	CD	_	16	num	_
+16	carton	carton	NN	p2=NNS	13	conj	_
+17	of	of	IN	_	16	prep	_
+18	soy	soy	NN	_	19	nn	_
+19	milk	milk	NN	_	17	pobj	_
+20	.	.	.	_	8	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	_	3	amod	_
+3	milk	milk	NN	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	they	they	PRP	_	6	nsubj	6:A0=PAG
+6	drink	drink	VB	pb=drink.01	0	root	_
+7	in	in	IN	p2=RB	6	prep	6:AM-LOC
+8	all	all	DT	p2=PDT	7	pobj	_
+9	?	?	.	_	6	punct	_
+

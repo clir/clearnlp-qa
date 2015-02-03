@@ -1,14 +1,11 @@
 package edu.emory.clir.clearnlp.qa;
 
-import edu.emory.clir.clearnlp.dependency.DEPNode;
-import edu.emory.clir.clearnlp.dependency.DEPTree;
-import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.ArithmeticQuestion;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.ArithmeticQuestions;
+import edu.emory.clir.clearnlp.qa.question.arithmetic.type.ArithmeticQuestionType;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.util.Reader;
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
 import edu.emory.clir.clearnlp.reader.TSVReader;
-import edu.emory.clir.clearnlp.util.IOUtils;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -32,126 +29,75 @@ public class App
     {
     }
 
-    public void calculateIdf()
-    {
-        int c = 0;
-        for (char i = 'a'; i <= 'z'; i++){
-            for (char j = 'a'; j <= 'z'; j++){
-                String filename = filename_prefix + "." + i + j + ".cnlp";
-
-                /* Check if file exists, if not break */
-                File f = new File(filename);
-                if(! f.exists()) break;
-
-                HashMap<String,Boolean> qMap = new HashMap<String,Boolean>();
-
-                /* Open and read the file using TSVReader */
-                reader.open(IOUtils.createFileInputStream(filename));
-                DEPTree tree = null;
-                while((tree = reader.next()) != null){
-                    //System.out.println("Reading for file = " + filename);
-                    for (DEPNode node : tree){
-                        if (POSLibEn.isVerb(node.getPOSTag())) {
-                            qMap.put(node.getLemma(), true);
-                        }
-                    }
-                }
-
-                for(String word : qMap.keySet()){
-                    if (wordsMap.containsKey(word)){
-                        wordsMap.put(word, wordsMap.get(word) + 1);
-                    } else {
-                        wordsMap.put(word, 1);
-                    }
-                }
-                c++;
-
-            }
-        }
-
-        sorted_map.putAll(wordsMap);
-
-        for (Map.Entry<String,Integer> entry : sorted_map.entrySet()){
-            System.out.println("Word: " + entry.getKey() + ", value = " + round(Math.log((double) c / entry.getValue()), 2));
-
-        }
-    }
-
-//    public void selectSumQuestions(HashMap<String, String> sumQuestions)
-//    {
-//        int a = 0;
-//        for (char i = 'a'; i <= 'z'; i++) {
-//            for (char j = 'a'; j <= 'z'; j++) {
-//                String filename = filename_prefix + "." + i + j + ".cnlp";
-//
-//                /* Check if file exists */
-//                File f = new File(filename);
-//                if (!f.exists()) break;
-//
-//                /* Open and fast forward to the question (last sentence) */
-//                reader.open(IOUtils.createFileInputStream(filename));
-//                DEPTree tree = null;
-//                DEPTree faster = null;
-//                while ((tree = reader.next()) != null) {
-//                    faster = tree;
-//                }
-//
-//                /* Iterate through faster */
-//                for (DEPNode node : faster) {
-//                    /* If question is sum-question, mark it */
-//                    if (node.getLemma().equalsIgnoreCase("total") || node.getLemma().equalsIgnoreCase("all") ||
-//                            node.getLemma().equalsIgnoreCase("together")){
-//
-//                        a++;
-//
-//                        /* Open file and read its content */
-//                        BufferedReader bufferedReader = null;
-//
-//                        try{
-//                            bufferedReader = new BufferedReader(new FileReader(filename_prefix + "." + i + j));
-//                            String text = null;
-//                            while ((text = bufferedReader.readLine()) != null){
-//                                System.out.println("Question = " + text);
-//                                sumQuestions.put("" + i  + j, text);
-//                            }
-//                        } catch (FileNotFoundException e){
-//                            e.printStackTrace();
-//                        } catch (IOException e){
-//                            e.printStackTrace();
-//                        }
-//
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-//
-//        System.out.println("a = " + a);
-//
-//    }
-
     public static void main( String[] args )
     {
-        HashMap<String, String> sumQuestions = new HashMap();
         App app = new App();
         //app.calculateIdf();
 
         ArithmeticQuestions arithmeticQuestions = new ArithmeticQuestions();
 
+        /* Read answers */
+        HashMap<Integer, Double> qAnswers = new HashMap();
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("ans.txt"));
+
+            int i = 0;
+            String line;
+            while((line = bufferedReader.readLine()) != null)
+            {
+                qAnswers.put(i++, Double.parseDouble(line));
+            }
+        }
+        catch (IOException e)
+        {
+
+        }
+
+
         edu.emory.clir.clearnlp.qa.question.arithmetic.util.Reader areader = new Reader();
+        int counter = 0;
+        int i = 0;
+        int correctAnswers    = 0;
+        int notCorrectAnswers = 0;
 
         try {
             ArithmeticQuestion aq;
             while ((aq = areader.read()) != null)
             {
-                System.out.println("Question: " + aq);
-                arithmeticQuestions.add(aq);
-                aq.solveProblem();
+                if (aq.getArithmeticQuestionType() == ArithmeticQuestionType.SUM)
+                {
+                    System.out.println("Question: " + aq);
+                    arithmeticQuestions.add(aq);
+                    double foundAnswer = aq.solveProblem();
+                    if (foundAnswer == qAnswers.get(i))
+                    {
+                        System.out.println("Found answer is correct that is: " + foundAnswer);
+                        correctAnswers++;
+                    }
+                    else
+                    {
+                        System.out.println("Found answer is NOT correct: " + foundAnswer + ", should be: " +
+                                qAnswers.get(i));
+                        notCorrectAnswers++;
+                    }
+                    System.out.println("\n");
+                    counter++;
+                }
+                i++;
             }
+//            aq = areader.readFile("files/", "arith-qs.cm");
+//            System.out.println("Question: " + aq);
+//            arithmeticQuestions.add(aq);
+
         } catch (IOException e)
         {
             e.printStackTrace();
         }
+
+        System.out.println("Parsed questions: " + counter);
+        System.out.println("Correctly answered questions: " + correctAnswers);
+        System.out.println("Incorrectly answered questions: " + notCorrectAnswers);
     }
 
     public static double round(double value, int places) {

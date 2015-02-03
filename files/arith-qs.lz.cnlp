@@ -1,0 +1,45 @@
+1	There	there	EX	_	2	expl	_
+2	are	be	VBP	pb=be.02	0	root	_
+3	42	0	CD	_	5	num	_
+4	walnut	walnut	NN	p2=JJ	5	nn	_
+5	trees	tree	NNS	_	2	attr	2:A1=PPT
+6	and	and	CC	_	5	cc	_
+7	12	0	CD	_	9	num	_
+8	orange	orange	NN	p2=JJ	9	nn	_
+9	trees	tree	NNS	_	5	conj	_
+10	currently	currently	RB	_	11	advmod	_
+11	in	in	IN	_	5	prep	_
+12	the	the	DT	_	13	det	_
+13	park	park	NN	_	11	pobj	_
+14	.	.	.	_	2	punct	_
+
+1	Park	park	NNP	p2=NN	2	nn	_
+2	workers	worker	NNS	_	3	nsubj	5:A0=PAG
+3	had	have	VBD	pb=have.02	0	root	_
+4	to	to	TO	_	5	aux	_
+5	cut	cut	VB	p2=VBN|pb=cut.02	3	xcomp	_
+6	down	down	RP	p2=RB	5	prt	5:C-V
+7	13	0	CD	_	9	num	_
+8	walnut	walnut	NN	p2=JJ	9	nn	_
+9	trees	tree	NNS	_	5	dobj	5:A1=PPT;12:A1=PPT
+10	that	that	WDT	_	12	nsubjpass	12:R-A1
+11	were	be	VBD	_	12	auxpass	_
+12	damaged	damage	VBN	pb=damage.01	9	rcmod	_
+13	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	walnut	walnut	NN	p2=JJ	4	nn	_
+4	trees	tree	NNS	_	6	nsubj	6:A1=PPT
+5	will	will	MD	_	6	aux	6:AM-MOD
+6	be	be	VB	pb=be.01	0	root	_
+7	in	in	IN	_	6	prep	6:A2=PRD
+8	the	the	DT	_	9	det	_
+9	park	park	NN	_	7	pobj	_
+10	when	when	WRB	_	14	advmod	14:R-AM-TMP
+11	the	the	DT	_	12	det	_
+12	workers	worker	NNS	_	14	nsubjpass	14:A1=PPT
+13	are	be	VBP	_	14	auxpass	_
+14	finished	finish	VBN	pb=finish.01	9	rcmod	6:AM-TMP
+15	?	?	.	_	6	punct	_
+

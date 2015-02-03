@@ -1,0 +1,38 @@
+1	Ezra	ezra	NNP	_	2	nsubj	2:A0=PAG
+2	drew	draw	VBD	pb=draw.01	0	root	_
+3	a	a	DT	_	5	det	_
+4	white	white	JJ	_	5	amod	_
+5	line	line	NN	_	2	dobj	2:A1=PPT;7:A1=PPT
+6	that	that	WDT	_	7	nsubj	7:R-A1
+7	was	be	VBD	pb=be.01	5	rcmod	_
+8	7.666666666666667	0	CD	_	9	num	_
+9	inches	inch	NNS	p2=VBZ	10	npadvmod	_
+10	long	long	JJ	p2=RB	7	acomp	7:A2=PRD
+11	.	.	.	_	2	punct	_
+
+1	Then	then	RB	_	3	advmod	3:AM-TMP
+2	he	he	PRP	_	3	nsubj	3:A0=PAG
+3	drew	draw	VBD	pb=draw.01	0	root	_
+4	a	a	DT	_	6	det	_
+5	blue	blue	JJ	_	6	amod	_
+6	line	line	NN	_	3	dobj	3:A1=PPT;8:A1=PPT
+7	that	that	WDT	p2=DT	8	nsubj	8:R-A1
+8	was	be	VBD	pb=be.01	6	rcmod	_
+9	3.3333333333333335	0	CD	_	10	num	_
+10	inches	inch	NNS	p2=VBZ	11	npadvmod	_
+11	long	long	JJ	p2=RB	8	acomp	8:A2=PRD
+12	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	RB	p2=JJ	3	advmod	_
+3	longer	long	RBR	p2=JJR	4	advmod	4:AM-TMP
+4	was	be	VBD	pb=be.01	0	root	_
+5	the	the	DT	_	7	det	_
+6	white	white	JJ	_	7	amod	_
+7	line	line	NN	_	4	nsubj	4:A1=PPT
+8	than	than	IN	_	7	prep	_
+9	the	the	DT	_	11	det	_
+10	blue	blue	JJ	_	11	amod	_
+11	line	line	NN	_	8	pobj	_
+12	?	?	.	_	4	punct	_
+

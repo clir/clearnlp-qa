@@ -1,0 +1,44 @@
+1	A	a	DT	p2=NN	2	det	_
+2	farmer	farmer	NN	p2=JJ	3	nsubj	3:A0=PAG
+3	estimates	estimate	VBZ	pb=estimate.01	0	root	_
+4	that	that	IN	_	7	complm	_
+5	he	he	PRP	_	7	nsubj	7:A0=PAG
+6	will	will	MD	_	7	aux	7:AM-MOD
+7	harvest	harvest	VB	pb=harvest.01	3	ccomp	3:A1=PPT
+8	48097	0	CD	_	9	num	_
+9	bushels	bushel	NNS	_	7	dobj	7:A1=PPT
+10	of	of	IN	_	9	prep	_
+11	wheat	wheat	NN	_	10	pobj	_
+12	.	.	.	_	3	punct	_
+
+1	The	the	DT	_	2	det	_
+2	weather	weather	NN	_	3	nsubj	3:A1=PPT
+3	is	be	VBZ	pb=be.01	0	root	_
+4	perfect	perfect	JJ	_	3	acomp	3:A2=PRD
+5	during	during	IN	_	3	prep	3:AM-TMP
+6	the	the	DT	_	8	det	_
+7	growing	grow	VBG	p2=NN|pb=grow.01	8	amod	_
+8	season	season	NN	_	5	pobj	7:A1=PPT
+9	,	,	,	_	12	punct	_
+10	so	so	RB	p2=CC	12	advmod	12:AM-DIS
+11	he	he	PRP	_	12	nsubj	12:A0=PAG
+12	harvests	harvest	VBZ	pb=harvest.01	0	root	_
+13	684	0	CD	_	14	num	_
+14	bushels	bushel	NNS	_	12	dobj	12:A1=PPT;18:A1=PPT
+15	of	of	IN	_	14	prep	_
+16	wheat	wheat	NN	_	15	pobj	_
+17	than	than	IN	_	18	mark	_
+18	expected	expect	VBN	pb=expect.01	14	advcl	_
+19	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	bushels	bushel	NNS	_	9	dobj	9:R-A1
+4	of	of	IN	_	3	prep	_
+5	wheat	wheat	NN	_	4	pobj	_
+6	does	do	VBZ	_	9	aux	_
+7	the	the	DT	_	8	det	_
+8	farmer	farmer	NN	_	9	nsubj	9:A0=PAG
+9	harvest	harvest	VB	pb=harvest.01	0	root	_
+10	?	?	.	_	9	punct	_
+

@@ -1,0 +1,31 @@
+1	Mandy	mandy	NNP	p2=NN	2	nsubj	2:A0=PAG
+2	made	make	VBD	pb=make.01	0	root	_
+3	an	an	DT	_	5	det	_
+4	apple	apple	NN	_	5	nn	_
+5	pie	pie	NN	_	2	dobj	2:A1=PRD
+6	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PAG
+2	used	use	VBD	pb=use.01	0	root	_
+3	0.6666666666666666	0	CD	_	4	num	_
+4	tablespoon	tablespoon	NN	p2=NNS	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	cinnamon	cinnamon	NN	_	5	pobj	_
+7	and	and	CC	_	4	cc	_
+8	0.5	0	CD	_	9	num	_
+9	tablespoon	tablespoon	NN	p2=NNS	4	conj	_
+10	of	of	IN	_	9	prep	_
+11	nutmeg	nutmeg	NN	p2=NNP	10	pobj	_
+12	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	RB	p2=JJ	3	advmod	_
+3	more	more	JJR	_	4	amod	_
+4	cinnamon	cinnamon	NN	_	9	dobj	9:R-A1
+5	than	than	IN	_	4	prep	_
+6	nutmeg	nutmeg	NN	p2=NNS	5	pobj	_
+7	did	do	VBD	_	9	aux	_
+8	Mandy	mandy	NNP	p2=JJ	9	nsubj	9:A0=PAG
+9	use	use	VB	p2=NN|pb=use.01	0	root	_
+10	?	?	.	_	9	punct	_
+

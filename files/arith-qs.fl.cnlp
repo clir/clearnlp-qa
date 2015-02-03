@@ -1,0 +1,31 @@
+1	There	there	EX	_	2	expl	_
+2	were	be	VBD	pb=be.02	0	root	_
+3	originally	originally	RB	_	2	advmod	2:AM-TMP
+4	20817	0	CD	_	5	num	_
+5	houses	house	NNS	_	2	attr	2:A1=PPT
+6	in	in	IN	_	5	prep	_
+7	Lincoln	lincoln	NNP	_	8	nn	_
+8	County	county	NNP	_	6	pobj	_
+9	.	.	.	_	2	punct	_
+
+1	During	during	IN	_	7	prep	7:AM-TMP
+2	a	a	DT	_	4	det	_
+3	housing	housing	NN	_	4	nn	_
+4	boom	boom	NN	_	1	pobj	_
+5	,	,	,	_	7	punct	_
+6	developers	developer	NNS	_	7	nsubj	7:A0=PAG
+7	built	build	VBD	pb=build.01	0	root	_
+8	97741	0	CD	_	7	dobj	7:A1=PRD
+9	.	.	.	_	7	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	houses	house	NNS	_	4	nsubj	4:R-A1
+4	are	be	VBP	pb=be.02	0	root	_
+5	there	there	EX	p2=RB	4	expl	_
+6	now	now	RB	_	4	advmod	4:AM-TMP
+7	in	in	IN	_	4	prep	_
+8	Lincoln	lincoln	NNP	_	9	nn	_
+9	County	county	NNP	_	7	pobj	_
+10	?	?	.	_	4	punct	_
+

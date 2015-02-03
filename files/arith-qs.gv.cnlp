@@ -1,0 +1,33 @@
+1	A	a	DT	_	2	det	_
+2	tailor	tailor	NN	_	3	nsubj	3:A0=PAG
+3	cut	cut	VBD	p2=NN|pb=cut.02	0	root	_
+4	0.75	0	CD	_	5	num	_
+5	inch	inch	NN	_	3	dobj	3:A1=PPT
+6	off	off	IN	p2=RB	3	prep	3:A2=EXT
+7	a	a	DT	_	8	det	_
+8	skirt	skirt	NN	_	6	pobj	_
+9	and	and	CC	_	3	cc	_
+10	0.5	0	CD	_	11	num	_
+11	inch	inch	NN	_	3	conj	_
+12	off	off	IN	p2=RB	11	prep	_
+13	a	a	DT	_	14	det	_
+14	pair	pair	NN	_	12	pobj	_
+15	of	of	IN	_	14	prep	_
+16	pants	pant	NNS	_	15	pobj	_
+17	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	RB	p2=JJ	3	advmod	_
+3	more	more	JJR	p2=RBR	7	advmod	_
+4	did	do	VBD	_	7	aux	_
+5	the	the	DT	_	6	det	_
+6	tailor	tailor	NN	_	7	nsubj	7:A0=PAG
+7	cut	cut	VBD	p2=VB|pb=cut.04	0	root	_
+8	off	off	RP	_	7	prt	7:C-V
+9	the	the	DT	_	10	det	_
+10	skirt	skirt	NN	_	7	dobj	7:A1=PPT
+11	than	than	IN	_	10	prep	_
+12	the	the	DT	_	13	det	_
+13	pants	pant	NNS	_	11	pobj	_
+14	?	?	.	_	7	punct	_
+

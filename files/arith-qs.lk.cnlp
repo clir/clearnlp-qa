@@ -1,0 +1,30 @@
+1	A	a	DT	_	2	det	_
+2	restaurant	restaurant	NN	_	3	nsubj	3:A0=PAG
+3	made	make	VBD	p2=VBN|pb=make.01	0	root	_
+4	9	0	CD	_	5	num	_
+5	hamburgers	hamburger	NNS	_	3	dobj	3:A1=PRD
+6	and	and	CC	_	5	cc	_
+7	4	0	CD	_	9	num	_
+8	hot	hot	JJ	_	9	amod	_
+9	dogs	dog	NNS	_	5	conj	_
+10	to	to	TO	_	11	aux	_
+11	serve	serve	VB	pb=serve.01	9	infmod	_
+12	during	during	IN	_	11	prep	11:AM-TMP
+13	lunch	lunch	NN	_	12	pobj	_
+14	.	.	.	_	3	punct	_
+
+1	Only	only	RB	_	2	advmod	_
+2	3	0	CD	_	3	num	_
+3	hamburgers	hamburger	NNS	_	6	nsubjpass	6:A1=PPT
+4	were	be	VBD	_	6	auxpass	_
+5	actually	actually	RB	_	6	advmod	6:AM-ADV
+6	served	serve	VBN	pb=serve.01	0	root	_
+7	.	.	.	_	6	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	hamburgers	hamburger	NNS	_	4	nsubj	4:A1=PPT
+4	were	be	VBD	pb=be.01	0	root	_
+5	over	over	RB	p2=RP	4	advmod	4:A2=PRD
+6	?	?	.	_	4	punct	_
+

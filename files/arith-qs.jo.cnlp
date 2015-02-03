@@ -1,0 +1,34 @@
+1	Alec	alec	NNP	p2=JJ	5	nsubj	5:A0=PAG
+2	and	and	CC	_	1	cc	_
+3	his	his	PRP$	_	4	poss	_
+4	roommates	roommate	NNS	_	1	conj	_
+5	ate	eat	VBD	pb=eat.01	0	root	_
+6	3.25	0	CD	_	7	num	_
+7	pints	pint	NNS	_	5	dobj	5:A1=PPT
+8	of	of	IN	_	7	prep	_
+9	ice	ice	NN	_	10	nn	_
+10	cream	cream	NN	_	8	pobj	_
+11	on	on	IN	p2=CC	5	prep	5:AM-TMP
+12	Friday	friday	NNP	_	13	nn	_
+13	night	night	NN	_	11	pobj	_
+14	and	and	CC	_	13	cc	_
+15	0.25	0	CD	_	16	num	_
+16	pint	pint	NN	_	13	conj	_
+17	of	of	IN	_	16	prep	_
+18	ice	ice	NN	_	19	nn	_
+19	cream	cream	NN	_	17	pobj	_
+20	on	on	IN	_	16	prep	_
+21	Saturday	saturday	NNP	_	22	nn	_
+22	night	night	NN	_	20	pobj	_
+23	.	.	.	_	5	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	pints	pint	NNS	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	they	they	PRP	_	6	nsubj	6:A0=PAG
+6	eat	eat	VB	pb=eat.01	0	root	_
+7	in	in	IN	p2=RB	6	prep	6:AM-LOC
+8	all	all	DT	p2=PDT	7	pobj	_
+9	?	?	.	_	6	punct	_
+

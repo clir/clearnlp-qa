@@ -1,0 +1,29 @@
+1	Dina	dina	NNP	p2=NN	2	nsubj	2:A0=PAG
+2	made	make	VBD	p2=VBN|pb=make.01	0	root	_
+3	cookies	cookie	NNS	_	2	dobj	2:AM-PRR
+4	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PAG
+2	used	use	VBD	pb=use.01	0	root	_
+3	0.625	0	CD	_	4	num	_
+4	cup	cup	NN	_	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	flour	flour	NN	_	5	pobj	_
+7	and	and	CC	_	4	cc	_
+8	0.25	0	CD	_	9	num	_
+9	cup	cup	NN	_	4	conj	_
+10	of	of	IN	_	9	prep	_
+11	sugar	sugar	NN	_	10	pobj	_
+12	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	RB	p2=JJ	3	advmod	_
+3	more	more	JJR	_	4	amod	_
+4	flour	flour	NN	_	9	dobj	9:R-A1
+5	than	than	IN	_	4	prep	_
+6	sugar	sugar	NN	_	5	pobj	_
+7	did	do	VBD	_	9	aux	_
+8	Dina	dina	NNP	p2=NN	9	nsubj	9:A0=PAG
+9	use	use	VB	p2=NN|pb=use.01	0	root	_
+10	?	?	.	_	9	punct	_
+

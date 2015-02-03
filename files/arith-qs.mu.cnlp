@@ -1,0 +1,51 @@
+1	There	there	EX	_	2	expl	_
+2	are	be	VBP	pb=be.02	0	root	_
+3	31	0	CD	_	5	num	_
+4	short	short	JJ	_	5	amod	_
+5	trees	tree	NNS	_	2	attr	2:A1=PPT
+6	and	and	CC	_	5	cc	_
+7	32	0	CD	_	9	num	_
+8	tall	tall	JJ	p2=NN	9	amod	_
+9	trees	tree	NNS	_	5	conj	_
+10	currently	currently	RB	_	11	advmod	_
+11	in	in	IN	_	2	prep	_
+12	the	the	DT	_	13	det	_
+13	park	park	NN	_	11	pobj	_
+14	.	.	.	_	2	punct	_
+
+1	Park	park	NNP	p2=JJ	2	nn	_
+2	workers	worker	NNS	_	4	nsubj	4:A0=PAG
+3	will	will	MD	_	4	aux	4:AM-MOD
+4	plant	plant	VB	pb=plant.01	0	root	_
+5	short	short	JJ	_	6	amod	_
+6	trees	tree	NNS	_	4	dobj	4:A1=PPT
+7	today	today	NN	_	4	npadvmod	4:AM-TMP
+8	.	.	.	_	4	punct	_
+
+1	When	when	WRB	_	5	advmod	5:R-AM-TMP
+2	the	the	DT	_	3	det	_
+3	workers	worker	NNS	_	5	nsubjpass	5:A1=PPT
+4	are	be	VBP	_	5	auxpass	_
+5	finished	finish	VBN	p2=JJ|pb=finish.01	8	advcl	8:AM-TMP
+6	there	there	EX	p2=RB	8	expl	_
+7	will	will	MD	_	8	aux	8:AM-MOD
+8	be	be	VB	pb=be.02	0	root	_
+9	95	0	CD	_	11	num	_
+10	short	short	JJ	_	11	amod	_
+11	trees	tree	NNS	_	8	attr	8:A1=PPT
+12	in	in	IN	_	8	prep	8:AM-LOC
+13	the	the	DT	_	14	det	_
+14	park	park	NN	_	12	pobj	_
+15	.	.	.	_	8	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	short	short	JJ	_	4	amod	_
+4	trees	tree	NNS	_	8	dobj	8:R-A1
+5	did	do	VBD	_	8	aux	_
+6	the	the	DT	_	7	det	_
+7	workers	worker	NNS	_	8	nsubj	8:A0=PAG
+8	plant	plant	VB	p2=NN|pb=plant.01	0	root	_
+9	today	today	NN	_	8	npadvmod	8:AM-TMP
+10	?	?	.	_	8	punct	_
+

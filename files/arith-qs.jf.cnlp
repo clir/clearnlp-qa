@@ -1,0 +1,40 @@
+1	On	on	IN	_	7	prep	7:AM-TMP
+2	a	a	DT	_	4	det	_
+3	hot	hot	JJ	_	4	amod	_
+4	day	day	NN	_	1	pobj	_
+5	,	,	,	_	7	punct	_
+6	Sam	sam	NNP	_	7	nsubj	7:A0
+7	poured	pour	VBD	pb=pour.01	0	root	_
+8	1	0	CD	_	9	num	_
+9	bucket	bucket	NN	_	7	dobj	7:A1=PPT
+10	of	of	IN	_	9	prep	_
+11	water	water	NN	_	10	pobj	_
+12	into	into	IN	_	7	prep	7:A3=GOL
+13	a	a	DT	_	16	det	_
+14	plastic	plastic	NN	p2=JJ	16	amod	_
+15	wading	wade	VBG	p2=NN	16	nn	_
+16	pool	pool	NN	_	12	pobj	_
+17	.	.	.	_	7	punct	_
+
+1	A	a	DT	_	2	quantmod	_
+2	few	few	JJ	_	3	num	_
+3	minutes	minute	NNS	_	4	npadvmod	_
+4	later	late	RBR	p2=RB	6	advmod	6:AM-TMP
+5	he	he	PRP	_	6	nsubj	6:A0=PAG
+6	added	add	VBD	pb=add.02	0	root	_
+7	another	another	DT	_	9	det	_
+8	8.8	0	CD	_	9	num	_
+9	buckets	bucket	NNS	_	6	dobj	6:A1=PPT
+10	.	.	.	_	6	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	_	3	amod	_
+3	water	water	NN	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	Sam	sam	NNP	_	6	nsubj	6:A0
+6	pour	pour	VB	pb=pour.01	0	root	_
+7	into	into	IN	_	6	prep	6:A3=GOL
+8	the	the	DT	_	9	det	_
+9	pool	pool	NN	_	7	pobj	_
+10	?	?	.	_	6	punct	_
+

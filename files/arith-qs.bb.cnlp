@@ -1,0 +1,25 @@
+1	Jason	jason	NNP	p2=NN	2	nsubj	_
+2	grew	grow	VBD	pb=grow.01	0	root	_
+3	23	0	CD	_	4	num	_
+4	watermelons	watermelon	NNS	_	2	dobj	2:A1=PPT
+5	and	and	CC	_	4	cc	_
+6	18	0	CD	_	7	num	_
+7	turnips	turnip	NNS	_	4	conj	_
+8	.	.	.	_	2	punct	_
+
+1	Nancy	nancy	NNP	p2=NN	2	nsubj	2:A1=PPT
+2	grew	grow	VBD	pb=grow.01	0	root	_
+3	28	0	CD	_	4	num	_
+4	watermelons	watermelon	NNS	_	2	npadvmod	2:A2=EXT
+5	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	watermelons	watermelon	NNS	_	6	dobj	6:R-A2
+4	did	do	VBD	_	6	aux	_
+5	they	they	PRP	_	6	nsubj	6:A1=PPT
+6	grow	grow	VB	pb=grow.01	0	root	_
+7	in	in	IN	p2=RP	6	prep	6:R-AM-LOC
+8	total	total	NN	p2=JJ	7	pobj	_
+9	?	?	.	_	6	punct	_
+

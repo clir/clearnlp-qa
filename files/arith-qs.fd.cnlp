@@ -1,0 +1,40 @@
+1	Mike	mike	NNP	_	2	nsubj	2:A0=PAG
+2	bought	buy	VBD	pb=buy.01	0	root	_
+3	some	some	DT	_	4	det	_
+4	toys	toy	NNS	_	2	dobj	2:A1=PPT
+5	.	.	.	_	2	punct	_
+
+1	He	he	PRP	_	2	nsubj	2:A0=PAG;15:A0=PAG
+2	bought	buy	VBD	pb=buy.01	0	root	_
+3	marbles	marble	NNS	p2=VBZ	2	dobj	2:A1=PPT
+4	for	for	IN	_	2	prep	2:A3=VSP
+5	$	$	$	_	6	nmod	_
+6	9.05	0	CD	_	4	pobj	_
+7	,	,	,	_	6	punct	_
+8	a	a	DT	_	9	det	_
+9	football	football	NN	_	6	appos	_
+10	for	for	IN	_	9	prep	_
+11	$	$	$	_	12	nmod	_
+12	4.95	0	CD	_	10	pobj	_
+13	,	,	,	_	2	punct	_
+14	and	and	CC	_	2	cc	_
+15	spent	spend	VBD	p2=VBN|pb=spend.01	2	conj	_
+16	$	$	$	_	17	nmod	_
+17	6.52	0	CD	_	15	dobj	15:A3=VSP
+18	on	on	IN	_	15	prep	15:A1=PPT
+19	a	a	DT	_	20	det	_
+20	baseball	baseball	NN	_	18	pobj	_
+21	.	.	.	_	2	punct	_
+
+1	In	in	IN	_	8	prep	8:AM-LOC
+2	total	total	NN	p2=JJ	1	pobj	_
+3	,	,	,	_	8	punct	_
+4	how	how	WRB	_	5	advmod	_
+5	much	much	JJ	p2=RB	8	dobj	8:R-A3
+6	did	do	VBD	_	8	aux	_
+7	Mike	mike	NNP	_	8	nsubj	8:A0=PAG
+8	spend	spend	VB	pb=spend.01	0	root	_
+9	on	on	IN	p2=RP	8	prep	8:A1=PPT
+10	toys	toy	NNS	_	9	pobj	_
+11	?	?	.	_	8	punct	_
+

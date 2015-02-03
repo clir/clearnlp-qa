@@ -23,12 +23,18 @@ public class Reader {
     {
         this.questionsDirPrefix = questionsDirPrefix;
         this.questionsNamePrefix = questionsNamePrefix;
+        currentSuffix = questionsDirPrefix;
     }
 
     public Reader()
     {
         this.questionsDirPrefix = AppSettings.questionFilesDirPrefix;
         this.questionsNamePrefix = AppSettings.questionFilesPrefix;
+    }
+
+    public ArithmeticQuestion readFile(String questionsDirPrefix, String questionsNamePrefix) throws IOException
+    {
+        return read(questionsDirPrefix, questionsNamePrefix);
     }
 
     public ArithmeticQuestion read() throws IOException
@@ -54,21 +60,20 @@ public class Reader {
         }
     }
 
-    private ArithmeticQuestion read(String suffix) throws IOException{
+    private ArithmeticQuestion readFile(String path) throws IOException{
         BufferedReader bufferedReader;
         try {
-            String file_path = questionsDirPrefix + questionsNamePrefix + suffix;
             String questionText = null;
             List<DEPTree> depTreeList = new ArrayList();
 
 
             /* Read and store question text */
-            bufferedReader = new BufferedReader(new FileReader(file_path));
+            bufferedReader = new BufferedReader(new FileReader(path));
             questionText = bufferedReader.readLine();
 
             /* Read and store DEPTree of question */
             DEPTree tree;
-            tsvReader.open(IOUtils.createFileInputStream(file_path + ".cnlp"));
+            tsvReader.open(IOUtils.createFileInputStream(path + ".cnlp"));
 
             while ((tree = tsvReader.next()) != null) {
                 depTreeList.add(tree);
@@ -83,5 +88,15 @@ public class Reader {
         {
             throw new IOException();
         }
+    }
+
+    public ArithmeticQuestion read(String dirPath, String filePath) throws IOException{
+        String path = dirPath + filePath;
+        return readFile(path);
+    }
+
+    public ArithmeticQuestion read(String suffix) throws IOException{
+        String path = questionsDirPrefix + questionsNamePrefix + suffix;
+        return readFile(path);
     }
 }

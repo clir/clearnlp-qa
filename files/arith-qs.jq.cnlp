@@ -1,0 +1,42 @@
+1	Irene	irene	NNP	p2=PRP	3	nsubj	3:A0=PAG
+2	just	just	RB	_	3	advmod	3:AM-ADV
+3	bought	buy	VBD	pb=buy.01	0	root	_
+4	a	a	DT	_	6	det	_
+5	new	new	JJ	_	6	amod	_
+6	lamp	lamp	NN	_	3	dobj	3:A1=PPT
+7	for	for	IN	_	3	prep	3:A3=VSP
+8	her	her	PRP$	p2=PRP	10	poss	_
+9	bedside	bedside	NN	p2=JJ	10	nn	_
+10	table	table	NN	_	7	pobj	_
+11	.	.	.	_	3	punct	_
+
+1	The	the	DT	_	3	det	_
+2	old	old	JJ	_	3	amod	_
+3	lamp	lamp	NN	_	4	nsubj	4:A1=PPT
+4	was	be	VBD	pb=be.01	0	root	_
+5	1	0	CD	_	6	num	_
+6	foot	foot	NN	_	7	npadvmod	_
+7	tall	tall	JJ	_	4	acomp	4:A2=PRD
+8	and	and	CC	_	4	cc	_
+9	the	the	DT	_	11	det	_
+10	new	new	JJ	_	11	amod	_
+11	lamp	lamp	NN	_	12	nsubj	12:A1=PPT
+12	is	be	VBZ	pb=be.01	4	conj	_
+13	2.3333333333333335	0	CD	_	14	num	_
+14	feet	foot	NNS	_	15	npadvmod	_
+15	tall	tall	JJ	_	12	acomp	12:A2=PRD
+16	.	.	.	_	12	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	p2=RB	3	advmod	_
+3	taller	tall	JJR	p2=NN	4	acomp	4:A2=PRD
+4	is	be	VBZ	pb=be.01	0	root	_
+5	the	the	DT	_	7	det	_
+6	new	new	JJ	_	7	amod	_
+7	lamp	lamp	NN	_	4	nsubj	4:A1=PPT
+8	than	than	IN	_	7	prep	_
+9	the	the	DT	_	11	det	_
+10	old	old	JJ	_	11	amod	_
+11	lamp	lamp	NN	_	8	pobj	_
+12	?	?	.	_	4	punct	_
+

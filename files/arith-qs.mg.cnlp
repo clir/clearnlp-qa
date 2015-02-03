@@ -1,0 +1,37 @@
+1	Tom	tom	NNP	_	2	nsubj	2:A0=PAG;10:A0=PAG
+2	bought	buy	VBD	pb=buy.01	0	root	_
+3	a	a	DT	_	4	det	_
+4	skateboard	skateboard	NN	_	2	dobj	2:A1=PPT
+5	for	for	IN	_	2	prep	2:A3=VSP
+6	$	$	$	_	7	nmod	_
+7	9.46	0	CD	_	5	pobj	_
+8	,	,	,	_	2	punct	_
+9	and	and	CC	_	2	cc	_
+10	spent	spend	VBD	p2=VBN|pb=spend.01	2	conj	_
+11	$	$	$	_	12	nmod	_
+12	9.56	0	CD	_	10	dobj	10:A3=VSP
+13	on	on	IN	_	10	prep	10:A1=PPT
+14	marbles	marble	NNS	_	13	pobj	_
+15	.	.	.	_	2	punct	_
+
+1	Tom	tom	NNP	p2=NN	3	nsubj	3:A0=PAG
+2	also	also	RB	_	3	advmod	3:AM-DIS
+3	spent	spend	VBD	pb=spend.01	0	root	_
+4	$	$	$	_	5	nmod	_
+5	14.50	0	CD	_	3	dobj	3:A3=VSP
+6	on	on	IN	_	3	prep	3:A1=PPT
+7	shorts	short	NNS	_	6	pobj	_
+8	.	.	.	_	3	punct	_
+
+1	In	in	IN	_	8	prep	8:AM-LOC
+2	total	total	NN	p2=JJ	1	pobj	_
+3	,	,	,	_	8	punct	_
+4	how	how	WRB	_	5	advmod	_
+5	much	much	JJ	p2=RB	8	dobj	8:R-A3
+6	did	do	VBD	_	8	aux	_
+7	Tom	tom	NNP	_	8	nsubj	8:A0=PAG
+8	spend	spend	VB	pb=spend.01	0	root	_
+9	on	on	IN	p2=RP	8	prep	8:A1=PPT
+10	toys	toy	NNS	_	9	pobj	_
+11	?	?	.	_	8	punct	_
+

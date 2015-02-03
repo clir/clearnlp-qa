@@ -1,0 +1,30 @@
+1	Melanie	melanie	NNP	_	2	nsubj	2:A0=PAG
+2	picked	pick	VBD	pb=pick.01	0	root	_
+3	4	0	CD	_	4	num	_
+4	plums	plum	NNS	_	2	dobj	2:A1=PPT
+5	,	,	,	_	7	punct	_
+6	Dan	dan	NNP	_	7	nsubj	7:A0=PAG
+7	picked	pick	VBD	pb=pick.01	2	conj	_
+8	9	0	CD	_	9	num	_
+9	plums	plum	NNS	_	7	dobj	7:A1=PPT
+10	,	,	,	_	7	punct	_
+11	and	and	CC	_	7	cc	_
+12	Sally	sally	NNP	_	13	nsubj	13:A0=PAG
+13	picked	pick	VBD	pb=pick.01	7	conj	_
+14	3	0	CD	_	15	num	_
+15	plums	plum	NNS	_	13	dobj	13:A1=PPT
+16	from	from	IN	_	13	prep	13:A2=DIR
+17	the	the	DT	_	19	det	_
+18	plum	plum	NN	_	19	nn	_
+19	tree	tree	NN	_	16	pobj	_
+20	.	.	.	_	13	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	plums	plum	NNS	_	5	nsubjpass	5:A1=PPT
+4	were	be	VBD	_	5	auxpass	_
+5	picked	pick	VBN	pb=pick.01	0	root	_
+6	in	in	IN	_	5	prep	5:AM-MNR
+7	total	total	NN	p2=JJ	6	pobj	_
+8	?	?	.	_	5	punct	_
+

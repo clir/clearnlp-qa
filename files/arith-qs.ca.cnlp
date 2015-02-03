@@ -1,0 +1,31 @@
+1	Alyssa	alyssa	NNP	_	2	nsubj	2:A0=PAG
+2	has	have	VBZ	pb=have.03	8	ccomp	_
+3	37	0	CD	_	5	num	_
+4	blue	blue	JJ	_	5	amod	_
+5	balloons	balloon	NNS	_	2	dobj	2:A1=PPT
+6	,	,	,	_	8	punct	_
+7	Sandy	sandy	NNP	_	8	nsubj	8:A0=PAG
+8	has	have	VBZ	pb=have.03	0	root	_
+9	28	0	CD	_	11	num	_
+10	blue	blue	JJ	_	11	amod	_
+11	balloons	balloon	NNS	_	8	dobj	8:A1=PPT
+12	,	,	,	_	8	punct	_
+13	and	and	CC	_	8	cc	_
+14	Sally	sally	NNP	_	15	nsubj	15:A0=PAG
+15	has	have	VBZ	pb=have.03	8	conj	_
+16	39	0	CD	_	18	num	_
+17	blue	blue	JJ	_	18	amod	_
+18	balloons	balloon	NNS	_	15	dobj	15:A1=PPT
+19	.	.	.	_	15	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	blue	blue	JJ	_	4	amod	_
+4	balloons	balloon	NNS	_	7	dobj	7:R-A1
+5	do	do	VBP	_	7	aux	_
+6	they	they	PRP	_	7	nsubj	7:A0=PAG
+7	have	have	VB	pb=have.03	0	root	_
+8	in	in	IN	p2=RB	7	prep	7:AM-LOC
+9	all	all	DT	_	8	pobj	_
+10	?	?	.	_	7	punct	_
+

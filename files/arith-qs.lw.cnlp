@@ -1,0 +1,24 @@
+1	Jessica	jessica	NNP	_	2	nsubj	_
+2	grew	grow	VBD	pb=grow.01	0	root	_
+3	35	0	CD	_	4	num	_
+4	watermelons	watermelon	NNS	_	2	dobj	2:A1=PPT
+5	and	and	CC	_	4	cc	_
+6	30	0	CD	_	7	num	_
+7	carrots	carrot	NNS	_	4	conj	_
+8	,	,	,	_	2	punct	_
+9	but	but	CC	_	2	cc	_
+10	the	the	DT	_	11	det	_
+11	rabbits	rabbit	NNS	p2=NN	12	nsubj	12:A0=PAG
+12	ate	eat	VBD	pb=eat.01	2	conj	_
+13	27	0	CD	_	14	num	_
+14	watermelons	watermelon	NNS	_	12	dobj	12:A1=PPT
+15	.	.	.	_	12	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	watermelons	watermelon	NNS	_	6	dobj	6:R-A1
+4	does	do	VBZ	_	6	aux	_
+5	Jessica	jessica	NNP	_	6	nsubj	6:A0=PAG
+6	have	have	VB	pb=have.03	0	root	_
+7	?	?	.	_	6	punct	_
+

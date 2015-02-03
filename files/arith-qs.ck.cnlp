@@ -1,0 +1,31 @@
+1	Last	last	JJ	_	2	amod	_
+2	week	week	NN	_	4	npadvmod	4:AM-TMP
+3	Tom	tom	NNP	_	4	nsubj	4:A0=PAG
+4	had	have	VBD	pb=have.03	0	root	_
+5	74	0	CD	_	6	num	_
+6	dollars	dollar	NNS	_	4	dobj	4:A1=PPT
+7	.	.	.	_	4	punct	_
+
+1	He	he	PRP	_	2	nsubj	2:A0=PAG;9:A0=PAG
+2	washed	wash	VBD	pb=wash.01	0	root	_
+3	cars	car	NNS	_	2	dobj	2:A1=PPT
+4	over	over	IN	_	2	prep	2:AM-TMP
+5	the	the	DT	_	6	det	_
+6	weekend	weekend	NN	_	4	pobj	_
+7	and	and	CC	_	2	cc	_
+8	now	now	RB	_	9	advmod	9:AM-TMP
+9	has	have	VBZ	pb=have.03	2	conj	_
+10	86	0	CD	_	11	num	_
+11	dollars	dollar	NNS	_	9	dobj	9:A1=PPT
+12	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	_	3	amod	_
+3	money	money	NN	_	6	dobj	6:R-A2
+4	did	do	VBD	_	6	aux	_
+5	he	he	PRP	_	6	nsubj	6:A0=PAG
+6	make	make	VB	pb=make.01	0	root	_
+7	washing	washing	NN	_	8	nn	_
+8	cars	car	NNS	_	6	dobj	6:A1=PRD
+9	?	?	.	_	6	punct	_
+

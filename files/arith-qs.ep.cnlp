@@ -1,0 +1,39 @@
+1	Joan	joan	NNP	_	2	nsubj	2:A0=PAG;4:A0=PAG
+2	decided	decide	VBD	pb=decide.01	0	root	_
+3	to	to	TO	_	4	aux	_
+4	sell	sell	VB	pb=sell.01	2	xcomp	2:A1=PPT
+5	all	all	DT	_	4	dobj	4:A1=PPT
+6	of	of	IN	_	5	prep	_
+7	her	her	PRP$	_	9	poss	_
+8	old	old	JJ	_	9	amod	_
+9	books	book	NNS	_	6	pobj	_
+10	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PAG;7:A0=PAG
+2	gathered	gather	VBD	pb=gather.01	0	root	_
+3	up	up	RP	p2=RB	2	prt	2:AM-PRD
+4	33	0	CD	_	5	num	_
+5	books	book	NNS	_	2	dobj	2:A1=PPT
+6	to	to	TO	_	7	aux	_
+7	sell	sell	VB	pb=sell.01	5	infmod	_
+8	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PAG
+2	sold	sell	VBD	pb=sell.01	0	root	_
+3	26	0	CD	_	4	num	_
+4	books	book	NNS	_	2	dobj	2:A1=PPT
+5	in	in	IN	_	2	prep	2:AM-LOC
+6	a	a	DT	_	8	det	_
+7	yard	yard	NN	_	8	nn	_
+8	sale	sale	NN	_	5	pobj	_
+9	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	books	book	NNS	_	7	dobj	7:R-A1
+4	does	do	VBZ	_	7	aux	_
+5	Joan	joan	NNP	_	7	nsubj	7:A0=PAG
+6	now	now	RB	_	7	advmod	7:AM-TMP
+7	have	have	VB	p2=VBP|pb=have.03	0	root	_
+8	?	?	.	_	7	punct	_
+

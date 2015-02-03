@@ -1,6 +1,7 @@
 package edu.emory.clir.clearnlp.qa.question.arithmetic;
 
 import edu.emory.clir.clearnlp.dependency.DEPNode;
+import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 
 import java.util.HashMap;
@@ -30,9 +31,22 @@ public class State {
         return m_instances.get(i);
     }
 
+    public Instance getPredicateInstance()
+    {
+        for (Map.Entry<Instance,DEPNode> entry : m_instances.entrySet())
+        {
+            if (entry.getValue() != null && POSLibEn.isVerb(entry.getValue().getPOSTag()))
+            {
+                return entry.getKey();
+            }
+        }
+
+        return null;
+    }
+
     public String toString()
     {
-        String s = "\n";
+        String s = "State: \n";
         for (Map.Entry<Instance, DEPNode> entry : m_instances.entrySet())
         {
             s += entry.getKey() + ": " + entry.getValue().getLemma() + "\n";

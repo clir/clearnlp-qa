@@ -1,0 +1,35 @@
+1	Kendall	kendall	NNP	_	3	nsubj	3:A0=PAG;5:A0=PAG
+2	is	be	VBZ	_	3	aux	_
+3	learning	learn	VBG	pb=learn.01	12	ccomp	_
+4	to	to	TO	_	5	aux	_
+5	drive	drive	VB	pb=drive.01	3	xcomp	3:A1=PPT
+6	,	,	,	_	12	punct	_
+7	so	so	RB	p2=CC	12	advmod	_
+8	this	this	DT	_	9	det	_
+9	weekend	weekend	NN	_	12	npadvmod	12:AM-TMP
+10	she	she	PRP	_	12	nsubj	12:A0=PAG
+11	practiced	practice	VBD	_	12	aux	_
+12	driving	drive	VBG	pb=drive.01	0	root	_
+13	0.16666666666666666	0	CD	_	14	num	_
+14	mile	mile	NN	_	12	dobj	12:A1=PPT
+15	with	with	IN	_	12	prep	12:AM-ADV
+16	her	her	PRP$	_	17	poss	_
+17	mother	mother	NN	_	15	pobj	_
+18	and	and	CC	_	17	cc	_
+19	another	another	DT	_	21	det	_
+20	0.5	0	CD	_	21	num	_
+21	mile	mile	NN	_	17	conj	_
+22	with	with	IN	_	21	prep	_
+23	her	her	PRP$	_	24	poss	_
+24	father	father	NN	_	22	pobj	_
+25	.	.	.	_	12	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	far	far	RB	_	5	advmod	5:R-AM-EXT
+3	did	do	VBD	_	5	aux	_
+4	Kendall	kendall	NNP	_	5	nsubj	5:A0=PAG
+5	drive	drive	VB	pb=drive.01	0	root	_
+6	in	in	IN	p2=RB	5	prep	5:AM-LOC
+7	all	all	DT	p2=PDT	6	pobj	_
+8	?	?	.	_	5	punct	_
+

@@ -1,6 +1,6 @@
 package edu.emory.clir.clearnlp.qa;
 
 public class AppSettings {
-    public static final String questionFilesPrefix = "arith-sample.";
-    public static final String questionFilesDirPrefix = "files-sample/";
+    public static final String questionFilesPrefix = "arith-qs.";
+    public static final String questionFilesDirPrefix = "files/";
 }

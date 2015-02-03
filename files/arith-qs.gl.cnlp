@@ -1,0 +1,57 @@
+1	An	an	DT	_	3	det	_
+2	oil	oil	NN	_	3	nn	_
+3	pipe	pipe	NN	_	7	nsubj	7:A1=PPT
+4	in	in	IN	_	3	prep	_
+5	the	the	DT	_	6	det	_
+6	sea	sea	NN	_	4	pobj	_
+7	broke	break	VBD	pb=break.01	0	root	_
+8	.	.	.	_	7	punct	_
+
+1	Before	before	IN	_	3	mark	_
+2	engineers	engineer	NNS	_	3	nsubj	5:A0=PAG;3:A1=PPT
+3	started	start	VBD	pb=start.01	13	advcl	13:AM-TMP
+4	to	to	TO	_	5	aux	_
+5	fix	fix	VB	pb=fix.02	3	xcomp	3:C-A1
+6	the	the	DT	_	7	det	_
+7	pipe	pipe	NN	_	5	dobj	5:A1=PPT
+8	,	,	,	_	13	punct	_
+9	2475	0	CD	_	10	num	_
+10	gallons	gallon	NNS	_	13	nsubj	13:A1=PPT
+11	of	of	IN	_	10	prep	_
+12	oil	oil	NN	_	11	pobj	_
+13	leaked	leak	VBN	pb=leak.01	0	root	_
+14	into	into	IN	_	13	prep	13:A0=DIR
+15	the	the	DT	_	16	det	_
+16	water	water	NN	_	14	pobj	_
+17	.	.	.	_	13	punct	_
+
+1	A	a	DT	_	2	det	_
+2	total	total	NN	_	13	nsubjpass	13:A1=PPT
+3	of	of	IN	_	2	prep	_
+4	6206	0	CD	_	5	num	_
+5	gallons	gallon	NNS	_	3	pobj	8:A1=PPT
+6	of	of	IN	_	5	prep	_
+7	oil	oil	NN	_	6	pobj	_
+8	leaked	leak	VBN	pb=leak.01	5	partmod	_
+9	before	before	IN	_	8	prep	8:AM-TMP
+10	the	the	DT	_	11	det	_
+11	pipe	pipe	NN	_	9	pobj	_
+12	was	be	VBD	_	13	auxpass	_
+13	fixed	fix	VBN	pb=fix.03	0	root	_
+14	.	.	.	_	13	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	gallons	gallon	NNS	_	6	nsubj	6:A1=PPT
+4	of	of	IN	_	3	prep	_
+5	oil	oil	NN	_	4	pobj	_
+6	leaked	leak	VBN	pb=leak.01	0	root	_
+7	while	while	IN	_	11	mark	_
+8	the	the	DT	_	9	det	_
+9	engineers	engineer	NNS	_	11	nsubj	11:A0=PAG
+10	were	be	VBD	_	11	aux	_
+11	fixing	fix	VBG	pb=fix.02	6	advcl	6:AM-TMP
+12	the	the	DT	_	13	det	_
+13	pipe	pipe	NN	_	11	dobj	11:A1=PPT
+14	?	?	.	_	6	punct	_
+

@@ -1,0 +1,25 @@
+1	Joan	joan	NNP	_	2	nsubj	2:A0=PAG;10:A0=PAG
+2	picked	pick	VBD	pb=pick.01	0	root	_
+3	43	0	CD	_	4	num	_
+4	apples	apple	NNS	_	2	dobj	2:A1=PPT
+5	from	from	IN	_	2	prep	2:A2=DIR
+6	the	the	DT	_	7	det	_
+7	orchard	orchard	NN	_	5	pobj	_
+8	,	,	,	_	2	punct	_
+9	and	and	CC	_	2	cc	_
+10	gave	give	VBD	pb=give.01	2	conj	_
+11	27	0	CD	_	12	num	_
+12	apples	apple	NNS	_	10	dobj	10:A1=PPT
+13	to	to	IN	_	10	prep	10:A2=GOL
+14	Melanie	melanie	NNP	_	13	pobj	_
+15	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	apples	apple	NNS	_	6	dobj	6:R-A1
+4	does	do	VBZ	_	6	aux	_
+5	Joan	joan	NNP	_	6	nsubj	6:A0=PAG
+6	have	have	VB	p2=VBP|pb=have.03	0	root	_
+7	now	now	RB	_	6	advmod	6:AM-TMP
+8	?	?	.	_	6	punct	_
+

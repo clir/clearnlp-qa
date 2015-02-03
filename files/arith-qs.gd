@@ -1,0 +1,1 @@
+Tori is a school janitor . Last week , she picked up a total of 1576 pieces of trash . If she picked up 344 pieces of trash in the classrooms , how many pieces of trash did Tori pick up outside the classrooms ? 

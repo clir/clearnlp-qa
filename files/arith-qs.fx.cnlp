@@ -1,0 +1,35 @@
+1	Before	before	IN	_	8	prep	8:AM-TMP
+2	the	the	DT	_	5	det	_
+3	recent	recent	JJ	_	5	amod	_
+4	housing	housing	NN	_	5	nn	_
+5	boom	boom	NN	_	1	pobj	_
+6	,	,	,	_	8	punct	_
+7	there	there	EX	_	8	expl	_
+8	were	be	VBD	pb=be.02	0	root	_
+9	1426	0	CD	_	10	num	_
+10	houses	house	NNS	_	8	attr	8:A1=PPT
+11	in	in	IN	_	10	prep	_
+12	Lawrence	lawrence	NNP	_	13	nn	_
+13	County	county	NNP	_	11	pobj	_
+14	.	.	.	_	8	punct	_
+
+1	Now	now	RB	p2=UH	4	advmod	4:AM-TMP
+2	,	,	,	_	4	punct	_
+3	there	there	EX	_	4	expl	_
+4	are	be	VBP	pb=be.02	0	root	_
+5	2000	0	CD	_	6	num	_
+6	houses	house	NNS	_	4	attr	4:A1=PPT
+7	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	houses	house	NNS	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	developers	developer	NNS	_	6	nsubj	6:A0=PAG
+6	build	build	VB	p2=VBP|pb=build.01	0	root	_
+7	during	during	IN	_	6	prep	6:AM-TMP
+8	the	the	DT	_	10	det	_
+9	housing	housing	NN	_	10	nn	_
+10	boom	boom	NN	_	7	pobj	_
+11	?	?	.	_	6	punct	_
+

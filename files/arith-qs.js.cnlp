@@ -1,0 +1,30 @@
+1	There	there	EX	_	2	expl	_
+2	are	be	VBP	pb=be.02	0	root	_
+3	7.75	0	CD	_	4	num	_
+4	gallons	gallon	NNS	_	2	attr	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	water	water	NN	_	5	pobj	_
+7	in	in	IN	_	4	prep	_
+8	Becky	becky	NNP	_	11	poss	_
+9	's	's	POS	_	8	possessive	_
+10	fish	fish	NN	p2=JJ	11	nn	_
+11	tank	tank	NN	_	7	pobj	_
+12	.	.	.	_	2	punct	_
+
+1	If	if	IN	_	3	mark	_
+2	Becky	becky	NNP	_	3	nsubj	_
+3	adds	add	VBZ	pb=add.03	13	advcl	13:AM-ADV
+4	7	0	CD	_	5	num	_
+5	gallons	gallon	NNS	_	3	dobj	3:A1=PPT
+6	more	more	JJR	p2=RBR	5	amod	_
+7	,	,	,	_	13	punct	_
+8	how	how	WRB	_	9	advmod	_
+9	many	many	JJ	_	10	amod	_
+10	gallons	gallon	NNS	_	13	nsubj	13:A1=PPT
+11	will	will	MD	_	13	aux	13:AM-MOD
+12	there	there	EX	p2=RB	13	expl	_
+13	be	be	VB	pb=be.02	0	root	_
+14	in	in	IN	p2=RB	13	prep	13:AM-LOC
+15	all	all	DT	p2=PDT	14	pobj	_
+16	?	?	.	_	13	punct	_
+

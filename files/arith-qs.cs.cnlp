@@ -1,0 +1,22 @@
+1	Joan	joan	NNP	_	2	nsubj	2:A0=PAG;7:R-AM-CAU
+2	has	have	VBZ	pb=have.03	0	root	_
+3	8	0	CD	_	5	num	_
+4	orange	orange	NN	p2=JJ	5	nn	_
+5	balloons	balloon	NNS	_	2	dobj	2:A1=PPT
+6	but	but	CC	_	2	cc	_
+7	lost	lose	VBD	pb=lose.01	2	conj	_
+8	2	0	CD	_	7	dobj	7:A1=PPT
+9	of	of	IN	_	8	prep	_
+10	them	them	PRP	_	9	pobj	_
+11	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	orange	orange	JJ	p2=NN	4	amod	_
+4	balloons	balloon	NNS	_	7	dobj	7:R-A1
+5	does	do	VBZ	_	7	aux	_
+6	Joan	joan	NNP	_	7	nsubj	7:A0=PAG
+7	have	have	VB	p2=VBP|pb=have.03	0	root	_
+8	now	now	RB	_	7	advmod	7:AM-TMP
+9	?	?	.	_	7	punct	_
+

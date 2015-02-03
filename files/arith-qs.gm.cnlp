@@ -1,0 +1,40 @@
+1	A	a	DT	_	3	det	_
+2	treasure	treasure	NN	_	3	nn	_
+3	hunter	hunter	NN	_	4	nsubj	4:A0
+4	discovered	discover	VBD	pb=discover.01	0	root	_
+5	a	a	DT	_	8	det	_
+6	buried	bury	VBN	p2=JJ|pb=bury.01	8	amod	_
+7	treasure	treasure	NN	_	8	nn	_
+8	chest	chest	NN	_	4	dobj	4:A1=PPT;6:A1=PPT;9:A1=GOL
+9	filled	fill	VBN	pb=fill.01	8	partmod	_
+10	with	with	IN	_	9	prep	9:A2=PPT
+11	a	a	DT	_	12	det	_
+12	total	total	NN	_	10	pobj	_
+13	of	of	IN	_	12	prep	_
+14	5155	0	CD	_	15	num	_
+15	gems	gem	NNS	_	13	pobj	_
+16	.	.	.	_	4	punct	_
+
+1	45	0	CD	_	5	nsubj	5:A1=PPT
+2	of	of	IN	_	1	prep	_
+3	the	the	DT	_	4	det	_
+4	gems	gem	NNS	_	2	pobj	_
+5	were	be	VBD	pb=be.01	0	root	_
+6	diamonds	diamond	NNS	_	5	attr	5:A2=PRD
+7	,	,	,	_	5	punct	_
+8	and	and	CC	_	5	cc	_
+9	the	the	DT	_	10	det	_
+10	rest	rest	NN	_	11	nsubj	11:A1=PPT
+11	were	be	VBD	pb=be.01	5	conj	_
+12	rubies	ruby	NNS	_	11	attr	11:A2=PRD
+13	.	.	.	_	11	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	6	nsubj	6:R-A1
+3	of	of	IN	_	2	prep	_
+4	the	the	DT	_	5	det	_
+5	gems	gem	NNS	_	3	pobj	_
+6	were	be	VBD	pb=be.01	0	root	_
+7	rubies	ruby	NNS	_	6	attr	6:A2=PRD
+8	?	?	.	_	6	punct	_
+

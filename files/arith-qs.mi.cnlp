@@ -1,0 +1,45 @@
+1	For	for	IN	_	6	prep	6:AM-CAU
+2	his	his	PRP$	_	3	poss	_
+3	car	car	NN	_	1	pobj	_
+4	,	,	,	_	6	punct	_
+5	Mike	mike	NNP	_	6	nsubj	6:A0=PAG
+6	spent	spend	VBD	pb=spend.01	0	root	_
+7	$	$	$	_	8	nmod	_
+8	118.54	0	CD	_	6	dobj	6:A3=VSP
+9	on	on	IN	_	6	prep	6:A1=PPT
+10	speakers	speaker	NNS	_	9	pobj	_
+11	and	and	CC	_	6	cc	_
+12	$	$	$	_	13	nmod	_
+13	106.33	0	CD	_	6	conj	_
+14	on	on	IN	_	13	prep	_
+15	new	new	JJ	_	16	amod	_
+16	tires	tire	NNS	_	14	pobj	_
+17	.	.	.	_	6	punct	_
+
+1	Mike	mike	NNP	_	2	nsubj	2:A0=PAG;10:A0=PAG
+2	wanted	want	VBD	pb=want.01	0	root	_
+3	3	0	CD	p2=DT	4	num	_
+4	CD	cd	NN	p2=NNP	5	nsubj	_
+5	's	's	POS	p2=VBZ	2	ccomp	2:A1=PPT
+6	for	for	IN	p2=CC	5	prep	_
+7	$	$	$	_	8	nmod	_
+8	4.58	0	CD	_	6	pobj	_
+9	but	but	CC	_	2	cc	_
+10	decided	decide	VBD	p2=VBN|pb=decide.01	2	conj	_
+11	not	not	RB	_	12	neg	_
+12	to	to	TO	_	10	xcomp	10:A1=PPT
+13	.	.	.	_	2	punct	_
+
+1	In	in	IN	_	8	prep	8:AM-LOC
+2	total	total	NN	p2=JJ	1	pobj	_
+3	,	,	,	_	8	punct	_
+4	how	how	WRB	_	5	advmod	_
+5	much	much	JJ	p2=RB	8	dobj	8:R-A3
+6	did	do	VBD	_	8	aux	_
+7	Mike	mike	NNP	_	8	nsubj	8:A0=PAG
+8	spend	spend	VB	pb=spend.01	0	root	_
+9	on	on	IN	p2=RP	8	prep	8:A1=PPT
+10	car	car	NN	_	11	nn	_
+11	parts	part	NNS	_	9	pobj	_
+12	?	?	.	_	8	punct	_
+

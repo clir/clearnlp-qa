@@ -1,0 +1,26 @@
+1	Fred	fred	NNP	p2=VBD	2	nsubj	2:A0=PAG
+2	found	find	VBD	pb=find.01	10	ccomp	_
+3	47	0	CD	_	4	num	_
+4	seashells	seashell	NNS	_	2	dobj	2:A1=PPT
+5	on	on	IN	_	4	prep	_
+6	the	the	DT	_	7	det	_
+7	beach	beach	NN	_	5	pobj	_
+8	,	,	,	_	10	punct	_
+9	he	he	PRP	_	10	nsubj	10:A0=PAG
+10	gave	give	VBD	pb=give.01	0	root	_
+11	Jessica	jessica	NNP	_	10	iobj	10:A2=GOL
+12	25	0	CD	_	10	dobj	10:A1=PPT
+13	of	of	IN	_	12	prep	_
+14	the	the	DT	_	15	det	_
+15	seashells	seashell	NNS	p2=NNPS	13	pobj	_
+16	.	.	.	_	10	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	seashells	seashell	NNS	p2=UH	7	dobj	7:R-A1
+4	does	do	VBZ	_	7	aux	_
+5	he	he	PRP	_	7	nsubj	7:A0=PAG
+6	now	now	RB	_	7	advmod	7:AM-TMP
+7	have	have	VB	p2=VBP|pb=have.03	0	root	_
+8	?	?	.	_	7	punct	_
+

@@ -1,0 +1,47 @@
+1	Diane	diane	NNP	p2=NN	2	nsubj	2:A1=PPT
+2	is	be	VBZ	pb=be.01	0	root	_
+3	a	a	DT	_	4	det	_
+4	beekeeper	beekeeper	NN	_	2	attr	2:A2=PRD
+5	.	.	.	_	2	punct	_
+
+1	Last	last	JJ	_	2	amod	_
+2	year	year	NN	_	5	npadvmod	5:AM-TMP
+3	,	,	,	_	5	punct	_
+4	she	she	PRP	_	5	nsubj	5:A0=PAG
+5	harvested	harvest	VBD	pb=harvest.01	0	root	_
+6	2479	0	CD	_	7	num	_
+7	pounds	pound	NNS	_	5	dobj	5:A1=PPT
+8	of	of	IN	_	7	prep	_
+9	honey	honey	NN	_	8	pobj	_
+10	.	.	.	_	5	punct	_
+
+1	This	this	DT	_	2	det	_
+2	year	year	NN	_	5	npadvmod	5:AM-TMP;10:AM-TMP
+3	,	,	,	_	5	punct	_
+4	she	she	PRP	_	5	nsubj	5:A0=PAG;10:A0=PAG
+5	bought	buy	VBD	pb=buy.01	0	root	_
+6	some	some	DT	_	8	det	_
+7	new	new	JJ	_	8	amod	_
+8	hives	hive	NNS	_	5	dobj	5:A1=PPT
+9	and	and	CC	_	5	cc	_
+10	increased	increase	VBD	pb=increase.01	5	conj	_
+11	her	her	PRP$	_	13	poss	_
+12	honey	honey	NN	_	13	nn	_
+13	harvest	harvest	NN	p2=RB	10	dobj	10:A1=PPT
+14	by	by	IN	_	10	prep	10:A2=EXT
+15	6085	0	CD	_	16	num	_
+16	pounds	pound	NNS	_	14	pobj	_
+17	.	.	.	_	5	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	pounds	pound	NNS	_	8	nsubj	8:R-A0
+4	of	of	IN	_	3	prep	_
+5	honey	honey	NN	_	4	pobj	_
+6	did	do	VBD	_	8	aux	_
+7	Diane	diane	NNP	p2=NN	8	nn	_
+8	harvest	harvest	VB	p2=NN|pb=harvest.01	0	root	_
+9	this	this	DT	_	10	det	_
+10	year	year	NN	_	8	npadvmod	8:AM-TMP
+11	?	?	.	_	8	punct	_
+

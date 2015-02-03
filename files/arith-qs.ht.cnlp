@@ -1,0 +1,40 @@
+1	Michelle	michelle	NNP	_	2	nsubj	2:A0=PAG
+2	began	begin	VBD	pb=begin.01	0	root	_
+3	her	her	PRP$	_	6	poss	_
+4	pizza	pizza	NN	_	5	nn	_
+5	delivery	delivery	NN	_	6	nn	_
+6	route	route	NN	_	2	dobj	2:A1=PPT
+7	with	with	IN	_	2	prep	_
+8	0.5	0	CD	_	9	num	_
+9	tank	tank	NN	_	7	pobj	_
+10	of	of	IN	_	9	prep	_
+11	gas	gas	NN	_	10	pobj	_
+12	in	in	IN	_	9	prep	_
+13	her	her	PRP$	_	14	poss	_
+14	car	car	NN	_	12	pobj	_
+15	.	.	.	_	2	punct	_
+
+1	When	when	WRB	_	3	advmod	3:R-AM-TMP
+2	she	she	PRP	_	3	nsubj	3:A0
+3	made	make	VBD	pb=make.LV	14	advcl	14:AM-TMP
+4	it	it	PRP	_	3	dobj	3:A1
+5	back	back	RB	_	3	advmod	3:C-V
+6	to	to	IN	_	5	prep	_
+7	the	the	DT	_	8	det	_
+8	pizzeria	pizzeria	NN	p2=NNS	6	pobj	_
+9	,	,	,	_	14	punct	_
+10	0.16666666666666666	0	CD	_	11	num	_
+11	tank	tank	NN	_	14	nsubj	14:A1=PPT
+12	of	of	IN	_	11	prep	_
+13	gas	gas	NN	_	12	pobj	_
+14	was	be	VBD	pb=be.01	0	root	_
+15	.	.	.	_	14	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	_	3	amod	_
+3	gas	gas	NN	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	Michelle	michelle	NNP	_	6	nsubj	6:A0=PAG
+6	use	use	VB	pb=use.01	0	root	_
+7	?	?	.	_	6	punct	_
+

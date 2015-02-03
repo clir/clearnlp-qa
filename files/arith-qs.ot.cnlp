@@ -1,0 +1,34 @@
+1	Keith	keith	NNP	_	2	nsubj	2:A0=PAG
+2	picked	pick	VBD	pb=pick.01	0	root	_
+3	3	0	CD	_	4	num	_
+4	pears	pear	NNS	_	2	dobj	2:A1=PPT
+5	and	and	CC	_	2	cc	_
+6	Jason	jason	NNP	_	7	nsubj	7:A0=PAG
+7	picked	pick	VBD	pb=pick.01	2	conj	_
+8	2	0	CD	_	9	num	_
+9	pears	pear	NNS	_	7	dobj	7:A1=PPT
+10	from	from	IN	_	7	prep	7:A2=DIR
+11	the	the	DT	_	13	det	_
+12	pear	pear	NN	p2=JJ	13	nn	_
+13	tree	tree	NN	_	10	pobj	_
+14	.	.	.	_	7	punct	_
+
+1	Joan	joan	NNP	_	2	nsubj	2:A0=PAG
+2	picked	pick	VBD	pb=pick.01	0	root	_
+3	5	0	CD	_	4	num	_
+4	apples	apple	NNS	_	2	dobj	2:A1=PPT
+5	from	from	IN	_	2	prep	2:A2=DIR
+6	the	the	DT	_	8	det	_
+7	apple	apple	NN	_	8	nn	_
+8	tree	tree	NN	_	5	pobj	_
+9	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	pears	pear	NNS	_	5	nsubjpass	5:A1=PPT
+4	were	be	VBD	_	5	auxpass	_
+5	picked	pick	VBN	pb=pick.01	0	root	_
+6	in	in	IN	_	5	prep	5:AM-MNR
+7	total	total	NN	p2=JJ	6	pobj	_
+8	?	?	.	_	5	punct	_
+

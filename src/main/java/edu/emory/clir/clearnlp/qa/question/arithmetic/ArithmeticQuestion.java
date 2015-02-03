@@ -14,19 +14,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArithmeticQuestion {
-    private String questionText;
-    private List<DEPTree> questionTreeList;
-    private List<State> questionTextStates;
-    private State questionState;
-    ArithmeticQuestionType arithmeticQuestionType;
+    private String         questionText;
+    private List<DEPTree>  questionTreeList;
+
+    private List<State>    questionTextStateList;
+    private State          questionState;
+
+    ArithmeticQuestionType qType;
 
     public ArithmeticQuestion(String questionText, List<DEPTree> depTreeList)
     {
         this.questionText = questionText;
         this.questionTreeList = depTreeList;
-        questionTextStates = new ArrayList();
+        questionTextStateList = new ArrayList();
         prepareInstances();
         detectQuestionType();
+
+//        System.out.println("Text states: ");
+//
+//        for (State s : questionTextStateList)
+//        {
+//            System.out.println(s);
+//        }
     }
 
     public List<DEPTree> getDEPTrees()
@@ -34,9 +43,19 @@ public class ArithmeticQuestion {
         return questionTreeList;
     }
 
+    public ArithmeticQuestionType getArithmeticQuestionType()
+    {
+        return qType;
+    }
+
+    public List<State> getQuestionTextStateList()
+    {
+        return questionTextStateList;
+    }
+
     private void prepareInstances()
     {
-        Parser parser = new Parser();
+        Parser parser = new Parser(this);
         boolean isQuestion = false;
         for (DEPTree depTree : questionTreeList)
         {
@@ -56,7 +75,7 @@ public class ArithmeticQuestion {
             }
             else
             {
-                questionTextStates.addAll(parser.parseTree(depTree));
+                questionTextStateList.addAll(parser.parseTree(depTree));
             }
         }
     }
@@ -64,7 +83,7 @@ public class ArithmeticQuestion {
     private void detectQuestionType()
     {
         Detector detector = new Detector(this);
-        arithmeticQuestionType = detector.detectQuestionType();
+        qType = detector.detectQuestionType();
     }
 
     public String toString()
@@ -73,20 +92,27 @@ public class ArithmeticQuestion {
         return questionText;
     }
 
-    public void solveProblem()
+    public double solveProblem()
     {
-        switch (arithmeticQuestionType){
+        switch (qType){
             case SUM:
-                solveSumProblem();
+                return solveSumProblem();
         }
 
+        return -1;
     }
 
-    private void solveSumProblem()
+    private double solveSumProblem()
     {
         /* Detect the container and predicate in question */
         String container = null;
         String predicate = null;
+
+        if (questionState == null)
+        {
+            System.out.println("Error with parsing question, no question state");
+            return -1;
+        }
 
         for (Instance i : questionState.keySet())
         {
@@ -100,9 +126,10 @@ public class ArithmeticQuestion {
             }
         }
 
+        System.out.println("container = " + container + ", predicate = " + predicate);
         /* Select numerals from states with matched predicates and containers */
         List<String> matchingNumericals = new ArrayList();
-        for (State s : questionTextStates)
+        for (State s : questionTextStateList)
         {
             for (Instance i : s.keySet())
             {
@@ -131,6 +158,7 @@ public class ArithmeticQuestion {
             sum += Double.parseDouble(s);
         }
 
-        System.out.println("Answer is: " + sum);
+        if (sum == 0) return -1;
+        return sum;
     }
 }

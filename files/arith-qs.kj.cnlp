@@ -1,0 +1,27 @@
+1	A	a	DT	_	2	det	_
+2	chef	chef	NN	_	3	nsubj	3:A0=PAG
+3	bought	buy	VBD	pb=buy.01	0	root	_
+4	0.14	0	CD	_	5	num	_
+5	kilograms	kilogram	NNS	_	3	dobj	3:A1=PPT
+6	of	of	IN	_	5	prep	_
+7	almonds	almond	NNS	_	6	pobj	_
+8	and	and	CC	_	5	cc	_
+9	0.38	0	CD	_	10	num	_
+10	kilograms	kilogram	NNS	_	5	conj	_
+11	of	of	IN	_	10	prep	_
+12	pecans	pecan	NNS	_	11	pobj	_
+13	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	kilograms	kilogram	NNS	_	9	dobj	9:R-A1
+4	of	of	IN	_	3	prep	_
+5	nuts	nut	NNS	p2=JJ	4	pobj	_
+6	did	do	VBD	_	9	aux	_
+7	the	the	DT	_	8	det	_
+8	chef	chef	NN	_	9	nsubj	9:A0=PAG
+9	buy	buy	VB	p2=NN|pb=buy.01	0	root	_
+10	in	in	IN	p2=RB	9	prep	9:AM-LOC
+11	all	all	DT	p2=PDT	10	pobj	_
+12	?	?	.	_	9	punct	_
+

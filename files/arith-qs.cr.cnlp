@@ -1,0 +1,22 @@
+1	A	a	DT	_	2	det	_
+2	restaurant	restaurant	NN	_	3	nsubj	3:A0=PAG
+3	served	serve	VBD	pb=serve.01	0	root	_
+4	6	0	CD	_	5	num	_
+5	cakes	cake	NNS	_	3	dobj	3:A2=GOL
+6	during	during	IN	_	3	prep	3:AM-TMP
+7	lunch	lunch	NN	_	6	pobj	_
+8	and	and	CC	_	7	cc	_
+9	9	0	CD	_	7	conj	_
+10	during	during	IN	_	3	prep	_
+11	dinner	dinner	NN	_	10	pobj	_
+12	today	today	NN	_	3	npadvmod	_
+13	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	cakes	cake	NNS	_	5	nsubjpass	5:A2=GOL
+4	were	be	VBD	_	5	auxpass	_
+5	served	serve	VBN	pb=serve.02	0	root	_
+6	today	today	NN	_	5	npadvmod	5:AM-TMP
+7	?	?	.	_	5	punct	_
+

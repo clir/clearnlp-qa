@@ -1,0 +1,32 @@
+1	To	to	TO	_	2	aux	_
+2	fill	fill	VB	pb=fill.01	8	advcl	8:AM-PRP
+3	an	an	DT	_	4	det	_
+4	order	order	NN	_	2	dobj	2:A1=GOL
+5	,	,	,	_	8	punct	_
+6	the	the	DT	_	7	det	_
+7	factory	factory	NN	_	8	nsubj	8:A0=PAG
+8	dyed	dye	VBD	pb=dye.01	0	root	_
+9	61921	0	CD	_	10	num	_
+10	yards	yard	NNS	_	8	dobj	8:A1=PPT
+11	of	of	IN	_	10	prep	_
+12	silk	silk	NN	_	13	nn	_
+13	green	green	JJ	p2=NN	11	pobj	_
+14	and	and	CC	_	10	cc	_
+15	49500	0	CD	_	16	num	_
+16	yards	yard	NNS	_	17	npadvmod	_
+17	pink	pink	JJ	_	10	conj	_
+18	.	.	.	_	8	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	yards	yard	NNS	_	8	dobj	8:R-A1
+4	of	of	IN	_	3	prep	_
+5	silk	silk	NN	_	4	pobj	_
+6	did	do	VBD	_	8	aux	_
+7	it	it	PRP	_	8	nsubj	8:A0=PAG
+8	dye	dye	VB	p2=NN|pb=dye.01	0	root	_
+9	for	for	IN	_	8	prep	8:AM-PRP
+10	that	that	DT	_	11	det	_
+11	order	order	NN	_	9	pobj	_
+12	?	?	.	_	8	punct	_
+

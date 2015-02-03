@@ -1,0 +1,38 @@
+1	There	there	EX	_	2	expl	_
+2	are	be	VBP	pb=be.02	0	root	_
+3	1986	0	CD	_	4	num	_
+4	books	book	NNS	_	2	attr	2:A1=PPT
+5	in	in	IN	_	4	prep	_
+6	Oak	oak	NNP	_	7	nn	_
+7	Grove	grove	NNP	_	10	poss	_
+8	's	's	POS	_	7	possessive	_
+9	public	public	JJ	_	10	amod	_
+10	library	library	NN	_	5	pobj	_
+11	.	.	.	_	2	punct	_
+
+1	In	in	IN	_	5	prep	5:AM-DIS
+2	addition	addition	NN	_	1	pobj	_
+3	,	,	,	_	5	punct	_
+4	there	there	EX	_	5	expl	_
+5	are	be	VBP	pb=be.02	0	root	_
+6	5106	0	CD	_	7	num	_
+7	books	book	NNS	_	5	attr	5:A1=PPT
+8	in	in	IN	_	7	prep	_
+9	its	its	PRP$	_	11	poss	_
+10	school	school	NN	_	11	nn	_
+11	libraries	library	NNS	_	8	pobj	_
+12	.	.	.	_	5	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	books	book	NNS	_	4	nsubj	4:A0=PAG
+4	do	do	VBP	pb=do.02	10	ccomp	_
+5	the	the	DT	_	6	det	_
+6	libraries	library	NNS	_	4	dobj	4:A1=PPT
+7	in	in	IN	_	4	prep	4:AM-LOC
+8	Oak	oak	NNP	_	9	nn	_
+9	Grove	grove	NNP	_	7	pobj	_
+10	have	have	VBP	p2=VB|pb=have.03	0	root	_
+11	overall	overall	JJ	p2=RB	10	dobj	10:A1=PPT
+12	?	?	.	_	10	punct	_
+

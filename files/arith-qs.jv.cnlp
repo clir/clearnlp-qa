@@ -1,0 +1,29 @@
+1	Terrell	terrell	NNP	p2=VB	2	nsubj	2:A0=PAG
+2	hiked	hike	VBD	pb=hike.01	0	root	_
+3	8.2	0	CD	_	4	num	_
+4	miles	mile	NNS	_	2	dobj	2:A1=LOC
+5	on	on	IN	_	2	prep	2:AM-TMP
+6	Saturday	saturday	NNP	_	5	pobj	_
+7	.	.	.	_	2	punct	_
+
+1	Then	then	RB	_	7	advmod	7:AM-TMP
+2	,	,	,	_	7	punct	_
+3	on	on	IN	_	7	prep	7:AM-TMP
+4	Sunday	sunday	NNP	_	3	pobj	_
+5	,	,	,	_	7	punct	_
+6	he	he	PRP	_	7	nsubj	7:A0=PAG
+7	hiked	hike	VBD	pb=hike.01	0	root	_
+8	another	another	DT	_	10	det	_
+9	1.6	0	CD	_	10	num	_
+10	miles	mile	NNS	_	7	dobj	7:A1=LOC
+11	.	.	.	_	7	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	far	far	RB	_	5	advmod	5:R-AM-EXT
+3	did	do	VBD	_	5	aux	_
+4	Terrell	terrell	NNP	p2=VB	5	nsubj	5:A0=PAG
+5	hike	hike	VB	pb=hike.01	0	root	_
+6	all	all	DT	p2=RB	5	dobj	5:A1=LOC
+7	together	together	RB	_	5	advmod	5:AM-MNR
+8	?	?	.	_	5	punct	_
+

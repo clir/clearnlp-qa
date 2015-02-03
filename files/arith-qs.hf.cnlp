@@ -1,0 +1,31 @@
+1	There	there	EX	_	2	expl	_
+2	is	be	VBZ	pb=be.02	0	root	_
+3	0.16666666666666666	0	CD	_	4	num	_
+4	cup	cup	NN	_	2	attr	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	oil	oil	NN	_	5	pobj	_
+7	in	in	IN	_	2	prep	_
+8	Scarlett	scarlett	NNP	_	11	poss	_
+9	's	's	POS	_	8	possessive	_
+10	measuring	measure	VBG	p2=NN	11	nn	_
+11	cup	cup	NN	_	7	pobj	_
+12	.	.	.	_	2	punct	_
+
+1	If	if	IN	_	3	mark	_
+2	Scarlett	scarlett	NNP	_	3	nsubj	3:A0=PAG
+3	adds	add	VBZ	pb=add.02	12	advcl	12:AM-ADV
+4	0.6666666666666666	0	CD	_	5	num	_
+5	cup	cup	NN	p2=VB	3	dobj	3:A1=PPT
+6	more	more	JJR	p2=RBR	5	amod	_
+7	,	,	,	_	12	punct	_
+8	how	how	WRB	_	9	advmod	_
+9	much	much	JJ	_	10	amod	_
+10	oil	oil	NN	_	12	nsubj	12:A1=PPT
+11	will	will	MD	_	12	aux	12:AM-MOD
+12	be	be	VB	pb=be.01	0	root	_
+13	in	in	IN	_	12	prep	12:A2=PRD
+14	the	the	DT	_	16	det	_
+15	measuring	measure	VBG	p2=NN	16	nn	_
+16	cup	cup	NN	_	13	pobj	_
+17	?	?	.	_	12	punct	_
+

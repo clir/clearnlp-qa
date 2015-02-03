@@ -1,0 +1,26 @@
+1	Sandy	sandy	NNP	_	2	nsubj	2:A0=PAG
+2	has	have	VBZ	pb=have.03	7	ccomp	_
+3	10	0	CD	_	4	num	_
+4	books	book	NNS	_	2	dobj	2:A1=PPT
+5	,	,	,	_	7	punct	_
+6	Benny	benny	NNP	_	7	nsubj	7:A0=PAG
+7	has	have	VBZ	pb=have.03	0	root	_
+8	24	0	CD	_	9	num	_
+9	books	book	NNS	_	7	dobj	7:A1=PPT
+10	,	,	,	_	7	punct	_
+11	and	and	CC	_	7	cc	_
+12	Tim	tim	NNP	_	13	nsubj	13:A0=PAG
+13	has	have	VBZ	pb=have.03	7	conj	_
+14	33	0	CD	_	15	num	_
+15	books	book	NNS	_	13	dobj	13:A1=PPT
+16	.	.	.	_	13	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	books	book	NNS	_	6	dobj	6:R-A1
+4	do	do	VBP	_	6	aux	_
+5	they	they	PRP	_	6	nsubj	6:A0=PAG
+6	have	have	VB	p2=VBP|pb=have.03	0	root	_
+7	together	together	RB	_	6	advmod	6:AM-MNR
+8	?	?	.	_	6	punct	_
+

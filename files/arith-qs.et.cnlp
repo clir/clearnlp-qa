@@ -1,0 +1,37 @@
+1	Mike	mike	NNP	_	2	nsubj	2:A0=PAG
+2	joined	join	VBD	pb=join.01	0	root	_
+3	his	his	PRP$	_	4	poss	_
+4	school	school	NN	_	6	poss	_
+5	's	's	POS	_	4	possessive	_
+6	band	band	NN	_	2	dobj	2:A1=PPT
+7	.	.	.	_	2	punct	_
+
+1	He	he	PRP	_	2	nsubj	2:A0=PAG
+2	bought	buy	VBD	pb=buy.01	0	root	_
+3	a	a	DT	_	4	det	_
+4	trumpet	trumpet	NN	_	2	dobj	2:A1=PPT
+5	for	for	IN	_	2	prep	2:A3=VSP
+6	$	$	$	_	7	nmod	_
+7	145.16	0	CD	_	5	pobj	_
+8	,	,	,	_	2	punct	_
+9	and	and	CC	_	2	cc	_
+10	a	a	DT	_	12	det	_
+11	song	song	NN	_	12	nn	_
+12	book	book	NN	_	2	dobj	14:A1=PPT
+13	which	which	WDT	_	14	nsubj	14:R-A1
+14	was	be	VBD	pb=be.01	12	rcmod	_
+15	$	$	$	_	16	nmod	_
+16	5.84	0	CD	_	14	attr	14:A2=PRD
+17	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	p2=RB	5	dobj	5:R-AM-EXT
+3	did	do	VBD	_	5	aux	_
+4	Mike	mike	NNP	_	5	nsubj	5:A0=PAG
+5	spend	spend	VB	pb=spend.01	0	root	_
+6	at	at	IN	_	5	prep	5:AM-LOC
+7	the	the	DT	_	9	det	_
+8	music	music	NN	_	9	nn	_
+9	store	store	NN	_	6	pobj	_
+10	?	?	.	_	5	punct	_
+

@@ -1,0 +1,37 @@
+1	A	a	DT	_	2	det	_
+2	farmer	farmer	NN	_	3	nsubj	3:A0=PAG
+3	started	start	VBD	pb=start.01	0	root	_
+4	the	the	DT	_	5	det	_
+5	day	day	NN	_	3	dobj	3:A1=PPT
+6	with	with	IN	_	3	prep	3:A2=MNR
+7	8.75	0	CD	_	8	num	_
+8	buckets	bucket	NNS	_	6	pobj	_
+9	of	of	IN	_	8	prep	_
+10	seeds	seed	NNS	_	9	pobj	_
+11	.	.	.	_	3	punct	_
+
+1	After	after	IN	_	10	prep	10:AM-TMP
+2	spending	spend	VBG	pb=spend.02	1	pcomp	_
+3	the	the	DT	_	6	det	_
+4	morning	morning	NN	_	6	nn	_
+5	sowing	sowing	NN	_	6	nn	_
+6	seeds	seed	NNS	_	2	dobj	2:A1=VSP
+7	,	,	,	_	10	punct	_
+8	she	she	PRP	_	10	nsubj	10:A0=PAG
+9	now	now	RB	_	10	advmod	10:AM-TMP
+10	has	have	VBZ	pb=have.03	0	root	_
+11	6	0	CD	_	12	num	_
+12	buckets	bucket	NNS	_	10	dobj	10:A1=PPT
+13	.	.	.	_	10	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	buckets	bucket	NNS	_	9	dobj	9:R-A1
+4	of	of	IN	_	3	prep	_
+5	seeds	seed	NNS	_	4	pobj	_
+6	did	do	VBD	_	9	aux	_
+7	the	the	DT	_	8	det	_
+8	farmer	farmer	NN	_	9	nsubj	9:A0=PAG
+9	sow	sow	VB	p2=NN|pb=sow.01	0	root	_
+10	?	?	.	_	9	punct	_
+

@@ -1,0 +1,32 @@
+1	After	after	IN	_	10	prep	10:AM-TMP
+2	paying	pay	VBG	pb=pay.01	1	pcomp	_
+3	6	0	CD	_	4	num	_
+4	dollars	dollar	NNS	_	2	dobj	2:A1=VSP
+5	for	for	IN	_	2	prep	2:A3=PPT
+6	the	the	DT	_	7	det	_
+7	pie	pie	NN	_	5	pobj	_
+8	,	,	,	_	10	punct	_
+9	Mary	mary	NNP	_	10	nsubj	10:A0=PAG
+10	has	have	VBZ	pb=have.03	16	ccomp	_
+11	52	0	CD	_	12	num	_
+12	dollars	dollar	NNS	_	10	dobj	10:A1=PPT
+13	,	,	,	_	16	punct	_
+14	her	her	PRP$	_	15	poss	_
+15	friend	friend	NN	_	16	nsubj	16:A0=PAG
+16	has	have	VBZ	pb=have.03	0	root	_
+17	43	0	CD	_	18	num	_
+18	dollars	dollar	NNS	_	16	dobj	16:A1=PPT
+19	.	.	.	_	16	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	_	3	amod	_
+3	money	money	NN	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	she	she	PRP	_	6	nsubj	6:A0=PAG;8:A0=PAG
+6	have	have	VB	pb=have.03	0	root	_
+7	before	before	IN	p2=RB	6	prep	6:AM-TMP
+8	buying	buy	VBG	pb=buy.01	7	pcomp	_
+9	the	the	DT	_	10	det	_
+10	pie	pie	NN	_	8	dobj	8:A1=PPT
+11	?	?	.	_	6	punct	_
+

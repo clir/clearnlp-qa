@@ -1,0 +1,31 @@
+1	1	0	CD	_	2	num	_
+2	evening	evening	NN	_	6	npadvmod	6:AM-TMP
+3	,	,	,	_	6	punct	_
+4	a	a	DT	_	5	det	_
+5	restaurant	restaurant	NN	_	6	nsubj	6:A0=PAG
+6	served	serve	VBD	pb=serve.01	0	root	_
+7	a	a	DT	_	8	det	_
+8	total	total	NN	_	6	dobj	6:A1=PPT
+9	of	of	IN	_	8	prep	_
+10	0.2	0	CD	_	11	num	_
+11	loaf	loaf	NN	_	9	pobj	_
+12	of	of	IN	_	11	prep	_
+13	wheat	wheat	NN	_	14	nn	_
+14	bread	bread	NN	_	12	pobj	_
+15	and	and	CC	_	11	cc	_
+16	0.4	0	CD	_	17	num	_
+17	loaf	loaf	NN	_	11	conj	_
+18	of	of	IN	_	17	prep	_
+19	white	white	JJ	_	20	amod	_
+20	bread	bread	NN	_	18	pobj	_
+21	.	.	.	_	6	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	loaves	loaf	NNS	_	5	nsubjpass	5:A1=PPT
+4	were	be	VBD	_	5	auxpass	_
+5	served	serve	VBN	pb=serve.02	0	root	_
+6	in	in	IN	p2=RB	5	prep	5:AM-LOC
+7	all	all	DT	_	6	pobj	_
+8	?	?	.	_	5	punct	_
+

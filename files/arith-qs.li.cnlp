@@ -1,0 +1,40 @@
+1	There	there	EX	_	2	expl	_
+2	are	be	VBP	pb=be.02	0	root	_
+3	112	0	CD	_	5	num	_
+4	short	short	JJ	_	5	amod	_
+5	trees	tree	NNS	_	2	attr	2:A1=PPT
+6	and	and	CC	_	5	cc	_
+7	119	0	CD	_	9	num	_
+8	tall	tall	JJ	p2=NN	9	amod	_
+9	trees	tree	NNS	_	5	conj	_
+10	currently	currently	RB	_	11	advmod	_
+11	in	in	IN	_	2	prep	_
+12	the	the	DT	_	13	det	_
+13	park	park	NN	_	11	pobj	_
+14	.	.	.	_	2	punct	_
+
+1	Park	park	NNP	p2=JJ	2	nn	_
+2	workers	worker	NNS	_	4	nsubj	4:A0=PAG
+3	will	will	MD	_	4	aux	4:AM-MOD
+4	plant	plant	VB	pb=plant.01	0	root	_
+5	105	0	CD	_	7	num	_
+6	short	short	JJ	_	7	amod	_
+7	trees	tree	NNS	_	4	dobj	4:A1=PPT
+8	today	today	NN	_	4	npadvmod	4:AM-TMP
+9	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	short	short	JJ	_	4	amod	_
+4	trees	tree	NNS	_	8	dobj	8:R-A1
+5	will	will	MD	_	8	aux	8:AM-MOD
+6	the	the	DT	_	7	det	_
+7	park	park	NN	_	8	nsubj	8:A0=PAG
+8	have	have	VB	pb=have.03	0	root	_
+9	when	when	WRB	_	13	advmod	13:R-AM-TMP
+10	the	the	DT	_	11	det	_
+11	workers	worker	NNS	_	13	nsubjpass	13:A1=PPT
+12	are	be	VBP	_	13	auxpass	_
+13	finished	finish	VBN	pb=finish.01	8	advcl	8:AM-TMP
+14	?	?	.	_	8	punct	_
+

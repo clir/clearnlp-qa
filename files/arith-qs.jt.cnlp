@@ -1,0 +1,20 @@
+1	Wendy	wendy	NNP	p2=NN	2	nsubj	2:A0=PPT;6:A0=PPT
+2	ran	run	VBD	pb=run.02	0	root	_
+3	19.833333333333332	0	CD	_	4	num	_
+4	miles	mile	NNS	_	2	dobj	2:A1=LOC
+5	and	and	CC	_	2	cc	_
+6	walked	walk	VBD	pb=walk.01	2	conj	_
+7	9.166666666666666	0	CD	_	8	num	_
+8	miles	mile	NNS	_	6	dobj	6:A1=LOC
+9	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	p2=RB	3	amod	_
+3	farther	farther	NN	p2=RBR	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	Wendy	wendy	NNP	p2=NN	6	nsubj	6:A0=PPT
+6	run	run	VB	pb=run.02	0	root	_
+7	than	than	IN	p2=DT	8	mark	_
+8	walk	walk	VB	p2=NN|pb=walk.01	6	advcl	_
+9	?	?	.	_	6	punct	_
+

@@ -1,0 +1,33 @@
+1	A	a	DT	_	3	det	_
+2	petri	petri	JJ	p2=NN	3	amod	_
+3	dish	dish	NN	_	5	nsubj	5:A0
+4	originally	originally	RB	_	5	advmod	5:AM-TMP
+5	contained	contain	VBD	p2=VBN|pb=contain.01	0	root	_
+6	600	0	CD	_	7	num	_
+7	bacteria	bacteria	NNS	_	5	dobj	5:A1
+8	.	.	.	_	5	punct	_
+
+1	A	a	DT	_	2	det	_
+2	scientist	scientist	NN	_	3	nsubj	3:A0=PAG
+3	let	let	VBD	p2=VB|pb=let.01	0	root	_
+4	the	the	DT	_	5	det	_
+5	bacteria	bacteria	NNS	_	6	nsubj	6:A1=PRD
+6	grow	grow	VB	pb=grow.03	3	ccomp	3:A1=PPT
+7	and	and	CC	_	3	cc	_
+8	now	now	RB	_	10	advmod	10:AM-TMP
+9	there	there	EX	_	10	expl	_
+10	are	be	VBP	pb=be.02	3	conj	_
+11	8917	0	CD	_	10	attr	10:A1=PPT
+12	of	of	IN	_	11	prep	_
+13	them	them	PRP	_	12	pobj	_
+14	.	.	.	_	10	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	more	more	JJR	_	4	amod	_
+4	bacteria	bacteria	NNS	_	5	nsubj	5:A1=PPT
+5	are	be	VBP	pb=be.01	0	root	_
+6	there	there	RB	p2=EX	5	advmod	5:A2=PRD
+7	now	now	RB	_	5	advmod	5:AM-TMP
+8	?	?	.	_	5	punct	_
+

@@ -1,0 +1,32 @@
+1	Recently	recently	RB	_	10	advmod	10:AM-TMP
+2	,	,	,	_	10	punct	_
+3	the	the	DT	_	4	det	_
+4	value	value	NN	_	10	nsubj	10:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	Kate	kate	NNP	_	9	poss	_
+7	's	's	POS	_	6	possessive	_
+8	retirement	retirement	NN	_	9	nn	_
+9	fund	fund	NN	_	5	pobj	_
+10	decreased	decrease	VBD	pb=decrease.01	0	root	_
+11	by	by	IN	_	10	prep	10:A2=EXT
+12	$	$	$	_	13	nmod	_
+13	12	0	CD	_	11	pobj	_
+14	.	.	.	_	10	punct	_
+
+1	If	if	IN	_	4	mark	_
+2	her	her	PRP$	_	3	poss	_
+3	fund	fund	NN	_	4	nsubj	4:A1=PPT
+4	was	be	VBD	pb=be.01	12	advcl	12:AM-ADV
+5	worth	worth	JJ	_	4	acomp	4:A2=PRD
+6	$	$	$	_	7	nmod	_
+7	1472	0	CD	_	5	npadvmod	_
+8	before	before	RB	p2=IN	7	advmod	_
+9	,	,	,	_	12	punct	_
+10	how	how	WRB	_	11	advmod	_
+11	much	much	JJ	_	12	attr	12:R-A2
+12	is	be	VBZ	pb=be.01	0	root	_
+13	it	it	PRP	_	12	nsubj	12:A1=PPT
+14	worth	worth	JJ	p2=RB	12	acomp	12:A2=PRD
+15	now	now	RB	_	12	advmod	12:AM-TMP
+16	?	?	.	_	12	punct	_
+

@@ -1,0 +1,40 @@
+1	Karen	karen	NNP	_	2	nsubj	_
+2	added	add	VBD	pb=add.03	0	root	_
+3	0.25	0	CD	_	4	num	_
+4	cup	cup	NN	_	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	walnuts	walnut	NNS	p2=PRP	5	pobj	_
+7	to	to	IN	_	2	prep	2:A2=EXT
+8	a	a	DT	_	9	det	_
+9	batch	batch	NN	_	7	pobj	_
+10	of	of	IN	_	9	prep	_
+11	trail	trail	NN	_	12	nn	_
+12	mix	mix	NN	_	10	pobj	_
+13	.	.	.	_	2	punct	_
+
+1	Later	late	RBR	p2=RB	4	advmod	4:AM-TMP
+2	,	,	,	_	4	punct	_
+3	she	she	PRP	_	4	nsubj	4:A0=PAG
+4	added	add	VBD	pb=add.02	0	root	_
+5	0.25	0	CD	_	6	num	_
+6	cup	cup	NN	_	4	dobj	4:A1=PPT
+7	of	of	IN	_	6	prep	_
+8	almonds	almond	NNS	p2=NNP	7	pobj	_
+9	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	cups	cup	NNS	_	8	dobj	8:R-A1
+4	of	of	IN	_	3	prep	_
+5	nuts	nut	NNS	p2=JJ	4	pobj	_
+6	did	do	VBD	_	8	aux	_
+7	Karen	karen	NNP	_	8	nsubj	8:A0=PAG
+8	put	put	VB	p2=VBD|pb=put.01	0	root	_
+9	in	in	IN	p2=RP	8	prep	8:A2=GOL
+10	the	the	DT	_	12	det	_
+11	trail	trail	NN	_	12	nn	_
+12	mix	mix	NN	_	9	pobj	_
+13	in	in	IN	p2=RB	12	prep	_
+14	all	all	DT	_	13	pobj	_
+15	?	?	.	_	8	punct	_
+

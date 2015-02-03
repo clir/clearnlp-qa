@@ -1,0 +1,35 @@
+1	Mike	mike	NNP	_	2	nsubj	2:A0=PPT;11:A0=PAG
+2	went	go	VBD	pb=go.02	0	root	_
+3	to	to	IN	_	2	prep	2:A4=GOL
+4	15	0	CD	_	6	num	_
+5	basketball	basketball	NN	_	6	nn	_
+6	games	game	NNS	_	3	pobj	_
+7	this	this	DT	_	8	det	_
+8	year	year	NN	_	6	npadvmod	2:AM-TMP
+9	,	,	,	_	2	punct	_
+10	but	but	CC	_	2	cc	_
+11	missed	miss	VBD	pb=miss.02	2	conj	_
+12	41	0	CD	_	11	dobj	11:A1=PPT
+13	.	.	.	_	2	punct	_
+
+1	He	he	PRP	_	2	nsubj	2:A0=PPT
+2	went	go	VBD	pb=go.02	0	root	_
+3	to	to	IN	_	2	prep	2:A4=GOL
+4	39	0	CD	_	5	num	_
+5	games	game	NNS	_	3	pobj	_
+6	last	last	JJ	_	7	amod	_
+7	year	year	NN	_	2	npadvmod	2:AM-TMP
+8	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	basketball	basketball	NN	_	4	nn	_
+4	games	game	NNS	_	7	npadvmod	7:R-AM-TMP
+5	did	do	VBD	_	7	aux	_
+6	Mike	mike	NNP	_	7	nsubj	7:A0=PPT
+7	go	go	VB	pb=go.02	0	root	_
+8	to	to	IN	p2=RB	7	prep	7:A4=GOL
+9	in	in	IN	p2=RB	8	prep	_
+10	total	total	NN	p2=JJ	9	pobj	_
+11	?	?	.	_	7	punct	_
+

@@ -1,0 +1,22 @@
+1	Tori	tori	NNP	p2=NN	2	nsubj	2:A1=PPT
+2	was	be	VBD	pb=be.01	0	root	_
+3	4.4	0	CD	_	4	num	_
+4	feet	foot	NNS	_	5	npadvmod	_
+5	tall	tall	JJ	_	2	acomp	2:A2=PRD
+6	.	.	.	_	2	punct	_
+
+1	Then	then	RB	_	3	advmod	3:AM-TMP
+2	she	she	PRP	_	3	nsubj	3:A1=PPT
+3	grew	grow	VBD	pb=grow.01	0	root	_
+4	2.86	0	CD	_	5	num	_
+5	feet	foot	NNS	_	6	npadvmod	_
+6	taller	tall	JJR	_	3	acomp	3:A2=EXT
+7	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	tall	tall	JJ	p2=NN	3	acomp	3:R-A2
+3	is	be	VBZ	pb=be.01	0	root	_
+4	Tori	tori	NNP	p2=VBN	3	nsubj	3:A1=PPT
+5	now	now	RB	_	3	advmod	3:AM-TMP
+6	?	?	.	_	3	punct	_
+

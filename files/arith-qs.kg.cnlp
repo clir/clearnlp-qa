@@ -1,0 +1,25 @@
+1	It	it	PRP	_	2	nsubj	_
+2	rained	rain	VBD	pb=rain.01	0	root	_
+3	0.2	0	CD	_	4	num	_
+4	inches	inch	NNS	_	2	npadvmod	2:A2=GOL
+5	on	on	IN	_	2	prep	2:AM-TMP
+6	Saturday	saturday	NNP	_	5	pobj	_
+7	and	and	CC	_	6	cc	_
+8	0.4	0	CD	_	9	num	_
+9	inches	inch	NNS	_	6	conj	_
+10	on	on	IN	_	9	prep	_
+11	Sunday	sunday	NNP	_	10	pobj	_
+12	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	p2=RB	5	dobj	5:R-A1
+3	did	do	VBD	_	5	aux	_
+4	it	it	PRP	_	5	nsubj	_
+5	rain	rain	VB	p2=NN|pb=rain.01	10	ccomp	_
+6	on	on	IN	p2=RP	5	prep	5:AM-TMP
+7	Saturday	saturday	NNP	_	6	pobj	_
+8	and	and	CC	_	7	cc	_
+9	Sunday	sunday	NNP	_	7	conj	_
+10	combined	combine	VBD	p2=VBN|pb=combine.01	0	root	_
+11	?	?	.	_	10	punct	_
+

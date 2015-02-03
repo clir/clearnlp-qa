@@ -1,0 +1,39 @@
+1	A	a	DT	_	2	det	_
+2	ship	ship	NN	_	4	nsubjpass	4:A1=GOL
+3	is	be	VBZ	_	4	auxpass	_
+4	filled	fill	VBN	pb=fill.01	0	root	_
+5	with	with	IN	_	4	prep	4:A2=PPT
+6	5973	0	CD	_	7	num	_
+7	tons	ton	NNS	_	5	pobj	_
+8	of	of	IN	_	7	prep	_
+9	cargo	cargo	NN	_	8	pobj	_
+10	.	.	.	_	4	punct	_
+
+1	It	it	PRP	_	2	nsubj	2:A1=PPT
+2	stops	stop	VBZ	pb=stop.01	0	root	_
+3	in	in	IN	_	2	prep	2:AM-LOC
+4	the	the	DT	_	5	det	_
+5	Bahamas	bahamas	NNPS	p2=NNP	3	pobj	9:AM-LOC
+6	,	,	,	_	5	punct	_
+7	where	where	WRB	_	9	advmod	9:R-AM-LOC
+8	sailors	sailor	NNS	_	9	nsubj	9:A0=PAG
+9	load	load	VBP	p2=VBD|pb=load.01	5	rcmod	_
+10	8723	0	CD	p2=NFP	11	num	_
+11	tons	ton	NNS	_	9	dobj	9:A1=GOL
+12	of	of	IN	_	11	prep	_
+13	cargo	cargo	NN	_	12	pobj	_
+14	onboard	onboard	RB	p2=NN	9	advmod	9:AM-TMP
+15	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	tons	ton	NNS	_	9	dobj	9:R-A1
+4	of	of	IN	_	3	prep	_
+5	cargo	cargo	NN	_	4	pobj	_
+6	does	do	VBZ	_	9	aux	_
+7	the	the	DT	_	8	det	_
+8	ship	ship	NN	_	9	nsubj	9:A0=PAG
+9	hold	hold	VB	pb=hold.01	0	root	_
+10	now	now	RB	_	9	advmod	9:AM-TMP
+11	?	?	.	_	9	punct	_
+

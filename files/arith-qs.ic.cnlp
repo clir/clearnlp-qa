@@ -1,0 +1,26 @@
+1	In	in	IN	_	4	prep	4:AM-LOC
+2	Yardley	yardley	NNP	_	1	pobj	_
+3	it	it	PRP	_	4	nsubj	4:A0=PAG
+4	snowed	snow	VBD	pb=snow.01	0	root	_
+5	0.125	0	CD	_	6	num	_
+6	inch	inch	NN	_	4	dobj	4:A1=PPT
+7	in	in	IN	_	4	prep	4:AM-TMP
+8	the	the	DT	_	9	det	_
+9	morning	morning	NN	_	7	pobj	_
+10	and	and	CC	_	9	cc	_
+11	0.5	0	CD	_	12	num	_
+12	inch	inch	NN	_	9	conj	_
+13	in	in	IN	_	12	prep	_
+14	the	the	DT	_	15	det	_
+15	afternoon	afternoon	NN	_	13	pobj	_
+16	.	.	.	_	4	punct	_
+
+1	What	what	WP	_	2	attr	2:R-A2
+2	was	be	VBD	pb=be.01	0	root	_
+3	the	the	DT	_	5	det	_
+4	total	total	JJ	_	5	amod	_
+5	amount	amount	NN	_	2	nsubj	2:A1=PPT
+6	of	of	IN	_	5	prep	_
+7	snowfall	snowfall	NN	_	6	pobj	_
+8	?	?	.	_	2	punct	_
+

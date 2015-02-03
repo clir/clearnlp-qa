@@ -1,0 +1,37 @@
+1	Joan	joan	NNP	_	2	nsubj	2:A0=PAG
+2	found	find	VBD	pb=find.01	0	root	_
+3	75	0	CD	_	4	num	_
+4	seashells	seashell	NNS	_	2	dobj	2:A1=PPT
+5	and	and	CC	_	4	cc	_
+6	14	0	CD	_	7	num	_
+7	starfishes	starfish	NNS	_	4	conj	_
+8	on	on	IN	_	7	prep	_
+9	the	the	DT	_	10	det	_
+10	beach	beach	NN	_	8	pobj	_
+11	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PAG
+2	gave	give	VBD	pb=give.01	0	root	_
+3	Tim	tim	NNP	_	2	iobj	2:A2=GOL
+4	some	some	DT	_	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	her	her	PRP$	p2=PRP	7	poss	_
+7	seashells	seashell	NNS	p2=NN	5	pobj	_
+8	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PAG
+2	has	have	VBZ	pb=have.03	0	root	_
+3	62	0	CD	_	4	num	_
+4	seashell	seashell	NN	p2=NNS	2	dobj	2:A1=PPT
+5	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	seashells	seashell	NNS	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	she	she	PRP	_	6	nsubj	6:A0=PAG
+6	give	give	VB	pb=give.01	0	root	_
+7	to	to	IN	_	6	prep	6:A2=GOL
+8	Tim	tim	NNP	_	7	pobj	_
+9	?	?	.	_	6	punct	_
+

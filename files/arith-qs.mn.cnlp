@@ -1,0 +1,45 @@
+1	Keith	keith	NNP	_	2	nsubj	2:A0=PAG
+2	spent	spend	VBD	pb=spend.01	0	root	_
+3	$	$	$	_	4	nmod	_
+4	6.51	0	CD	_	2	dobj	2:A3=VSP
+5	on	on	IN	_	2	prep	2:A1=PPT
+6	a	a	DT	_	8	det	_
+7	rabbit	rabbit	NN	_	8	nn	_
+8	toy	toy	NN	_	5	pobj	_
+9	,	,	,	_	8	punct	_
+10	$	$	$	_	11	nmod	_
+11	5.79	0	CD	_	8	appos	_
+12	on	on	IN	_	11	prep	_
+13	pet	pet	JJ	_	14	amod	_
+14	food	food	NN	_	12	pobj	_
+15	,	,	,	_	2	punct	_
+16	and	and	CC	_	2	cc	_
+17	a	a	DT	_	18	det	_
+18	cage	cage	NN	_	19	nsubj	19:A1=PPT
+19	cost	cost	VBD	pb=cost.01	2	conj	_
+20	him	him	PRP	_	19	iobj	19:A3=GOL
+21	$	$	$	_	22	nmod	_
+22	12.51	0	CD	_	19	dobj	19:A2=VSP
+23	.	.	.	_	19	punct	_
+
+1	He	he	PRP	_	2	nsubj	2:A0=PAG
+2	found	find	VBD	pb=find.01	0	root	_
+3	a	a	DT	_	5	det	_
+4	dollar	dollar	NN	_	5	nn	_
+5	bill	bill	NN	_	2	dobj	2:A1=PPT
+6	on	on	IN	_	5	prep	_
+7	the	the	DT	_	8	det	_
+8	ground	ground	NN	_	6	pobj	_
+9	.	.	.	_	2	punct	_
+
+1	What	what	WP	_	2	attr	2:R-A2
+2	was	be	VBD	pb=be.01	0	root	_
+3	the	the	DT	_	5	det	_
+4	total	total	JJ	_	5	amod	_
+5	cost	cost	NN	_	2	nsubj	2:A1=PPT
+6	of	of	IN	_	5	prep	_
+7	Keith	keith	NNP	_	9	poss	_
+8	's	's	POS	_	7	possessive	_
+9	purchases	purchase	NNS	_	6	pobj	_
+10	?	?	.	_	2	punct	_
+

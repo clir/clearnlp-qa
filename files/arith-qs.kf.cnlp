@@ -1,0 +1,28 @@
+1	A	a	DT	_	3	det	_
+2	construction	construction	NN	_	3	nn	_
+3	company	company	NN	_	4	nsubj	4:A0=PAG
+4	bought	buy	VBD	pb=buy.01	0	root	_
+5	5.91	0	CD	_	6	num	_
+6	tons	ton	NNS	_	4	dobj	4:A1=PPT
+7	of	of	IN	_	6	prep	_
+8	gravel	gravel	NN	_	7	pobj	_
+9	and	and	CC	_	6	cc	_
+10	8.11	0	CD	p2=NFP	11	num	_
+11	tons	ton	NNS	_	6	conj	_
+12	of	of	IN	_	11	prep	_
+13	sand	sand	NN	_	12	pobj	_
+14	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	tons	ton	NNS	_	9	dobj	9:R-A1
+4	of	of	IN	_	3	prep	_
+5	material	material	NN	_	4	pobj	_
+6	did	do	VBD	_	9	aux	_
+7	the	the	DT	_	8	det	_
+8	company	company	NN	_	9	nsubj	9:A0=PAG
+9	buy	buy	VB	pb=buy.01	0	root	_
+10	in	in	IN	p2=RB	9	prep	9:AM-LOC
+11	all	all	DT	p2=PDT	10	pobj	_
+12	?	?	.	_	9	punct	_
+

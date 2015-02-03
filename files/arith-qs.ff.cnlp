@@ -1,0 +1,39 @@
+1	Before	before	IN	_	5	prep	5:AM-TMP
+2	December	december	NNP	_	1	pobj	_
+3	,	,	,	_	5	punct	_
+4	customers	customer	NNS	_	5	nsubj	5:A0=PAG
+5	buy	buy	VBP	pb=buy.01	0	root	_
+6	1346	0	CD	_	8	num	_
+7	ear	ear	NN	p2=VBP	8	nn	_
+8	muffs	muff	NNS	p2=NN	5	dobj	5:A1=PPT
+9	from	from	IN	_	5	prep	5:A2=DIR
+10	the	the	DT	_	11	det	_
+11	mall	mall	NN	_	9	pobj	_
+12	.	.	.	_	5	punct	_
+
+1	During	during	IN	_	5	prep	5:AM-TMP
+2	December	december	NNP	_	1	pobj	_
+3	,	,	,	_	5	punct	_
+4	they	they	PRP	_	5	nsubj	5:A0=PAG
+5	buy	buy	VBP	pb=buy.01	0	root	_
+6	6444	0	CD	_	5	dobj	5:A1=PPT
+7	,	,	,	_	5	punct	_
+8	and	and	CC	_	5	cc	_
+9	there	there	EX	_	10	expl	_
+10	are	be	VBP	pb=be.02	5	conj	_
+11	none	none	NN	p2=JJ	10	attr	10:A1=PPT
+12	.	.	.	_	10	punct	_
+
+1	In	in	IN	_	11	prep	_
+2	all	all	DT	_	1	pobj	_
+3	,	,	,	_	11	punct	_
+4	how	how	WRB	_	5	advmod	_
+5	many	many	JJ	_	7	amod	_
+6	ear	ear	NN	p2=VBP	7	nn	_
+7	muffs	muff	NNS	p2=MD	11	dobj	11:R-A1
+8	do	do	VBP	_	11	aux	_
+9	the	the	DT	_	10	det	_
+10	customers	customer	NNS	_	11	nsubj	11:A0=PAG
+11	buy	buy	VB	p2=VBP|pb=buy.01	0	root	_
+12	?	?	.	_	11	punct	_
+

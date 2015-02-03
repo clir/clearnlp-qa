@@ -1,0 +1,32 @@
+1	Each	each	DT	_	8	nsubj	8:A1=PPT
+2	of	of	IN	_	1	prep	_
+3	farmer	farmer	NN	p2=JJR	4	nn	_
+4	Cunningham	cunningham	NNP	_	7	poss	_
+5	's	's	POS	_	4	possessive	_
+6	6048	0	CD	_	7	num	_
+7	lambs	lamb	NNS	p2=NN	2	pobj	_
+8	is	be	VBZ	pb=be.01	0	root	_
+9	either	either	CC	p2=DT	10	preconj	_
+10	black	black	JJ	_	8	acomp	8:A2=PRD
+11	or	or	CC	_	10	cc	_
+12	white	white	JJ	_	10	conj	_
+13	.	.	.	_	8	punct	_
+
+1	There	there	EX	_	2	expl	_
+2	are	be	VBP	pb=be.02	0	root	_
+3	193	0	CD	_	5	num	_
+4	white	white	JJ	_	5	amod	_
+5	ones	#crd#	NNS	_	2	attr	2:A1=PPT
+6	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	8	nsubj	8:R-A1
+3	of	of	IN	_	2	prep	_
+4	Farmer	farmer	NNP	p2=JJR	5	nn	_
+5	Cunningham	cunningham	NNP	_	7	poss	_
+6	's	's	POS	_	5	possessive	_
+7	lambs	lamb	NNS	_	3	pobj	_
+8	are	be	VBP	pb=be.01	0	root	_
+9	black	black	JJ	_	8	acomp	8:A2=PRD
+10	?	?	.	_	8	punct	_
+

@@ -1,0 +1,41 @@
+1	Milford	milford	NNP	_	2	nn	_
+2	Lake	lake	NNP	_	3	nsubj	3:A1=PPT
+3	was	be	VBD	pb=be.01	0	root	_
+4	originally	originally	RB	_	5	advmod	_
+5	blue	blue	JJ	_	3	acomp	3:A2=PRD
+6	because	because	IN	_	9	mark	_
+7	it	it	PRP	_	9	nsubj	9:A0=PAG
+8	only	only	RB	_	9	advmod	9:AM-ADV
+9	had	have	VBD	pb=have.03	3	advcl	3:AM-CAU
+10	809	0	CD	_	12	num	_
+11	algae	algae	NN	_	12	nn	_
+12	plants	plant	NNS	_	9	dobj	9:A1=PPT
+13	.	.	.	_	3	punct	_
+
+1	Now	now	RB	_	3	advmod	3:AM-TMP
+2	there	there	EX	_	3	expl	_
+3	are	be	VBP	pb=be.02	0	root	_
+4	3263	0	CD	_	6	num	_
+5	algae	algae	NN	_	6	nn	_
+6	plants	plant	NNS	_	3	attr	3:A1=PPT
+7	,	,	,	_	6	punct	_
+8	and	and	CC	_	6	cc	_
+9	the	the	DT	_	10	det	_
+10	lake	lake	NN	_	12	nsubj	12:A1=PPT
+11	has	have	VBZ	_	12	aux	_
+12	turned	turn	VBN	pb=turn.02	6	conj	_
+13	green	green	JJ	p2=RB	12	oprd	12:A2=PRD
+14	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	p2=DT	6	acomp	6:R-A2
+3	more	more	JJR	_	5	amod	_
+4	algae	algae	NN	p2=JJ	5	nn	_
+5	plants	plant	NNS	_	6	nsubj	6:A1=PPT
+6	are	be	VBP	pb=be.01	0	root	_
+7	in	in	IN	_	6	prep	6:AM-LOC
+8	Milford	milford	NNP	_	9	nn	_
+9	Lake	lake	NNP	_	7	pobj	_
+10	now	now	RB	_	6	advmod	6:AM-TMP
+11	?	?	.	_	6	punct	_
+

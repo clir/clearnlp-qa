@@ -1,0 +1,36 @@
+1	Last	last	JJ	_	2	amod	_
+2	year	year	NN	_	9	npadvmod	9:AM-TMP
+3	,	,	,	_	9	punct	_
+4	egg	egg	NN	_	5	nn	_
+5	producers	producer	NNS	_	9	nsubj	9:A0=PAG
+6	in	in	IN	_	5	prep	_
+7	Douglas	douglas	NNP	_	8	nn	_
+8	County	county	NNP	_	6	pobj	_
+9	produced	produce	VBD	pb=produce.01	0	root	_
+10	1416	0	CD	_	11	num	_
+11	eggs	egg	NNS	_	9	dobj	9:A1
+12	.	.	.	_	9	punct	_
+
+1	This	this	DT	_	2	det	_
+2	year	year	NN	_	7	npadvmod	7:AM-TMP
+3	,	,	,	_	7	punct	_
+4	those	those	DT	_	6	det	_
+5	same	same	JJ	_	6	amod	_
+6	farms	farm	NNS	_	7	nsubj	7:A0=PAG
+7	produced	produce	VBD	pb=produce.01	0	root	_
+8	4636	0	CD	_	9	num	_
+9	eggs	egg	NNS	_	7	dobj	7:A1
+10	.	.	.	_	7	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	more	more	JJR	_	4	amod	_
+4	eggs	egg	NNS	_	8	dobj	8:R-A2
+5	did	do	VBD	_	8	aux	_
+6	the	the	DT	_	7	det	_
+7	farms	farm	NNS	_	8	nsubj	8:A0=PAG
+8	produce	produce	VB	p2=VBP|pb=produce.01	0	root	_
+9	this	this	DT	_	10	det	_
+10	year	year	NN	_	8	dobj	8:A1
+11	?	?	.	_	8	punct	_
+

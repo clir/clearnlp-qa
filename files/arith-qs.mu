@@ -1,0 +1,1 @@
+There are 31 short trees and 32 tall trees currently in the park . Park workers will plant short trees today . When the workers are finished there will be 95 short trees in the park . How many short trees did the workers plant today ? 

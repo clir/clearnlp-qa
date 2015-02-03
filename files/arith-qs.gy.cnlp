@@ -1,0 +1,31 @@
+1	A	a	DT	_	3	det	_
+2	marine	marine	JJ	p2=NN	3	amod	_
+3	biologist	biologist	NN	_	4	nsubj	4:A0=PAG
+4	measured	measure	VBD	p2=VBN|pb=measure.01	0	root	_
+5	1	0	CD	_	6	num	_
+6	fish	fish	NN	_	4	dobj	4:A1=PPT;8:A1=PPT
+7	that	that	WDT	p2=DT	8	nsubj	8:R-A1
+8	was	be	VBD	pb=be.01	6	rcmod	_
+9	0.3	0	CD	_	10	num	_
+10	foot	foot	NN	_	11	npadvmod	_
+11	long	long	JJ	p2=RB	8	acomp	8:A2=PRD
+12	and	and	CC	_	11	cc	_
+13	a	a	DT	_	15	det	_
+14	second	#ord#	JJ	_	15	amod	_
+15	fish	fish	NN	_	11	conj	17:A1=PPT
+16	that	that	WDT	_	17	nsubj	17:R-A1
+17	was	be	VBD	pb=be.01	15	rcmod	_
+18	0.2	0	CD	_	19	num	_
+19	foot	foot	NN	_	20	npadvmod	_
+20	long	long	JJ	p2=RB	17	acomp	17:A2=PRD
+21	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	RB	p2=JJ	3	advmod	_
+3	longer	long	RBR	p2=JJR	4	advmod	4:AM-TMP
+4	was	be	VBD	pb=be.01	0	root	_
+5	the	the	DT	_	7	det	_
+6	first	#ord#	JJ	_	7	amod	_
+7	fish	fish	NN	_	4	nsubj	4:A1=PPT
+8	?	?	.	_	4	punct	_
+

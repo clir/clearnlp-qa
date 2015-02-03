@@ -1,0 +1,22 @@
+1	Dan	dan	NNP	_	2	nsubj	2:A0=PAG;6:A0=PAG
+2	picked	pick	VBD	pb=pick.01	0	root	_
+3	9	0	CD	_	4	num	_
+4	limes	lime	NNS	_	2	dobj	2:A1=PPT
+5	and	and	CC	_	2	cc	_
+6	gave	give	VBD	pb=give.01	2	conj	_
+7	Sara	sara	NNP	_	6	iobj	6:A2=GOL
+8	4	0	CD	_	6	dobj	6:A1=PPT
+9	of	of	IN	_	8	prep	_
+10	the	the	DT	_	11	det	_
+11	limes	lime	NNS	p2=NNPS	9	pobj	_
+12	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	limes	lime	NNS	p2=FW	6	dobj	6:R-A1
+4	does	do	VBZ	_	6	aux	_
+5	Dan	dan	NNP	_	6	nsubj	6:A0=PAG
+6	have	have	VB	p2=VBP|pb=have.03	0	root	_
+7	now	now	RB	_	6	advmod	6:AM-TMP
+8	?	?	.	_	6	punct	_
+
