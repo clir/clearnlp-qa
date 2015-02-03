@@ -67,16 +67,18 @@ public class App
             {
                 if (aq.getArithmeticQuestionType() == ArithmeticQuestionType.SUM)
                 {
-                    System.out.println("Question: " + aq);
+
                     arithmeticQuestions.add(aq);
                     double foundAnswer = aq.solveProblem();
-                    if (foundAnswer == qAnswers.get(i))
+                    foundAnswer = round(foundAnswer, 1);
+                    if (foundAnswer == round(qAnswers.get(i), 1))
                     {
-                        System.out.println("Found answer is correct that is: " + foundAnswer);
+                        //System.out.println("Found answer is correct that is: " + foundAnswer);
                         correctAnswers++;
                     }
                     else
                     {
+                        System.out.println("Question: " + aq);
                         System.out.println("Found answer is NOT correct: " + foundAnswer + ", should be: " +
                                 qAnswers.get(i));
                         notCorrectAnswers++;
@@ -86,9 +88,11 @@ public class App
                 }
                 i++;
             }
-//            aq = areader.readFile("files/", "arith-qs.cm");
-//            System.out.println("Question: " + aq);
+//            aq = areader.readFile("files/", "arith-qs.if");
+//            System.out.println("Question: " + aq.detailedToString());
 //            arithmeticQuestions.add(aq);
+//            double foundAnswer = aq.solveProblem();
+//            System.out.println("Solution: " + foundAnswer);
 
         } catch (IOException e)
         {

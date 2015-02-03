@@ -29,13 +29,6 @@ public class ArithmeticQuestion {
         questionTextStateList = new ArrayList();
         prepareInstances();
         detectQuestionType();
-
-//        System.out.println("Text states: ");
-//
-//        for (State s : questionTextStateList)
-//        {
-//            System.out.println(s);
-//        }
     }
 
     public List<DEPTree> getDEPTrees()
@@ -88,8 +81,22 @@ public class ArithmeticQuestion {
 
     public String toString()
     {
-        //return "Text: " + questionText + "\nText states: " + questionTextStates + "\nQuestion state: " + questionState;
-        return questionText;
+        String s = questionText;
+
+        return s;
+    }
+
+    public String detailedToString()
+    {
+        String s = "Question: " + questionText;
+        s += "\nText states: ";
+
+        for (State st : questionTextStateList)
+        {
+            s += st + "\n";
+        }
+
+        return s;
     }
 
     public double solveProblem()
@@ -135,7 +142,9 @@ public class ArithmeticQuestion {
             {
                 DEPNode i_node = s.get(i);
 
-                if (POSLibEn.isVerb(i_node.getPOSTag()) && i_node.getLemma().equals(predicate))
+                /* TODO: Currently not matching predicates in sum, should be addressed. */
+
+                if (POSLibEn.isVerb(i_node.getPOSTag()) )//&& i_node.getLemma().equals(predicate))
                 {
                     Instance containerInstance = i.getArgumentList(SemanticType.A1).get(0);
                     DEPNode containerNode = s.get(containerInstance);
