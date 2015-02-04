@@ -134,16 +134,25 @@ public class Parser {
                 if (current.hasHead()) {
                     if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num) {
 
+                        DEPNode attrNode = null;
                         DEPNode A1 = null;
                         if (POSLibEn.isNoun(current.getHead().getPOSTag()))
                         {
                             A1 = current.getHead();
+
+                            for (DEPNode node : current.getHead().getLeftDependentList())
+                            {
+                                if (POSLibEn.isAdjective(node.getPOSTag()))
+                                {
+                                    attrNode = node;
+                                }
+                            }
                         }
                         else if (POSLibEn.isAdjective(current.getHead().getPOSTag()))
                         {
                             /* It is most likely conj */
                             A1 = getLabelRelatedNode(current.getHead(), SemanticType.conj);
-                            System.out.println("Got A1 = " + A1.getWordForm());
+                            attrNode = current.getHead();
                         }
 
                         DEPNode numNode = current;
@@ -162,6 +171,13 @@ public class Parser {
 
                         predicate.putArgumentList(SemanticType.A1, A1_inst);
                         A1_inst.putAttribute(AttributeType.QUANTITY, quantityAttribute);
+
+                        if (attrNode != null)
+                        {
+                            Instance attrInstance = new Instance();
+                            A1_inst.putAttribute(AttributeType.QUALITY, attrInstance);
+                            s.putInstance(attrNode, attrInstance);
+                        }
 
 
 //                        System.out.println("Adding value: " + numNode.getWordForm());
@@ -214,10 +230,28 @@ public class Parser {
             return null;
         }
 
+        DEPNode attrNode = null;
+        /* Check if there are any attributes */
+        for (DEPNode node : theme.getLeftDependentList())
+        {
+            if (POSLibEn.isAdjective(node.getPOSTag()))
+            {
+                attrNode = node;
+            }
+        }
+
         State state = new State();
         Instance rootInstance = new Instance();
         Instance a1Instance = new Instance ();
         rootInstance.putArgumentList(SemanticType.A1, a1Instance);
+
+        if (attrNode != null)
+        {
+            Instance attrInstance = new Instance();
+            a1Instance.putAttribute(AttributeType.QUALITY, attrInstance);
+            state.putInstance(attrNode, attrInstance);
+        }
+
         state.putInstance(root, rootInstance);
         state.putInstance(theme, a1Instance);
 

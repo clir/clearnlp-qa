@@ -114,6 +114,7 @@ public class ArithmeticQuestion {
         /* Detect the container and predicate in question */
         String container = null;
         String predicate = null;
+        String attribute = null;
 
         if (questionState == null)
         {
@@ -126,9 +127,15 @@ public class ArithmeticQuestion {
             if (i.getArgumentList(SemanticType.A1) != null && i.getArgumentList(SemanticType.A1).size() > 0)
             {
                 predicate = questionState.get(i).getLemma();
-                for (Instance j : i.getArgumentList(SemanticType.A1))
+                Instance containerInstance = i.getArgumentList(SemanticType.A1).get(0);
+                container = questionState.get(containerInstance).getLemma();
+
+                Instance attrInstance;
+                if (containerInstance.getAttribute(AttributeType.QUALITY) != null &&
+                        containerInstance.getAttribute(AttributeType.QUALITY).size() > 0)
                 {
-                    container = questionState.get(j).getLemma();
+                    attrInstance = containerInstance.getAttribute(AttributeType.QUALITY).get(0);
+                    attribute = questionState.get(attrInstance).getLemma();
                 }
             }
         }
@@ -150,10 +157,23 @@ public class ArithmeticQuestion {
                     DEPNode containerNode = s.get(containerInstance);
                     Instance numericalInstance = containerInstance.getAttribute(AttributeType.QUANTITY).get(0);
                     DEPNode numericalNode = s.get(numericalInstance);
+                    Instance attributeInstance = null;
+                    DEPNode attributeNode = null;
+                    if (containerInstance.getAttribute(AttributeType.QUALITY) != null &&
+                            containerInstance.getAttribute(AttributeType.QUALITY).size() > 0)
+                    {
+                        attributeInstance = containerInstance.getAttribute(AttributeType.QUALITY).get(0);
+                        attributeNode = s.get(attributeInstance);
+                    }
 
-                    if (container.equals(containerNode.getLemma()))
+                    if (attributeInstance != null && container.equals(containerNode.getLemma()) && attribute.equals(attributeNode.getLemma()))
                     {
                         /* Get numerical and add */
+                        String numerical = numericalNode.getWordForm();
+                        matchingNumericals.add(numerical);
+                    }
+                    else if (attributeInstance == null && container.equals(containerNode.getLemma()))
+                    {
                         String numerical = numericalNode.getWordForm();
                         matchingNumericals.add(numerical);
                     }
