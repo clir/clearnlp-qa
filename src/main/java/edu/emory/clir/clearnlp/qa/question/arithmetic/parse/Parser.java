@@ -99,7 +99,7 @@ public class Parser {
         return null;
     }
 
-    private DEPNode GetSemanticallyRelatedNode(DEPNode source, SemanticType semanticType)
+    private DEPNode getLabelRelatedNode(DEPNode source, SemanticType semanticType)
     {
         if (source == null)
         {
@@ -108,7 +108,7 @@ public class Parser {
 
         for (DEPNode node : source.getDependentList())
         {
-            if (StringUtils.extractSemanticRelation(node.getSemanticLabel(source)) == semanticType)
+            if (StringUtils.extractSemanticRelation(node.getLabel()) == semanticType)
             {
                 return node;
             }
@@ -127,13 +127,25 @@ public class Parser {
         {
 
             DEPNode current = q.poll();
-//            System.out.println("Checking node = " + current.getLemma());
+//            System.out.println("Checking node = " + current.getSimplifiedForm());
+//            System.out.println("Its head = " + current.getHead().getSimplifiedForm());
             if (! POSLibEn.isVerb(current.getPOSTag()))
             {
                 if (current.hasHead()) {
-                    if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num &&
-                            POSLibEn.isNoun(current.getHead().getPOSTag())) {
-                        DEPNode A1 = current.getHead();
+                    if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num) {
+
+                        DEPNode A1 = null;
+                        if (POSLibEn.isNoun(current.getHead().getPOSTag()))
+                        {
+                            A1 = current.getHead();
+                        }
+                        else if (POSLibEn.isAdjective(current.getHead().getPOSTag()))
+                        {
+                            /* It is most likely conj */
+                            A1 = getLabelRelatedNode(current.getHead(), SemanticType.conj);
+                            System.out.println("Got A1 = " + A1.getWordForm());
+                        }
+
                         DEPNode numNode = current;
 
                         Instance predicate = new Instance();

@@ -36,8 +36,30 @@ public class StringUtils {
                 return SemanticType.A4;
             case "num":
                 return SemanticType.num;
+            case "conj":
+                return SemanticType.conj;
             default:
                 return null;
         }
+    }
+
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isDouble(String s) {
+        try {
+            Double.parseDouble(s);
+        } catch(NumberFormatException e) {
+            return false;
+        }
+
+        return true;
     }
 }
