@@ -11,12 +11,10 @@ import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 
 import java.util.*;
-import java.util.function.BooleanSupplier;
 
 public class Parser {
     private ArithmeticQuestion arithmeticQuestion;
     private HashMap<String, Integer> themeCounters;
-    private HashMap<DEPNode, Boolean> alreadyParsedNodes;
 
     public Parser(ArithmeticQuestion arithmeticQuestion)
     {
@@ -71,72 +69,8 @@ public class Parser {
                 }
             }
 
-//            DEPNode A1 = null;
-//
-//            if (depNode.getLemma().equals("grow"))
-//            {
-//                /* Predicate grow usually has wrong dependency tree */
-//
-//                if (A0 == null)
-//                {
-//                    A0 = GetSemanticallyRelatedNode(depNode, SemanticType.A1);
-//                }
-//
-//                A1 = GetSemanticallyRelatedNode(depNode, SemanticType.A2);
-//            }
-//
-//            if (depNode.getLemma().equals("go"))
-//            {
-//                /* Predicate go is a special case */
-//                A1 = selectThemeFromGoPredicate(depNode);
-//            }
-//
-//            if (A1 == null)
-//            {
-//                for (DEPNode node : depNode.getDependentList())
-//                {
-//                    if (StringUtils.extractSemanticRelation(node.getSemanticLabel(depNode)) == SemanticType.A1)
-//                    {
-//                        A1 = node;
-//                        break;
-//                    }
-//                }
-//            }
-
             stateList.addAll(findAllStates(A0, depNode));
 
-//            if (A1 != null)
-//            {
-//                for (DEPNode node : A1.getDependentList())
-//                {
-//                    if (StringUtils.extractSemanticRelation(node.getLabel()) == SemanticType.num)
-//                    {
-//                        Instance predicate = new Instance();
-//                        Instance A0_inst = new Instance();
-//                        Instance A1_inst = new Instance();
-//                        Instance quantityAttribute = new Instance();
-//
-//                        s = new State();
-//
-//                        if (A0 != null)
-//                        {
-//                            predicate.putArgumentList(SemanticType.A0, A0_inst);
-//                            s.putInstance(A0, A0_inst);
-//                        }
-//
-//                        predicate.putArgumentList(SemanticType.A1, A1_inst);
-//                        A1_inst.putAttribute(AttributeType.QUANTITY, quantityAttribute);
-//
-//
-//                        s.putInstance(depNode, predicate);
-//
-//                        s.putInstance(A1, A1_inst);
-//                        s.putInstance(node, quantityAttribute);
-//
-//                        return s;
-//                    }
-//                }
-//            }
             return stateList;
         }
         else
