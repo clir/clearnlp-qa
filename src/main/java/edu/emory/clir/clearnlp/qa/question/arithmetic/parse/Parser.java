@@ -116,35 +116,103 @@ public class Parser {
         return null;
     }
 
+    private DEPNode findRightDEPNodeNeighbor(DEPNode node)
+    {
+        if (node == null)
+        {
+            return null;
+        }
+
+        boolean foundNode = false;
+        for (DEPNode n : node.getHead().getDependentList())
+        {
+            if (foundNode)
+            {
+                return n;
+            }
+            if (n == node)
+            {
+                foundNode = true;
+            }
+        }
+
+        return null;
+    }
+
+    private DEPNode findDEPNodeInTree(DEPNode root, SemanticType semanticType)
+    {
+        Queue<DEPNode> q = new ArrayDeque();
+        q.addAll(root.getRightDependentList());
+        while (! q.isEmpty())
+        {
+            DEPNode current = q.poll();
+            SemanticType currentLabel = StringUtils.extractSemanticRelation(current.getLabel());
+            if (currentLabel != null && currentLabel == semanticType)
+            {
+                return current;
+            }
+
+            q.addAll(current.getDependentList());
+        }
+
+        return null;
+    }
+
     private List<State> findAllStates(DEPNode A0, DEPNode head)
     {
         Queue<DEPNode> q = new ArrayDeque();
-        q.addAll(head.getRightDependentList());
+        //q.addAll(head.getRightDependentList());
+        q.addAll(head.getDependentList());
         List<State> instanceList = new ArrayList();
 //        System.out.println("Starting for head = " + head.getLemma());
 
         while (! q.isEmpty())
         {
-
             DEPNode current = q.poll();
 //            System.out.println("Checking node = " + current.getSimplifiedForm());
 //            System.out.println("Its head = " + current.getHead().getSimplifiedForm());
             if (! POSLibEn.isVerb(current.getPOSTag()))
             {
                 if (current.hasHead()) {
+                    //System.out.println("Checking node: " + current.getWordForm());
                     if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num) {
 
+                        //System.out.println("Inide for: " + current.getWordForm());
                         DEPNode attrNode = null;
                         DEPNode A1 = null;
                         if (POSLibEn.isNoun(current.getHead().getPOSTag()))
                         {
-                            A1 = current.getHead();
+//                            DEPNode rightNeighbor = findRightDEPNodeNeighbor(current);
+//                            if (rightNeighbor != null && rightNeighbor.getLabel().equals("prep") && rightNeighbor.getLemma().equals("of"))
+//                            {
+//                                A1 = findDEPNodeInTree(rightNeighbor, SemanticType.pobj);
+//                                if (A1 == null)
+//                                {
+//                                    /* FIXME: This is because parsing error, sometimes pcomp exists
+//                                              instead of pobj, then find dobj of pcomp
+//                                     */
+//                                    DEPNode pcomp = findDEPNodeInTree(rightNeighbor, SemanticType.pcomp);
+//                                    for (DEPNode n : pcomp.getDependentList())
+//                                    {
+//                                        if (StringUtils.extractSemanticRelation(n.getLabel()) == SemanticType.dobj)
+//                                        {
+//                                            A1 = n;
+//                                            break;
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                            else
+//                            {
+                                A1 = current.getHead();
+//                            }
 
                             for (DEPNode node : current.getHead().getLeftDependentList())
                             {
                                 if (POSLibEn.isAdjective(node.getPOSTag()))
                                 {
                                     attrNode = node;
+                                    break;
                                 }
                             }
                         }
@@ -197,6 +265,8 @@ public class Parser {
     }
 
     public State parseQuestion(DEPTree depTree) {
+        DEPNode attrNode = null;
+
         prepareThemeCounters();
 
         //System.out.println("theme counters = " + themeCounters);
@@ -204,13 +274,7 @@ public class Parser {
         if (depTree == null) return null;
 
         /* Find predicate and parse the question */
-        DEPNode root = null;
-        for (DEPNode node : depTree) {
-            if (node.getLabel().equals("root")) {
-                root = node;
-                break;
-            }
-        }
+        DEPNode root = depTree.getFirstRoot();
 
         if (root == null) return null;
 
@@ -218,11 +282,29 @@ public class Parser {
 
         DEPNode theme = null;
 
-        /* If left most dependent is noun, then it is theme */
-        if (root.getDependentList() != null && root.getLeftDependentList().size() > 0 &&
-                POSLibEn.isNoun(root.getDependentList().get(0).getPOSTag()))
+        /* Search left most for noun and possible container */
+        Queue<DEPNode> q = new ArrayDeque();
+        q.addAll(root.getLeftDependentList());
+        while(! q.isEmpty())
         {
-            theme = root.getDependentList().get(0);
+            DEPNode candidate = q.poll();
+            if (POSLibEn.isNoun(candidate.getPOSTag()) && themeCounters.containsKey(candidate.getLemma()))
+            {
+                theme = candidate;
+
+                /* Check if it has any attributes */
+                for (DEPNode node : theme.getLeftDependentList())
+                {
+                    if (! node.getLemma().equals("many") && ! node.getLemma().equals("much") && POSLibEn.isAdjective(node.getPOSTag()))
+                    {
+                        attrNode = node;
+                    }
+                }
+
+                break;
+            }
+
+            q.addAll(candidate.getDependentList());
         }
 
         if (theme == null)
@@ -230,15 +312,8 @@ public class Parser {
             return null;
         }
 
-        DEPNode attrNode = null;
-        /* Check if there are any attributes */
-        for (DEPNode node : theme.getLeftDependentList())
-        {
-            if (POSLibEn.isAdjective(node.getPOSTag()))
-            {
-                attrNode = node;
-            }
-        }
+
+        //depTree
 
         State state = new State();
         Instance rootInstance = new Instance();
@@ -267,7 +342,16 @@ public class Parser {
             Instance predicate;
             if ((predicate = s.getPredicateInstance()) != null && predicate.getArgumentList(SemanticType.A1) != null)
             {
-                String theme = s.get(predicate.getArgumentList(SemanticType.A1).get(0)).getLemma();
+                String theme = null;
+                try{
+                    theme = s.get(predicate.getArgumentList(SemanticType.A1).get(0)).getLemma();
+                } catch (NullPointerException e)
+                {
+                    //System.out.println("State = " + s);
+                    System.out.println("question = " + arithmeticQuestion.getQuestionText());
+                    //System.out.println("textStates = " + arithmeticQuestion.getQuestionTextStateList());
+                    System.exit(1);
+                }
                 if (themeCounters.containsKey(theme))
                 {
                     themeCounters.put(theme, themeCounters.get(theme) + 1);

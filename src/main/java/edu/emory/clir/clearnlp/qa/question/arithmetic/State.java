@@ -50,7 +50,14 @@ public class State {
         String s = "State: \n";
         for (Map.Entry<Instance, DEPNode> entry : m_instances.entrySet())
         {
-            s += entry.getKey() + ": " + entry.getValue().getWordForm() + "\n";
+            if (entry.getValue() != null)
+            {
+                s += entry.getKey() + ": " + entry.getValue().getWordForm() + "\n";
+            }
+            else
+            {
+                s += entry.getKey() + ": " + null + "\n";
+            }
         }
 
         return s;

@@ -46,6 +46,11 @@ public class ArithmeticQuestion {
         return questionTextStateList;
     }
 
+    public String getQuestionText()
+    {
+        return questionText;
+    }
+
     private void prepareInstances()
     {
         Parser parser = new Parser(this);
@@ -95,6 +100,8 @@ public class ArithmeticQuestion {
         {
             s += st + "\n";
         }
+
+        s += "\nQuestion state: " + questionState + "\n";
 
         return s;
     }

@@ -38,6 +38,12 @@ public class StringUtils {
                 return SemanticType.num;
             case "conj":
                 return SemanticType.conj;
+            case "pobj":
+                return SemanticType.pobj;
+            case "pcomp":
+                return SemanticType.pcomp;
+            case "dobj":
+                return SemanticType.dobj;
             default:
                 return null;
         }

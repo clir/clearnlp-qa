@@ -60,6 +60,7 @@ public class App
         int i = 0;
         int correctAnswers    = 0;
         int notCorrectAnswers = 0;
+        List<Integer> properlySolved = new ArrayList();
 
         try {
             ArithmeticQuestion aq;
@@ -74,11 +75,12 @@ public class App
                     if (foundAnswer == round(qAnswers.get(i), 1))
                     {
                         //System.out.println("Found answer is correct that is: " + foundAnswer);
+                        properlySolved.add(i);
                         correctAnswers++;
                     }
                     else
                     {
-                        System.out.println("Question: " + aq);
+                        System.out.println("id: " + i + " Question: " + aq);
                         System.out.println("Found answer is NOT correct: " + foundAnswer + ", should be: " +
                                 qAnswers.get(i));
                         notCorrectAnswers++;
@@ -102,6 +104,7 @@ public class App
         System.out.println("Parsed questions: " + counter);
         System.out.println("Correctly answered questions: " + correctAnswers);
         System.out.println("Incorrectly answered questions: " + notCorrectAnswers);
+        System.out.println("Properly answered ids: " + properlySolved);
     }
 
     public static double round(double value, int places) {
