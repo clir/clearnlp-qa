@@ -90,7 +90,7 @@ public class App
                 }
                 i++;
             }
-//            aq = areader.readFile("files/", "arith-qs.av");
+//            aq = areader.readFile("files/", "arith-qs.gt");
 //            System.out.println("Question: " + aq.detailedToString());
 //            arithmeticQuestions.add(aq);
 //            double foundAnswer = aq.solve();

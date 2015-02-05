@@ -4,6 +4,7 @@ import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.util.StringUtils;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
+import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,6 +65,24 @@ public class State {
             {
                 return entry.getKey();
             }
+        }
+
+        return null;
+    }
+
+    public Instance getThemeInstance()
+    {
+        return getRelatedInstance(SemanticType.A1);
+    }
+
+    private Instance getRelatedInstance(SemanticType semanticType)
+    {
+        Instance pred_inst  = getPredicateInstance();
+        DEPNode pred_node   = get(getPredicateInstance());
+
+        if (pred_inst.getArgumentList(semanticType) != null && pred_inst.getArgumentList(semanticType).size() > 0)
+        {
+            return pred_inst.getArgumentList(semanticType).get(0);
         }
 
         return null;

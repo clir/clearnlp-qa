@@ -182,7 +182,6 @@ public class Parser {
             {
                 if (current.hasHead())
                 {
-                    System.out.println("Checking node: " + current.getWordForm());
                     if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num)
                     {
                         DEPNode attrNode = null;
@@ -269,6 +268,7 @@ public class Parser {
                             StringUtils.isInteger(current.getWordForm())) &&
                             instanceList.size() > 0)
                     {
+                        /* When there is no num label and this is number, special case (dependency parsing error) */
                         /* Retrieve last added state and use its theme, actor and predicate */
 
                         State prev_sate = instanceList.get(instanceList.size() - 1);
@@ -292,7 +292,8 @@ public class Parser {
         if (depTree == null) return null;
 
         /* Find predicate and parse the question */
-        DEPNode pred_node = depTree.getFirstRoot();
+        DEPNode pred_node   = depTree.getFirstRoot();
+        String pred         = pred_node.getLemma();
 
         if (pred_node == null) return null;
 
@@ -360,6 +361,21 @@ public class Parser {
                     theme = s.get(pred_inst.getArgumentList(SemanticType.A1).get(0));
                 }
 
+            }
+        }
+        else if (theme == null)
+        {
+            /* Try to retrieve theme from similar predicate from question text state list */
+            for (State s : arithmeticQuestion.getQuestionTextStateList())
+            {
+                Instance pred_inst_tmp  = s.getPredicateInstance();
+                DEPNode pred_node_tmp   = s.get(pred_inst_tmp);
+
+                if (pred_node_tmp.getLemma().equals(pred))
+                {
+                    theme = s.get(s.getThemeInstance());
+                    break;
+                }
             }
         }
 
