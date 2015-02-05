@@ -182,6 +182,7 @@ public class Parser {
             {
                 if (current.hasHead())
                 {
+                    System.out.println("Checking node: " + current.getWordForm());
                     if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num)
                     {
                         DEPNode attrNode = null;
@@ -262,6 +263,17 @@ public class Parser {
                         s.putInstance(A1, A1_inst);
                         s.putInstance(numNode, q_inst);
 
+                        instanceList.add(s);
+                    }
+                    else if ((StringUtils.isDouble(current.getWordForm()) ||
+                            StringUtils.isInteger(current.getWordForm())) &&
+                            instanceList.size() > 0)
+                    {
+                        /* Retrieve last added state and use its theme, actor and predicate */
+
+                        State prev_sate = instanceList.get(instanceList.size() - 1);
+                        State s = new State(prev_sate);
+                        s.set(s.getNumericalInstance(), current);
                         instanceList.add(s);
                     }
                 }
