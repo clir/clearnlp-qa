@@ -70,7 +70,7 @@ public class App
                 {
 
                     arithmeticQuestions.add(aq);
-                    double foundAnswer = aq.solveProblem();
+                    double foundAnswer = aq.solve();
                     foundAnswer = round(foundAnswer, 1);
                     if (foundAnswer == round(qAnswers.get(i), 1))
                     {
@@ -90,10 +90,10 @@ public class App
                 }
                 i++;
             }
-//            aq = areader.readFile("files/", "arith-qs.if");
+//            aq = areader.readFile("files/", "arith-qs.jk");
 //            System.out.println("Question: " + aq.detailedToString());
 //            arithmeticQuestions.add(aq);
-//            double foundAnswer = aq.solveProblem();
+//            double foundAnswer = aq.solve();
 //            System.out.println("Solution: " + foundAnswer);
 
         } catch (IOException e)

@@ -2,7 +2,6 @@ package edu.emory.clir.clearnlp.qa.question.arithmetic;
 
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
-import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.type.ArithmeticQuestionType;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.parse.Parser;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.type.Detector;
@@ -14,19 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArithmeticQuestion {
-    private String         questionText;
-    private List<DEPTree>  questionTreeList;
+    private String          questionText;
+    private List<DEPTree>   questionTreeList;
 
-    private List<State>    questionTextStateList;
-    private State          questionState;
+    private List<State>     questionTextStateList;
+    private State           questionState;
 
     ArithmeticQuestionType qType;
 
     public ArithmeticQuestion(String questionText, List<DEPTree> depTreeList)
     {
-        this.questionText = questionText;
-        this.questionTreeList = depTreeList;
-        questionTextStateList = new ArrayList();
+        this.questionText       = questionText;
+        this.questionTreeList   = depTreeList;
+        questionTextStateList   = new ArrayList();
         prepareInstances();
         detectQuestionType();
     }
@@ -55,6 +54,7 @@ public class ArithmeticQuestion {
     {
         Parser parser = new Parser(this);
         boolean isQuestion = false;
+
         for (DEPTree depTree : questionTreeList)
         {
             for (DEPNode node : depTree)
@@ -106,17 +106,17 @@ public class ArithmeticQuestion {
         return s;
     }
 
-    public double solveProblem()
+    public double solve()
     {
         switch (qType){
             case SUM:
-                return solveSumProblem();
+                return solveSum();
         }
 
         return -1;
     }
 
-    private double solveSumProblem()
+    private double solveSum()
     {
         /* Detect the container and predicate in question */
         String container = null;
@@ -129,15 +129,18 @@ public class ArithmeticQuestion {
             return -1;
         }
 
+        /* Find container, predicate and attribute from questionState */
         for (Instance i : questionState.keySet())
         {
             if (i.getArgumentList(SemanticType.A1) != null && i.getArgumentList(SemanticType.A1).size() > 0)
             {
                 predicate = questionState.get(i).getLemma();
+
                 Instance containerInstance = i.getArgumentList(SemanticType.A1).get(0);
                 container = questionState.get(containerInstance).getLemma();
 
                 Instance attrInstance;
+
                 if (containerInstance.getAttribute(AttributeType.QUALITY) != null &&
                         containerInstance.getAttribute(AttributeType.QUALITY).size() > 0)
                 {
@@ -148,48 +151,57 @@ public class ArithmeticQuestion {
         }
 
         System.out.println("container = " + container + ", predicate = " + predicate);
+
         /* Select numerals from states with matched predicates and containers */
-        List<String> matchingNumericals = new ArrayList();
+        List<String> matchingNumbers = new ArrayList();
+
         for (State s : questionTextStateList)
         {
-            for (Instance i : s.keySet())
+            Instance predicateInstance  = s.getPredicateInstance();
+            DEPNode  predicateNode      = s.get(predicateInstance);
+
+            /* TODO: Currently not matching predicates in sum. */
+
+            //if (i_node.getLemma().equals(predicate))
+            //{
+
+            Instance containerInstance = predicateInstance.getArgumentList(SemanticType.A1).get(0);
+            DEPNode containerNode = s.get(containerInstance);
+
+            Instance numericalInstance = containerInstance.getAttribute(AttributeType.QUANTITY).get(0);
+            DEPNode numericalNode = s.get(numericalInstance);
+
+            Instance attributeInstance = null;
+            DEPNode attributeNode = null;
+
+            /* If attribute exists, retrieve */
+            if (containerInstance.getAttribute(AttributeType.QUALITY) != null &&
+                    containerInstance.getAttribute(AttributeType.QUALITY).size() > 0)
             {
-                DEPNode i_node = s.get(i);
-
-                /* TODO: Currently not matching predicates in sum, should be addressed. */
-
-                if (POSLibEn.isVerb(i_node.getPOSTag()) )//&& i_node.getLemma().equals(predicate))
-                {
-                    Instance containerInstance = i.getArgumentList(SemanticType.A1).get(0);
-                    DEPNode containerNode = s.get(containerInstance);
-                    Instance numericalInstance = containerInstance.getAttribute(AttributeType.QUANTITY).get(0);
-                    DEPNode numericalNode = s.get(numericalInstance);
-                    Instance attributeInstance = null;
-                    DEPNode attributeNode = null;
-                    if (containerInstance.getAttribute(AttributeType.QUALITY) != null &&
-                            containerInstance.getAttribute(AttributeType.QUALITY).size() > 0)
-                    {
-                        attributeInstance = containerInstance.getAttribute(AttributeType.QUALITY).get(0);
-                        attributeNode = s.get(attributeInstance);
-                    }
-
-                    if (attributeInstance != null && container.equals(containerNode.getLemma()) && attribute.equals(attributeNode.getLemma()))
-                    {
-                        /* Get numerical and add */
-                        String numerical = numericalNode.getWordForm();
-                        matchingNumericals.add(numerical);
-                    }
-                    else if (attributeInstance == null && container.equals(containerNode.getLemma()))
-                    {
-                        String numerical = numericalNode.getWordForm();
-                        matchingNumericals.add(numerical);
-                    }
-                }
+                attributeInstance = containerInstance.getAttribute(AttributeType.QUALITY).get(0);
+                attributeNode = s.get(attributeInstance);
             }
+
+            /* If attribute existed, include in checking */
+            String numerical = null;
+
+            if (attributeInstance != null && container.equals(containerNode.getLemma()) &&
+                    attribute.equals(attributeNode.getLemma()))
+            {
+                numerical = numericalNode.getWordForm();
+            }
+            else if (attributeInstance == null && container.equals(containerNode.getLemma()))
+            {
+                numerical = numericalNode.getWordForm();
+            }
+
+            if (numerical != null) matchingNumbers.add(numerical);
+            //}
         }
 
+        /* Sum up all collected numbers, this is the answer */
         double sum = 0;
-        for (String s : matchingNumericals)
+        for (String s : matchingNumbers)
         {
             sum += Double.parseDouble(s);
         }

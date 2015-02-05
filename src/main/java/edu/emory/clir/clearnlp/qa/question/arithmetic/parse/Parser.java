@@ -15,6 +15,7 @@ import java.util.*;
 public class Parser {
     private ArithmeticQuestion arithmeticQuestion;
     private HashMap<String, Integer> themeCounters;
+    private HashMap<String, Boolean> actorCounters;
 
     public Parser(ArithmeticQuestion arithmeticQuestion)
     {
@@ -46,6 +47,9 @@ public class Parser {
 
         if (POSLibEn.isVerb(depNode.getPOSTag()))
         {
+            /* Perform search only if it's verb */
+
+            /* Try to locate A0 from Semantic Label A0 */
             DEPNode A0 = null;
             for (DEPNode node : depNode.getDependentList())
             {
@@ -56,9 +60,9 @@ public class Parser {
                 }
             }
 
+            /* If A0 Semantic Label does not exist, try to get a left most dependent child */
             if (A0 == null)
             {
-                /* Check if there is any noun on the left */
                 for (DEPNode node : depNode.getLeftDependentList())
                 {
                     if (POSLibEn.isNoun(node.getPOSTag()))
@@ -69,6 +73,7 @@ public class Parser {
                 }
             }
 
+            /* Find all states under this verb and add to state list */
             stateList.addAll(findAllStates(A0, depNode));
 
             return stateList;
@@ -99,6 +104,12 @@ public class Parser {
         return null;
     }
 
+
+    /**
+     * @param source
+     * @param semanticType
+     *
+     */
     private DEPNode getLabelRelatedNode(DEPNode source, SemanticType semanticType)
     {
         if (source == null)
@@ -161,27 +172,23 @@ public class Parser {
     private List<State> findAllStates(DEPNode A0, DEPNode head)
     {
         Queue<DEPNode> q = new ArrayDeque();
-        //q.addAll(head.getRightDependentList());
         q.addAll(head.getDependentList());
         List<State> instanceList = new ArrayList();
-//        System.out.println("Starting for head = " + head.getLemma());
 
         while (! q.isEmpty())
         {
             DEPNode current = q.poll();
-//            System.out.println("Checking node = " + current.getSimplifiedForm());
-//            System.out.println("Its head = " + current.getHead().getSimplifiedForm());
             if (! POSLibEn.isVerb(current.getPOSTag()))
             {
-                if (current.hasHead()) {
-                    //System.out.println("Checking node: " + current.getWordForm());
-                    if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num) {
-
-                        //System.out.println("Inide for: " + current.getWordForm());
+                if (current.hasHead())
+                {
+                    if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num)
+                    {
                         DEPNode attrNode = null;
                         DEPNode A1 = null;
                         if (POSLibEn.isNoun(current.getHead().getPOSTag()))
                         {
+                            /* If head is noun, relation is num->theme
 //                            DEPNode rightNeighbor = findRightDEPNodeNeighbor(current);
 //                            if (rightNeighbor != null && rightNeighbor.getLabel().equals("prep") && rightNeighbor.getLemma().equals("of"))
 //                            {
@@ -204,9 +211,10 @@ public class Parser {
 //                            }
 //                            else
 //                            {
-                                A1 = current.getHead();
+                            A1 = current.getHead();
 //                            }
 
+                            /* Check if there is any attribute for this noun */
                             for (DEPNode node : current.getHead().getLeftDependentList())
                             {
                                 if (POSLibEn.isAdjective(node.getPOSTag()))
@@ -218,41 +226,41 @@ public class Parser {
                         }
                         else if (POSLibEn.isAdjective(current.getHead().getPOSTag()))
                         {
-                            /* It is most likely conj */
+                            /* If head is adjective, search for conj relation */
                             A1 = getLabelRelatedNode(current.getHead(), SemanticType.conj);
                             attrNode = current.getHead();
                         }
 
-                        DEPNode numNode = current;
+                        /* Create a new state and add to the list */
+                        DEPNode numNode     = current;
 
-                        Instance predicate = new Instance();
-                        Instance A0_inst = new Instance();
-                        Instance A1_inst = new Instance();
-                        Instance quantityAttribute = new Instance();
+                        Instance pred_inst  = new Instance();
+                        Instance A0_inst    = new Instance();
+                        Instance A1_inst    = new Instance();
+                        Instance q_inst     = new Instance();
 
                         State s = new State();
 
                         if (A0 != null) {
-                            predicate.putArgumentList(SemanticType.A0, A0_inst);
+                            /* Add A0 (actor) if exists */
+                            pred_inst.putArgumentList(SemanticType.A0, A0_inst);
                             s.putInstance(A0, A0_inst);
                         }
 
-                        predicate.putArgumentList(SemanticType.A1, A1_inst);
-                        A1_inst.putAttribute(AttributeType.QUANTITY, quantityAttribute);
+                        pred_inst.putArgumentList(SemanticType.A1, A1_inst);
+                        A1_inst.putAttribute(AttributeType.QUANTITY, q_inst);
 
                         if (attrNode != null)
                         {
+                            /* If attribute exists for theme, add */
                             Instance attrInstance = new Instance();
                             A1_inst.putAttribute(AttributeType.QUALITY, attrInstance);
                             s.putInstance(attrNode, attrInstance);
                         }
 
-
-//                        System.out.println("Adding value: " + numNode.getWordForm());
-                        s.putInstance(head, predicate);
-
+                        s.putInstance(head, pred_inst);
                         s.putInstance(A1, A1_inst);
-                        s.putInstance(numNode, quantityAttribute);
+                        s.putInstance(numNode, q_inst);
 
                         instanceList.add(s);
                     }
@@ -267,29 +275,28 @@ public class Parser {
     public State parseQuestion(DEPTree depTree) {
         DEPNode attrNode = null;
 
-        prepareThemeCounters();
-
-        //System.out.println("theme counters = " + themeCounters);
+        prepareCounters();
 
         if (depTree == null) return null;
 
         /* Find predicate and parse the question */
-        DEPNode root = depTree.getFirstRoot();
+        DEPNode pred_node = depTree.getFirstRoot();
 
-        if (root == null) return null;
-
-        /* predicate go is a special case */
+        if (pred_node == null) return null;
 
         DEPNode theme = null;
+        DEPNode actor = null;
 
         /* Search left most for noun and possible container */
         Queue<DEPNode> q = new ArrayDeque();
-        q.addAll(root.getLeftDependentList());
+        q.addAll(pred_node.getLeftDependentList());
+
         while(! q.isEmpty())
         {
             DEPNode candidate = q.poll();
             if (POSLibEn.isNoun(candidate.getPOSTag()) && themeCounters.containsKey(candidate.getLemma()))
             {
+                /* If found noun that is in theme dictionary, it's hit */
                 theme = candidate;
 
                 /* Check if it has any attributes */
@@ -304,54 +311,93 @@ public class Parser {
                 break;
             }
 
+            if (POSLibEn.isNoun(candidate.getPOSTag()) && actorCounters.containsKey(candidate.getLemma()))
+            {
+                /* If found noun that is an actor, retrieve it */
+                actor = candidate;
+            }
+
+            /* Add all children of this node */
             q.addAll(candidate.getDependentList());
         }
 
-        if (theme == null)
+        if (theme == null && actor != null)
         {
+            /**
+             * Theme has not been found, but actor has.
+             * Perform search of container in text states with
+             * the same actor
+             */
+            for (State s : arithmeticQuestion.getQuestionTextStateList())
+            {
+                Instance pred_inst  = s.getPredicateInstance();
+                Instance actor_inst = null;
+
+                if (pred_inst.getArgumentList(SemanticType.A0) != null &&
+                        pred_inst.getArgumentList(SemanticType.A0).size() > 0)
+                {
+                    actor_inst = pred_inst.getArgumentList(SemanticType.A0).get(0);
+                }
+
+                if (actor_inst == null) continue;
+
+                DEPNode actor_node = s.get(actor_inst);
+                if (actor_node != null && actor_node.getLemma().equals(actor.getLemma()))
+                {
+                    /* We got it, get theme of this actor */
+                    theme = s.get(pred_inst.getArgumentList(SemanticType.A1).get(0));
+                }
+
+            }
+        }
+
+        if (theme == null && actor == null)
+        {
+            /* If nothing found */
             return null;
         }
 
-
-        //depTree
-
-        State state = new State();
-        Instance rootInstance = new Instance();
-        Instance a1Instance = new Instance ();
-        rootInstance.putArgumentList(SemanticType.A1, a1Instance);
+        /* Create a state of a question */
+        State state             = new State();
+        Instance pred_ints      = new Instance();
+        Instance theme_inst     = new Instance ();
+        pred_ints.putArgumentList(SemanticType.A1, theme_inst);
 
         if (attrNode != null)
         {
             Instance attrInstance = new Instance();
-            a1Instance.putAttribute(AttributeType.QUALITY, attrInstance);
+            theme_inst.putAttribute(AttributeType.QUALITY, attrInstance);
             state.putInstance(attrNode, attrInstance);
         }
 
-        state.putInstance(root, rootInstance);
-        state.putInstance(theme, a1Instance);
+        state.putInstance(pred_node, pred_ints);
+        state.putInstance(theme, theme_inst);
 
         return state;
     }
 
-    private void prepareThemeCounters()
+    private void prepareCounters()
     {
         themeCounters = new HashMap();
+        actorCounters = new HashMap();
 
+        /* Iterate through all states and count themes and actors */
         for (State s : arithmeticQuestion.getQuestionTextStateList())
         {
-            Instance predicate;
-            if ((predicate = s.getPredicateInstance()) != null && predicate.getArgumentList(SemanticType.A1) != null)
+            Instance pred_inst;
+            if ((pred_inst = s.getPredicateInstance()) != null && pred_inst.getArgumentList(SemanticType.A1) != null)
             {
-                String theme = null;
-                try{
-                    theme = s.get(predicate.getArgumentList(SemanticType.A1).get(0)).getLemma();
-                } catch (NullPointerException e)
+                String theme;
+                String actor = null;
+
+                theme = s.get(pred_inst.getArgumentList(SemanticType.A1).get(0)).getLemma();
+
+                if (pred_inst.getArgumentList(SemanticType.A0) != null &&
+                        pred_inst.getArgumentList(SemanticType.A0).size() > 0)
                 {
-                    //System.out.println("State = " + s);
-                    System.out.println("question = " + arithmeticQuestion.getQuestionText());
-                    //System.out.println("textStates = " + arithmeticQuestion.getQuestionTextStateList());
-                    System.exit(1);
+                    actor = s.get(pred_inst.getArgumentList(SemanticType.A0).get(0)).getLemma();
                 }
+
                 if (themeCounters.containsKey(theme))
                 {
                     themeCounters.put(theme, themeCounters.get(theme) + 1);
@@ -359,6 +405,11 @@ public class Parser {
                 else
                 {
                     themeCounters.put(theme, 1);
+                }
+
+                if (actor != null)
+                {
+                    actorCounters.put(actor, true);
                 }
             }
 
