@@ -188,11 +188,11 @@ public class Parser {
                         DEPNode A1 = null;
                         if (POSLibEn.isNoun(current.getHead().getPOSTag()))
                         {
-                            /* If head is noun, relation is num->theme
+                            /* If head is noun, relation is num->theme */
 //                            DEPNode rightNeighbor = findRightDEPNodeNeighbor(current);
 //                            if (rightNeighbor != null && rightNeighbor.getLabel().equals("prep") && rightNeighbor.getLemma().equals("of"))
 //                            {
-//                                A1 = findDEPNodeInTree(rightNeighbor, SemanticType.pobj);
+//                                attrNode = findDEPNodeInTree(rightNeighbor, SemanticType.pobj);
 //                                if (A1 == null)
 //                                {
 //                                    /* FIXME: This is because parsing error, sometimes pcomp exists
@@ -203,7 +203,7 @@ public class Parser {
 //                                    {
 //                                        if (StringUtils.extractSemanticRelation(n.getLabel()) == SemanticType.dobj)
 //                                        {
-//                                            A1 = n;
+//                                            attrNode = n;
 //                                            break;
 //                                        }
 //                                    }
@@ -217,6 +217,7 @@ public class Parser {
                             /* Check if there is any attribute for this noun */
                             for (DEPNode node : current.getHead().getLeftDependentList())
                             {
+                                //System.out.println("For noun: " + current.getHead().getWordForm() + ", checking child: " + node.getWordForm());
                                 if (POSLibEn.isAdjective(node.getPOSTag()))
                                 {
                                     attrNode = node;
@@ -302,7 +303,7 @@ public class Parser {
 
         /* Search left most for noun and possible container */
         Queue<DEPNode> q = new ArrayDeque();
-        q.addAll(pred_node.getLeftDependentList());
+        q.addAll(pred_node.getDependentList());
 
         while(! q.isEmpty())
         {

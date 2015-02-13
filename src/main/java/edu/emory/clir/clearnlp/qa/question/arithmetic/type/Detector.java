@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Detector {
     private ArithmeticQuestion question;
-    private final List<String> sumKeywords = Arrays.asList("total", "all", "together");
+    private final List<String> sumKeywords = Arrays.asList("total", "all", "together", "altogether");
 
     public Detector(ArithmeticQuestion arithmeticQuestion)
     {

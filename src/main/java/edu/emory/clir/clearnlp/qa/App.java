@@ -80,17 +80,21 @@ public class App
                     }
                     else
                     {
-                        System.out.println("id: " + i + " Question: " + aq);
-                        System.out.println("Found answer is NOT correct: " + foundAnswer + ", should be: " +
-                                qAnswers.get(i));
+                        //System.out.println("id: " + i + " Question: " + aq);
+                        //System.out.println("Found answer is NOT correct: " + foundAnswer + ", should be: " +
+                        //        qAnswers.get(i));
                         notCorrectAnswers++;
                     }
-                    System.out.println("\n");
+                    //System.out.println("\n");
                     counter++;
+                }
+                else
+                {
+                    System.out.println(aq.getQuestionText());
                 }
                 i++;
             }
-//            aq = areader.readFile("files/", "arith-qs.gt");
+//            aq = areader.readFile("files/", "arith-sample.ad");
 //            System.out.println("Question: " + aq.detailedToString());
 //            arithmeticQuestions.add(aq);
 //            double foundAnswer = aq.solve();

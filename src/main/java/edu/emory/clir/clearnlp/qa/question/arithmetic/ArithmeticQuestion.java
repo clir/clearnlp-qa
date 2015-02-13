@@ -70,6 +70,7 @@ public class ArithmeticQuestion {
             {
                 isQuestion = false;
                 questionState = parser.parseQuestion(depTree);
+                questionTextStateList.addAll(parser.parseTree(depTree));
             }
             else
             {
@@ -150,7 +151,7 @@ public class ArithmeticQuestion {
             }
         }
 
-        System.out.println("container = " + container + ", predicate = " + predicate);
+        //System.out.println("container = " + container + ", predicate = " + predicate);
 
         /* Select numerals from states with matched predicates and containers */
         List<String> matchingNumbers = new ArrayList();
