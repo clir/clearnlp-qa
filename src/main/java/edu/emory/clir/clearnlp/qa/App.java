@@ -94,6 +94,7 @@ public class App
                 }
                 i++;
             }
+            // This is for single question case
 //            aq = areader.readFile("files/", "arith-sample.ad");
 //            System.out.println("Question: " + aq.detailedToString());
 //            arithmeticQuestions.add(aq);
