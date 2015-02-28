@@ -5,6 +5,7 @@ import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.util.StringUtils;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
+import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -91,17 +92,77 @@ public class State {
     public String toString()
     {
         String s = "State: \n";
+        Instance pred_inst = null;
+        DEPNode pred_node = null;
+
+        /* Find predicate */
         for (Map.Entry<Instance, DEPNode> entry : m_instances.entrySet())
         {
-            if (entry.getValue() != null)
+            if (entry.getValue() != null && POSLibEn.isVerb(entry.getValue().getPOSTag()))
             {
-                s += entry.getKey() + ": " + entry.getValue().getWordForm() + "\n";
-            }
-            else
-            {
-                s += entry.getKey() + ": " + null + "\n";
+                pred_inst = entry.getKey();
+                pred_node = entry.getValue();
             }
         }
+
+        if (pred_inst == null) return "";
+
+        s += pred_inst + ": " + pred_node.getWordForm() + " (predicate)\n";
+
+        if (pred_inst.getArgumentList(SemanticType.A0) != null)
+        {
+            for (Instance i : pred_inst.getArgumentList(SemanticType.A0)) {
+                s += i + ": " + m_instances.get(i).getWordForm() + " (A0)\n";
+            }
+        }
+        else
+        {
+            s += "No A0 instance\n";
+        }
+
+        Instance theme_inst = null;
+        if (pred_inst.getArgumentList(SemanticType.A1) != null)
+        {
+            theme_inst = pred_inst.getArgumentList(SemanticType.A1).get(0);
+            if (m_instances.get(theme_inst) == null) {
+                s += theme_inst + ": " + "null\n";
+            } else {
+                s += theme_inst + ": " + m_instances.get(theme_inst).getWordForm() + " (A1)\n";
+            }
+        }
+        else
+        {
+            s += "No A1 instance\n";
+        }
+
+        if (theme_inst != null && theme_inst.getAttribute(AttributeType.QUANTITY) != null)
+        {
+            Instance num_inst = theme_inst.getAttribute(AttributeType.QUANTITY).get(0);
+            if (m_instances.get(num_inst) == null) {
+                s += num_inst + ": " + "null\n";
+            } else {
+                s += num_inst + ": " + m_instances.get(num_inst).getWordForm() + " (QUANTITY)\n";
+            }
+        }
+
+        if (theme_inst != null && theme_inst.getAttribute(AttributeType.QUALITY) != null)
+        {
+            for (Instance i : theme_inst.getAttribute(AttributeType.QUALITY)) {
+                s += i + ": " + m_instances.get(i).getWordForm() + " (QUANTITY)\n";
+            }
+        }
+
+//        for (Map.Entry<Instance, DEPNode> entry : m_instances.entrySet())
+//        {
+//            if (entry.getValue() != null)
+//            {
+//                s += entry.getKey() + ": " + entry.getValue().getWordForm() + "\n";
+//            }
+//            else
+//            {
+//                s += entry.getKey() + ": " + null + "\n";
+//            }
+//        }
 
         return s;
     }

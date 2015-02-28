@@ -182,7 +182,8 @@ public class Parser {
             {
                 if (current.hasHead())
                 {
-                    if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num)
+                    if (StringUtils.extractSemanticRelation(current.getLabel()) == SemanticType.num ||
+                            StringUtils.isInteger(current.getWordForm()) || StringUtils.isDouble(current.getWordForm()))
                     {
                         DEPNode attrNode = null;
                         DEPNode A1 = null;
@@ -230,6 +231,12 @@ public class Parser {
                             /* If head is adjective, search for conj relation */
                             A1 = getLabelRelatedNode(current.getHead(), SemanticType.conj);
                             attrNode = current.getHead();
+                        }
+                        else if (POSLibEn.isVerb(current.getHead().getPOSTag()))
+                        {
+                            /* This is _pobj_ relation */
+                            //A1 = findDEPNodeInTree(current, SemanticType.pobj);
+
                         }
 
                         /* Create a new state and add to the list */
@@ -301,7 +308,7 @@ public class Parser {
         DEPNode theme = null;
         DEPNode actor = null;
 
-        /* Search left most for noun and possible container */
+        /* Search for noun and possible container */
         Queue<DEPNode> q = new ArrayDeque();
         q.addAll(pred_node.getDependentList());
 
@@ -366,31 +373,51 @@ public class Parser {
         }
         else if (theme == null)
         {
-            /* Try to retrieve theme from similar predicate from question text state list */
-            for (State s : arithmeticQuestion.getQuestionTextStateList())
+            /* Try to retrieve most common theme from question text state list */
+            int max = -1;
+            String theme_str = "";
+            for (Map.Entry<String,Integer> entry : themeCounters.entrySet())
             {
-                Instance pred_inst_tmp  = s.getPredicateInstance();
-                DEPNode pred_node_tmp   = s.get(pred_inst_tmp);
-
-                if (pred_node_tmp.getLemma().equals(pred))
+                if (entry.getValue() > max)
                 {
-                    theme = s.get(s.getThemeInstance());
-                    break;
+                    max = entry.getValue();
+                    theme_str = entry.getKey();
                 }
             }
+
+            /* Find corresponding DEPNode in State list */
+            for (State s : arithmeticQuestion.getQuestionTextStateList()) {
+                Instance theme_inst = s.getPredicateInstance().getArgumentList(SemanticType.A1).get(0);
+
+                try
+                {
+                    DEPNode theme_node = s.get(theme_inst);
+                    if (theme_node != null && theme_node.getLemma().equals(theme_str))
+                    {
+                        theme = theme_node;
+                        break;
+                    }
+                }
+                catch (NullPointerException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+
         }
 
         if (theme == null && actor == null)
         {
             /* If nothing found */
-            return null;
+            /* TODO: Only for VerbApp */
+            //return null;
         }
 
         /* Create a state of a question */
         State state             = new State();
-        Instance pred_ints      = new Instance();
+        Instance pred_inst      = new Instance();
         Instance theme_inst     = new Instance ();
-        pred_ints.putArgumentList(SemanticType.A1, theme_inst);
+        pred_inst.putArgumentList(SemanticType.A1, theme_inst);
 
         if (attrNode != null)
         {
@@ -399,7 +426,7 @@ public class Parser {
             state.putInstance(attrNode, attrInstance);
         }
 
-        state.putInstance(pred_node, pred_ints);
+        state.putInstance(pred_node, pred_inst);
         state.putInstance(theme, theme_inst);
 
         return state;
@@ -419,7 +446,14 @@ public class Parser {
                 String theme;
                 String actor = null;
 
-                theme = s.get(pred_inst.getArgumentList(SemanticType.A1).get(0)).getLemma();
+                theme = null;
+
+                try {
+                    theme = s.get(pred_inst.getArgumentList(SemanticType.A1).get(0)).getLemma();
+                }
+                catch (NullPointerException e){
+                    continue;
+                }
 
                 if (pred_inst.getArgumentList(SemanticType.A0) != null &&
                         pred_inst.getArgumentList(SemanticType.A0).size() > 0)

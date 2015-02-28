@@ -17,6 +17,11 @@ public class ArithmeticQuestion {
     private List<DEPTree>   questionTreeList;
 
     private List<State>     questionTextStateList;
+
+    public State getQuestionState() {
+        return questionState;
+    }
+
     private State           questionState;
 
     ArithmeticQuestionType qType;
@@ -69,6 +74,10 @@ public class ArithmeticQuestion {
             if (isQuestion)
             {
                 isQuestion = false;
+
+                /* Try to fix unmarked themes */
+                fillThemes();
+
                 questionState = parser.parseQuestion(depTree);
                 questionTextStateList.addAll(parser.parseTree(depTree));
             }
@@ -209,5 +218,54 @@ public class ArithmeticQuestion {
 
         if (sum == 0) return -1;
         return sum;
+    }
+
+    private void fillThemes()
+    {
+        for (State s : questionTextStateList)
+        {
+            if (s.getPredicateInstance().getArgumentList(SemanticType.A1) == null) System.out.println("Is null for question = " + questionText);
+            Instance theme_inst = s.getPredicateInstance().getArgumentList(SemanticType.A1).get(0);
+            DEPNode theme_node = s.get(theme_inst);
+
+            if (theme_node == null)
+            {
+                s.putInstance(findClosestTheme(s), theme_inst);
+            }
+        }
+
+    }
+
+    private DEPNode findClosestTheme(State s)
+    {
+        int index = questionTextStateList.indexOf(s);
+        int diff = 1;
+
+        while (index - diff >= 0 || index + diff < questionTextStateList.size())
+        {
+            if (index - diff >= 0) {
+                /* Check previous if exists */
+                State state = questionTextStateList.get(index - diff);
+
+                Instance theme_inst = state.getPredicateInstance().getArgumentList(SemanticType.A1).get(0);
+                DEPNode theme_node = state.get(theme_inst);
+
+                if (theme_node != null) return theme_node;
+            }
+
+            if (index + diff < questionTextStateList.size())
+            {
+                /* Check next if exists */
+                State state = questionTextStateList.get(index + diff);
+                Instance theme_inst = state.getPredicateInstance().getArgumentList(SemanticType.A1).get(0);
+                DEPNode theme_node = state.get(theme_inst);
+
+                if (theme_node != null) return theme_node;
+            }
+
+            diff++;
+        }
+
+        return null;
     }
 }

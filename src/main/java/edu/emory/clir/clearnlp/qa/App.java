@@ -66,33 +66,35 @@ public class App
             ArithmeticQuestion aq;
             while ((aq = areader.read()) != null)
             {
-                if (aq.getArithmeticQuestionType() == ArithmeticQuestionType.SUM)
-                {
+                arithmeticQuestions.add(aq);
 
-                    arithmeticQuestions.add(aq);
-                    double foundAnswer = aq.solve();
-                    foundAnswer = round(foundAnswer, 1);
-                    if (foundAnswer == round(qAnswers.get(i), 1))
-                    {
-                        //System.out.println("Found answer is correct that is: " + foundAnswer);
-                        properlySolved.add(i);
-                        correctAnswers++;
-                    }
-                    else
-                    {
-                        //System.out.println("id: " + i + " Question: " + aq);
-                        //System.out.println("Found answer is NOT correct: " + foundAnswer + ", should be: " +
-                        //        qAnswers.get(i));
-                        notCorrectAnswers++;
-                    }
-                    //System.out.println("\n");
-                    counter++;
-                }
-                else
-                {
-                    System.out.println(aq.getQuestionText());
-                }
-                i++;
+//                if (aq.getArithmeticQuestionType() == ArithmeticQuestionType.SUM)
+//                {
+//
+//                    arithmeticQuestions.add(aq);
+//                    double foundAnswer = aq.solve();
+//                    foundAnswer = round(foundAnswer, 1);
+//                    if (foundAnswer == round(qAnswers.get(i), 1))
+//                    {
+//                        //System.out.println("Found answer is correct that is: " + foundAnswer);
+//                        properlySolved.add(i);
+//                        correctAnswers++;
+//                    }
+//                    else
+//                    {
+//                        //System.out.println("id: " + i + " Question: " + aq);
+//                        //System.out.println("Found answer is NOT correct: " + foundAnswer + ", should be: " +
+//                        //        qAnswers.get(i));
+//                        notCorrectAnswers++;
+//                    }
+//                    //System.out.println("\n");
+//                    counter++;
+//                }
+//                else
+//                {
+//                    System.out.println(aq.getQuestionText());
+//                }
+//                i++;
             }
             // This is for single question case
 //            aq = areader.readFile("files/", "arith-sample.ad");
