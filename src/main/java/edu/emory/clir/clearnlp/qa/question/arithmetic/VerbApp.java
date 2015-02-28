@@ -83,6 +83,11 @@ public class VerbApp {
             aq = it.next();
 
             List<Double> factors = extractEquationFactors(eq.get(i++));
+
+            VCExperiment vcExperiment = new VCExperiment(aq, factors);
+
+            System.out.println("Question: " + aq.getQuestionText());
+            System.out.println("isValid = " + vcExperiment.isValid());
             //System.out.println(factors);
 
             /* Create list of verbs + factors */
@@ -97,7 +102,7 @@ public class VerbApp {
                         continue;
                     }
                     if (num_node != null && Double.parseDouble(num_node.getWordForm()) == Math.abs(d)) {
-                        System.out.print(s.get(s.getPredicateInstance()).getLemma() + " " + d + " ");
+                        //System.out.print(s.get(s.getPredicateInstance()).getLemma() + " " + d + " ");
                         break;
                     }
                 }
@@ -134,14 +139,11 @@ public class VerbApp {
         arithmeticQuestions = new ArithmeticQuestions();
 
         edu.emory.clir.clearnlp.qa.question.arithmetic.util.Reader areader = new Reader();
-        int counter = 0;
-
-
 
         try {
             ArithmeticQuestion aq;
 
-//            aq = areader.read("files/", "arith-qs.et");
+//            aq = areader.read("files/", "arith-qs.in");
 //            arithmeticQuestions.add(aq);
 //            System.out.println("Question: " + aq.getQuestionText());
 //            System.out.println("States: " + aq.getQuestionTextStateList());
@@ -150,13 +152,14 @@ public class VerbApp {
             while ((aq = areader.read()) != null) {
                 arithmeticQuestions.add(aq);
 
-                System.out.println("Question: " + aq.getQuestionText());
-                System.out.println("States: " + aq.getQuestionTextStateList());
-                System.out.println("Question State: " + aq.getQuestionState() + "\n");
+//                System.out.println("Question: " + aq.getQuestionText());
+//                System.out.println("States: " + aq.getQuestionTextStateList());
+//                System.out.println("Question State: " + aq.getQuestionState() + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private void doExperiment()

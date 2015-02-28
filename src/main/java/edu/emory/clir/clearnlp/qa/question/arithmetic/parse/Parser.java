@@ -429,6 +429,7 @@ public class Parser {
         state.putInstance(pred_node, pred_inst);
         state.putInstance(theme, theme_inst);
 
+        //System.out.println("Returning state: " + state);
         return state;
     }
 
