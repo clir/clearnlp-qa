@@ -135,6 +135,21 @@ public class State {
             s += "No A1 instance\n";
         }
 
+        Instance actor_inst = null;
+        if (pred_inst.getArgumentList(SemanticType.A2) != null)
+        {
+            actor_inst = pred_inst.getArgumentList(SemanticType.A2).get(0);
+            if (m_instances.get(actor_inst) == null) {
+                s += actor_inst + ": " + "null\n";
+            } else {
+                s += actor_inst + ": " + m_instances.get(actor_inst).getWordForm() + " (A2)\n";
+            }
+        }
+        else
+        {
+            s += "No A2 instance\n";
+        }
+
         if (theme_inst != null && theme_inst.getAttribute(AttributeType.QUANTITY) != null)
         {
             Instance num_inst = theme_inst.getAttribute(AttributeType.QUANTITY).get(0);
@@ -144,11 +159,15 @@ public class State {
                 s += num_inst + ": " + m_instances.get(num_inst).getWordForm() + " (QUANTITY)\n";
             }
         }
+        else
+        {
+            s += "No num instance\n";
+        }
 
         if (theme_inst != null && theme_inst.getAttribute(AttributeType.QUALITY) != null)
         {
             for (Instance i : theme_inst.getAttribute(AttributeType.QUALITY)) {
-                s += i + ": " + m_instances.get(i).getWordForm() + " (QUANTITY)\n";
+                s += i + ": " + m_instances.get(i).getWordForm() + " (QUALITY)\n";
             }
         }
 

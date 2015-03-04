@@ -53,7 +53,8 @@ public class Parser {
             DEPNode A0 = null;
             for (DEPNode node : depNode.getDependentList())
             {
-                if (StringUtils.extractSemanticRelation(node.getSemanticLabel(depNode)) == SemanticType.A0)
+                if (StringUtils.extractSemanticRelation(node.getSemanticLabel(depNode)) == SemanticType.A0
+                        && ! POSLibEn.isVerb(node.getPOSTag()))
                 {
                     A0 = node;
                     break;
@@ -187,33 +188,12 @@ public class Parser {
                     {
                         DEPNode attrNode = null;
                         DEPNode A1 = null;
+                        DEPNode A2 = null;
+
                         if (POSLibEn.isNoun(current.getHead().getPOSTag()))
                         {
                             /* If head is noun, relation is num->theme */
-//                            DEPNode rightNeighbor = findRightDEPNodeNeighbor(current);
-//                            if (rightNeighbor != null && rightNeighbor.getLabel().equals("prep") && rightNeighbor.getLemma().equals("of"))
-//                            {
-//                                attrNode = findDEPNodeInTree(rightNeighbor, SemanticType.pobj);
-//                                if (A1 == null)
-//                                {
-//                                    /* FIXME: This is because parsing error, sometimes pcomp exists
-//                                              instead of pobj, then find dobj of pcomp
-//                                     */
-//                                    DEPNode pcomp = findDEPNodeInTree(rightNeighbor, SemanticType.pcomp);
-//                                    for (DEPNode n : pcomp.getDependentList())
-//                                    {
-//                                        if (StringUtils.extractSemanticRelation(n.getLabel()) == SemanticType.dobj)
-//                                        {
-//                                            attrNode = n;
-//                                            break;
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                            else
-//                            {
                             A1 = current.getHead();
-//                            }
 
                             /* Check if there is any attribute for this noun */
                             for (DEPNode node : current.getHead().getLeftDependentList())
@@ -239,12 +219,23 @@ public class Parser {
 
                         }
 
+                        /* Check if there is any A2 */
+                        for (DEPNode depNode: head.getDependentList())
+                        {
+                            if (StringUtils.extractSemanticRelation(depNode.getSemanticLabel(head)) == SemanticType.A2
+                                    && ! POSLibEn.isVerb(depNode.getPOSTag()))
+                            {
+                                A2 = depNode;
+                            }
+                        }
+
                         /* Create a new state and add to the list */
                         DEPNode numNode     = current;
 
                         Instance pred_inst  = new Instance();
                         Instance A0_inst    = new Instance();
                         Instance A1_inst    = new Instance();
+                        Instance A2_inst    = new Instance();
                         Instance q_inst     = new Instance();
 
                         State s = new State();
@@ -253,6 +244,12 @@ public class Parser {
                             /* Add A0 (actor) if exists */
                             pred_inst.putArgumentList(SemanticType.A0, A0_inst);
                             s.putInstance(A0, A0_inst);
+                        }
+
+                        if (A2 != null)
+                        {
+                            pred_inst.putArgumentList(SemanticType.A2, A2_inst);
+                            s.putInstance(A2, A2_inst);
                         }
 
                         pred_inst.putArgumentList(SemanticType.A1, A1_inst);
@@ -278,7 +275,6 @@ public class Parser {
                     {
                         /* When there is no num label and this is number, special case (dependency parsing error) */
                         /* Retrieve last added state and use its theme, actor and predicate */
-
                         State prev_sate = instanceList.get(instanceList.size() - 1);
                         State s = new State(prev_sate);
                         s.set(s.getNumericalInstance(), current);
@@ -307,6 +303,7 @@ public class Parser {
 
         DEPNode theme = null;
         DEPNode actor = null;
+        DEPNode a2_node = null;
 
         /* Search for noun and possible container */
         Queue<DEPNode> q = new ArrayDeque();
@@ -340,6 +337,33 @@ public class Parser {
 
             /* Add all children of this node */
             q.addAll(candidate.getDependentList());
+        }
+
+        /* Check if there is any A2 */
+        for (DEPNode node: pred_node.getDependentList())
+        {
+            if (StringUtils.extractSemanticRelation(node.getSemanticLabel(pred_node)) == SemanticType.A2
+                    && ! POSLibEn.isVerb(node.getPOSTag()))
+            {
+                a2_node = node;
+            }
+        }
+
+        /* If actor has not been found, try to check A0 */
+        if (actor == null)
+        {
+            /* Try to retrieve actor as A0 from predicate */
+            for (DEPNode node: pred_node.getDependentList())
+            {
+                System.out.println("Comparing node = " + node.getLemma());
+                if (StringUtils.extractSemanticRelation(node.getSemanticLabel(pred_node)) == SemanticType.A0
+                        && ! POSLibEn.isVerb(node.getPOSTag()))
+                {
+                    System.out.println("Hit");
+                    actor = node;
+                    break;
+                }
+            }
         }
 
         if (theme == null && actor != null)
@@ -417,6 +441,8 @@ public class Parser {
         State state             = new State();
         Instance pred_inst      = new Instance();
         Instance theme_inst     = new Instance ();
+        Instance actor_inst     = new Instance();
+        Instance A2_inst     = new Instance();
         pred_inst.putArgumentList(SemanticType.A1, theme_inst);
 
         if (attrNode != null)
@@ -424,6 +450,18 @@ public class Parser {
             Instance attrInstance = new Instance();
             theme_inst.putAttribute(AttributeType.QUALITY, attrInstance);
             state.putInstance(attrNode, attrInstance);
+        }
+
+        if (actor != null)
+        {
+            pred_inst.putArgumentList(SemanticType.A0, actor_inst);
+            state.putInstance(actor, actor_inst);
+        }
+
+        if (a2_node != null)
+        {
+            pred_inst.putArgumentList(SemanticType.A2, A2_inst);
+            state.putInstance(a2_node, A2_inst);
         }
 
         state.putInstance(pred_node, pred_inst);

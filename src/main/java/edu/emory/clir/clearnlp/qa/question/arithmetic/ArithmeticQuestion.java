@@ -1,5 +1,10 @@
 package edu.emory.clir.clearnlp.qa.question.arithmetic;
 
+import edu.emory.clir.clearnlp.collection.pair.Pair;
+import edu.emory.clir.clearnlp.collection.set.DisjointSet;
+import edu.emory.clir.clearnlp.coreference.AbstractCoreferenceResolution;
+import edu.emory.clir.clearnlp.coreference.EnglishCoreferenceResolution;
+import edu.emory.clir.clearnlp.coreference.mention.Mention;
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.type.ArithmeticQuestionType;
@@ -14,6 +19,12 @@ import java.util.List;
 
 public class ArithmeticQuestion {
     private String          questionText;
+    Pair<List<Mention>,DisjointSet> coRefEntities;
+
+    public List<DEPTree> getQuestionTreeList() {
+        return questionTreeList;
+    }
+
     private List<DEPTree>   questionTreeList;
 
     private List<State>     questionTextStateList;
@@ -33,6 +44,18 @@ public class ArithmeticQuestion {
         questionTextStateList   = new ArrayList();
         prepareInstances();
         detectQuestionType();
+        AbstractCoreferenceResolution coref = new EnglishCoreferenceResolution();
+        coRefEntities = coref.getEntities(questionTreeList);
+
+//        for (int i = 0; i < coRefEntities.o1.size(); i++)
+//        {
+//            System.out.println("MentionList[" + i +"] = " + coRefEntities.o1.get(i).getNode());
+//        }
+//
+//        System.out.println("Set = " + coRefEntities.o2.toString());
+//
+//        System.out.println("Coref = " + coRefEntities);
+        processCoReferences();
     }
 
     public List<DEPTree> getDEPTrees()
@@ -74,7 +97,9 @@ public class ArithmeticQuestion {
             if (isQuestion)
             {
                 isQuestion = false;
-
+//
+                //System.out.println(questionTextStateList);
+//                System.exit(1);
                 /* Try to fix unmarked themes */
                 fillThemes();
 
@@ -222,9 +247,17 @@ public class ArithmeticQuestion {
 
     private void fillThemes()
     {
+//        System.out.println("Before counting, states = " + questionTextStateList);
+//        System.exit(1);
         for (State s : questionTextStateList)
         {
-            if (s.getPredicateInstance().getArgumentList(SemanticType.A1) == null) System.out.println("Is null for question = " + questionText);
+            if (s.getPredicateInstance().getArgumentList(SemanticType.A1) == null)
+            {
+                System.out.println("Is null for question = " + questionText + ", predicate = " + s.get(s.getPredicateInstance()));
+                //System.out.println("State = " + s);
+                //System.exit(0);
+
+            }
             Instance theme_inst = s.getPredicateInstance().getArgumentList(SemanticType.A1).get(0);
             DEPNode theme_node = s.get(theme_inst);
 
@@ -267,5 +300,70 @@ public class ArithmeticQuestion {
         }
 
         return null;
+    }
+
+    private void processCoReferences()
+    {
+        List<State> tmpList = new ArrayList();
+        tmpList.addAll(questionTextStateList);
+        tmpList.add(questionState);
+
+        for (State s: tmpList)
+        {
+            Instance pred_inst = s.getPredicateInstance();
+            Instance A0_inst = null;
+            Instance A2_inst = null;
+
+            if (pred_inst.getArgumentList(SemanticType.A0) != null && pred_inst.getArgumentList(SemanticType.A0).size() > 0)
+            {
+                A0_inst = pred_inst.getArgumentList(SemanticType.A0).get(0);
+            }
+
+            if (pred_inst.getArgumentList(SemanticType.A2) != null && pred_inst.getArgumentList(SemanticType.A2).size() > 0)
+            {
+                A2_inst = pred_inst.getArgumentList(SemanticType.A2).get(0);
+            }
+
+            DEPNode A0_node;
+            DEPNode A2_node;
+            A0_node = s.get(A0_inst);
+            A2_node = s.get(A2_inst);
+
+            if (A0_node != null && (A0_node.getLemma().equals("she") || A0_node.getLemma().equals("he")))
+            {
+                DEPNode coreferenced = extractCoRefenceFromNode(A0_node);
+
+                if (coreferenced != null)
+                {
+                    s.putInstance(coreferenced, A0_inst);
+                }
+            }
+
+            if (A2_node != null && (A2_node.getLemma().equals("her") || A2_node.getLemma().equals("him")))
+            {
+                DEPNode coreferenced = extractCoRefenceFromNode(A2_node);
+
+                if (coreferenced != null)
+                {
+                    s.putInstance(coreferenced, A2_inst);
+                }
+            }
+        }
+    }
+
+    private DEPNode extractCoRefenceFromNode(DEPNode node)
+    {
+        int i = 0;
+        for (; i < coRefEntities.o1.size(); i++)
+        {
+            if (node == coRefEntities.o1.get(i).getNode())
+            {
+                /* i-th index in Set has "corefence to" node */
+                int j = coRefEntities.o2.find(i);
+                return coRefEntities.o1.get(coRefEntities.o2.find(j)).getNode();
+            }
+        }
+
+        return node;
     }
 }

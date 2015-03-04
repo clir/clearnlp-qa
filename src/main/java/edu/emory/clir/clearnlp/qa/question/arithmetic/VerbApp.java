@@ -12,9 +12,7 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import org.javatuples.Pair;
 import org.javatuples.Triplet;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.util.*;
@@ -78,6 +76,8 @@ public class VerbApp {
         ArithmeticQuestion aq;
         Iterator<ArithmeticQuestion> it = arithmeticQuestions.iterator();
         int i = 0;
+        List<VCExperiment> experimentList = new ArrayList();
+
         while(it.hasNext())
         {
             aq = it.next();
@@ -86,8 +86,16 @@ public class VerbApp {
 
             VCExperiment vcExperiment = new VCExperiment(aq, factors);
 
-            System.out.println("Question: " + aq.getQuestionText());
-            System.out.println("isValid = " + vcExperiment.isValid());
+            //System.out.println("Question: " + aq.getQuestionText());
+            //System.out.println("isValid = " + vcExperiment.isValid());
+
+            if (vcExperiment.isValid())
+            {
+                experimentList.add(vcExperiment);
+                vcExperiment.prepareData("dummy");
+                //System.out.println(vcExperiment);
+            }
+
             //System.out.println(factors);
 
             /* Create list of verbs + factors */
@@ -110,6 +118,50 @@ public class VerbApp {
 
             System.out.println();
         }
+
+        System.out.println("experimentList size = " + experimentList.size());
+        int k_size = experimentList.size() / 3;
+
+
+        for (int j = 0; j < 3; j++)
+        {
+            try
+            {
+                FileWriter trainfile = new FileWriter("train" + j + ".txt");
+                FileWriter testfile = new FileWriter("test" + j + ".txt");
+
+                int k = 0;
+                System.out.println("Working on j = " + j);
+                while(k < experimentList.size())
+                {
+
+                    if (k >= j*k_size && k < (j+1)*k_size)
+                    {
+                        System.out.println(k + " goes to test");
+                        /* Train file */
+                        testfile.write(experimentList.get(k).getTrainString() + "\n");
+                    }
+                    else
+                    {
+                        System.out.println(k + " goes to train");
+                        /* Test file */
+                        trainfile.write(experimentList.get(k).getTrainString() + "\n");
+                    }
+
+                    k++;
+                }
+
+                trainfile.close();
+                testfile.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+
+
     }
 
     private List<Double> extractEquationFactors(String equation)
@@ -131,6 +183,8 @@ public class VerbApp {
             }
         }
 
+        list.add(1.0);
+
         return list;
     }
 
@@ -143,19 +197,19 @@ public class VerbApp {
         try {
             ArithmeticQuestion aq;
 
-//            aq = areader.read("files/", "arith-qs.in");
-//            arithmeticQuestions.add(aq);
-//            System.out.println("Question: " + aq.getQuestionText());
-//            System.out.println("States: " + aq.getQuestionTextStateList());
-//            System.out.println("Question State: " + aq.getQuestionState() + "\n");
+            aq = areader.read("files/", "arith-qs.as");
+            arithmeticQuestions.add(aq);
+            System.out.println("Question: " + aq.getQuestionText());
+            System.out.println("States: " + aq.getQuestionTextStateList());
+            System.out.println("Question State: " + aq.getQuestionState() + "\n");
 
-            while ((aq = areader.read()) != null) {
-                arithmeticQuestions.add(aq);
-
+//            while ((aq = areader.read()) != null) {
+//                arithmeticQuestions.add(aq);
+//
 //                System.out.println("Question: " + aq.getQuestionText());
 //                System.out.println("States: " + aq.getQuestionTextStateList());
 //                System.out.println("Question State: " + aq.getQuestionState() + "\n");
-            }
+//            }
         } catch (IOException e) {
             e.printStackTrace();
         }
