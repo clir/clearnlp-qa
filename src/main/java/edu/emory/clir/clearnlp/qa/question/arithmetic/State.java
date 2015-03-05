@@ -105,7 +105,7 @@ public class State {
             }
         }
 
-        if (pred_inst == null) return "";
+        if (pred_inst == null) return "Predicate error";
 
         s += pred_inst + ": " + pred_node.getWordForm() + " (predicate)\n";
 

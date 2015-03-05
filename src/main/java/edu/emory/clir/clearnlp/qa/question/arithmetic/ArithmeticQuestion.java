@@ -47,14 +47,14 @@ public class ArithmeticQuestion {
         AbstractCoreferenceResolution coref = new EnglishCoreferenceResolution();
         coRefEntities = coref.getEntities(questionTreeList);
 
-//        for (int i = 0; i < coRefEntities.o1.size(); i++)
-//        {
-//            System.out.println("MentionList[" + i +"] = " + coRefEntities.o1.get(i).getNode());
-//        }
-//
-//        System.out.println("Set = " + coRefEntities.o2.toString());
-//
-//        System.out.println("Coref = " + coRefEntities);
+        for (int i = 0; i < coRefEntities.o1.size(); i++)
+        {
+            System.out.println("MentionList[" + i +"] = " + coRefEntities.o1.get(i).getNode());
+        }
+
+        System.out.println("Set = " + coRefEntities.o2.toString());
+
+        System.out.println("Coref = " + coRefEntities);
         processCoReferences();
     }
 
@@ -313,6 +313,8 @@ public class ArithmeticQuestion {
             Instance pred_inst = s.getPredicateInstance();
             Instance A0_inst = null;
             Instance A2_inst = null;
+
+            if (pred_inst == null) continue;
 
             if (pred_inst.getArgumentList(SemanticType.A0) != null && pred_inst.getArgumentList(SemanticType.A0).size() > 0)
             {

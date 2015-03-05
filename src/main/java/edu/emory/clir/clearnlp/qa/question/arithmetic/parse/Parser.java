@@ -355,11 +355,9 @@ public class Parser {
             /* Try to retrieve actor as A0 from predicate */
             for (DEPNode node: pred_node.getDependentList())
             {
-                System.out.println("Comparing node = " + node.getLemma());
                 if (StringUtils.extractSemanticRelation(node.getSemanticLabel(pred_node)) == SemanticType.A0
                         && ! POSLibEn.isVerb(node.getPOSTag()))
                 {
-                    System.out.println("Hit");
                     actor = node;
                     break;
                 }
@@ -400,10 +398,8 @@ public class Parser {
             /* Try to retrieve most common theme from question text state list */
             int max = -1;
             String theme_str = "";
-            for (Map.Entry<String,Integer> entry : themeCounters.entrySet())
-            {
-                if (entry.getValue() > max)
-                {
+            for (Map.Entry<String, Integer> entry : themeCounters.entrySet()) {
+                if (entry.getValue() > max) {
                     max = entry.getValue();
                     theme_str = entry.getKey();
                 }
@@ -413,17 +409,13 @@ public class Parser {
             for (State s : arithmeticQuestion.getQuestionTextStateList()) {
                 Instance theme_inst = s.getPredicateInstance().getArgumentList(SemanticType.A1).get(0);
 
-                try
-                {
+                try {
                     DEPNode theme_node = s.get(theme_inst);
-                    if (theme_node != null && theme_node.getLemma().equals(theme_str))
-                    {
+                    if (theme_node != null && theme_node.getLemma().equals(theme_str)) {
                         theme = theme_node;
                         break;
                     }
-                }
-                catch (NullPointerException e)
-                {
+                } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
             }
@@ -467,7 +459,6 @@ public class Parser {
         state.putInstance(pred_node, pred_inst);
         state.putInstance(theme, theme_inst);
 
-        //System.out.println("Returning state: " + state);
         return state;
     }
 

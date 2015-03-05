@@ -197,7 +197,7 @@ public class VerbApp {
         try {
             ArithmeticQuestion aq;
 
-            aq = areader.read("files/", "arith-qs.as");
+            aq = areader.read("files/", "arith-qs.ah");
             arithmeticQuestions.add(aq);
             System.out.println("Question: " + aq.getQuestionText());
             System.out.println("States: " + aq.getQuestionTextStateList());
