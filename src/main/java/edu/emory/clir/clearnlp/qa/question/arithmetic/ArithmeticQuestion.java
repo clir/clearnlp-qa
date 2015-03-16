@@ -10,6 +10,7 @@ import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.type.ArithmeticQuestionType;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.parse.Parser;
 import edu.emory.clir.clearnlp.qa.question.arithmetic.type.Detector;
+import edu.emory.clir.clearnlp.qa.question.arithmetic.util.StringUtils;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
@@ -47,14 +48,14 @@ public class ArithmeticQuestion {
         AbstractCoreferenceResolution coref = new EnglishCoreferenceResolution();
         coRefEntities = coref.getEntities(questionTreeList);
 
-        for (int i = 0; i < coRefEntities.o1.size(); i++)
-        {
-            System.out.println("MentionList[" + i +"] = " + coRefEntities.o1.get(i).getNode());
-        }
-
-        System.out.println("Set = " + coRefEntities.o2.toString());
-
-        System.out.println("Coref = " + coRefEntities);
+//        for (int i = 0; i < coRefEntities.o1.size(); i++)
+//        {
+//            System.out.println("MentionList[" + i +"] = " + coRefEntities.o1.get(i).getNode());
+//        }
+//
+//        System.out.println("Set = " + coRefEntities.o2.toString());
+//
+//        System.out.println("Coref = " + coRefEntities);
         processCoReferences();
     }
 
@@ -97,9 +98,7 @@ public class ArithmeticQuestion {
             if (isQuestion)
             {
                 isQuestion = false;
-//
-                //System.out.println(questionTextStateList);
-//                System.exit(1);
+
                 /* Try to fix unmarked themes */
                 fillThemes();
 
@@ -253,7 +252,7 @@ public class ArithmeticQuestion {
         {
             if (s.getPredicateInstance().getArgumentList(SemanticType.A1) == null)
             {
-                System.out.println("Is null for question = " + questionText + ", predicate = " + s.get(s.getPredicateInstance()));
+                //System.out.println("Is null for question = " + questionText + ", predicate = " + s.get(s.getPredicateInstance()));
                 //System.out.println("State = " + s);
                 //System.exit(0);
 
@@ -367,5 +366,35 @@ public class ArithmeticQuestion {
         }
 
         return node;
+    }
+
+    public double sumUpAllStates(List<String> signs)
+    {
+        double d = 0;
+
+        for (int i = 0; i < signs.size() -1; i++)
+        {
+            if (signs.get(i).equals("0"))
+            {
+                continue;
+            }
+
+            Instance theme_inst = questionTextStateList.get(i).getPredicateInstance().getArgumentList(SemanticType.A1).get(0);
+            Instance num_inst = theme_inst.getAttribute(AttributeType.QUANTITY).get(0);
+            DEPNode num_node = questionTextStateList.get(i).get(num_inst);
+
+            double val = Double.parseDouble(num_node.getWordForm());
+
+            if (signs.get(i).equals("-"))
+            {
+                d -= val;
+            }
+            else
+            {
+                d += val;
+            }
+        }
+
+        return d;
     }
 }

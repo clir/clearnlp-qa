@@ -22,33 +22,14 @@ public class VerbApp {
     public static HashMap<Triplet<String,String,String>, List<SequenceElement>> triplets = new HashMap();
     public static final int FREQUENT_PATTERN_THRESHOLD = 5;
     ArithmeticQuestions arithmeticQuestions;
+    List<ArithmeticQuestion> selectedQuestions = new ArrayList();
+    List<Double> answers = new ArrayList();
 
     public static void main(String[] args) {
 
         VerbApp app = new VerbApp();
         app.readQuestions();
         app.prepareDataset();
-
-
-//        StanfordCoreNLP pipeline = new StanfordCoreNLP();
-//        Properties properties = new Properties();
-//        properties.setProperty("annotators", "dcoref");
-//        String sentence = "Melanie had 7 dimes in her bank. Her dad gave her 8 dimes and her mother have her 4 dimes. How many dimes does Melanie have now?";
-//        edu.stanford.nlp.pipeline.Annotation annotation = new edu.stanford.nlp.pipeline.Annotation(sentence);
-//
-//        pipeline.annotate(annotation);
-//
-//        Map<Integer, CorefChain> graph =
-//                annotation.get(CorefCoreAnnotations.CorefChainAnnotation.class);
-//
-//        for (Map.Entry<Integer, CorefChain> entry : graph.entrySet())
-//        {
-//            System.out.println("Value = " + entry.getValue());
-//            System.out.println(entry.getValue().getMentionsInTextualOrder());
-//        }
-
-        //System.out.println(graph);
-
     }
 
     private void prepareDataset()
@@ -56,6 +37,7 @@ public class VerbApp {
         /* Load equations */
 
         HashMap<Integer, String> eq = new HashMap();
+        List<Double> all_answers = new ArrayList();
 
         try
         {
@@ -72,17 +54,33 @@ public class VerbApp {
             e.printStackTrace();
         }
 
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader("ans.txt"));
+            String line;
+            while((line = br.readLine()) != null)
+            {
+                all_answers.add(Double.parseDouble(line));
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
         /* Find equation pairs */
         ArithmeticQuestion aq;
         Iterator<ArithmeticQuestion> it = arithmeticQuestions.iterator();
         int i = 0;
         List<VCExperiment> experimentList = new ArrayList();
 
+        System.out.println("size = " + arithmeticQuestions.size());
+
         while(it.hasNext())
         {
             aq = it.next();
 
-            List<Double> factors = extractEquationFactors(eq.get(i++));
+            List<Double> factors = extractEquationFactors(eq.get(i));
 
             VCExperiment vcExperiment = new VCExperiment(aq, factors);
 
@@ -93,6 +91,11 @@ public class VerbApp {
             {
                 experimentList.add(vcExperiment);
                 vcExperiment.prepareData("dummy");
+                System.out.println("Adding Question: " + aq.getQuestionText());
+//                System.out.println("States: " + aq.getQuestionTextStateList());
+//                System.out.println("Question State: " + aq.getQuestionState() + "\n");
+                selectedQuestions.add(aq);
+                answers.add(all_answers.get(i));
                 //System.out.println(vcExperiment);
             }
 
@@ -116,8 +119,14 @@ public class VerbApp {
                 }
             }
 
+            i++;
+
             System.out.println();
         }
+
+        experimentList.remove(experimentList.size()-1);
+        selectedQuestions.remove(selectedQuestions.size()-1);
+        answers.remove(selectedQuestions.size()-1);
 
         System.out.println("experimentList size = " + experimentList.size());
         int k_size = experimentList.size() / 3;
@@ -160,7 +169,55 @@ public class VerbApp {
             }
         }
 
+        /* Prepare polarity set */
+        List<List<String>> polarity_set = new ArrayList();
 
+        List<String> files = new ArrayList();
+        files.add("output0.txt");
+        files.add("output1.txt");
+        files.add("output2.txt");
+
+        Iterator<String> files_it = files.iterator();
+
+        while(files_it.hasNext())
+        {
+            String filename = files_it.next();
+
+            try
+            {
+                BufferedReader reader = new BufferedReader(new FileReader(filename));
+                String line;
+                List<String> polarities_of_verbs = new ArrayList();
+                while ((line = reader.readLine()) != null)
+                {
+                    if (line.equals(""))
+                    {
+                        polarity_set.add(polarities_of_verbs);
+                        polarities_of_verbs = new ArrayList();
+                    }
+                    else
+                    {
+                        polarities_of_verbs.add(line.split("\t")[1]);
+                    }
+                }
+
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("Size = " + polarity_set.size());
+
+        /* Try to solve questions */
+        for (int j = 0; j < selectedQuestions.size(); j++)
+        {
+            double res = selectedQuestions.get(j).sumUpAllStates(polarity_set.get(j));
+
+            System.out.println("Question: " + selectedQuestions.get(j).getQuestionText());
+            System.out.println("Expected results: " + answers.get(j) + ", calculated: " + res + "\n");
+        }
 
     }
 
@@ -197,19 +254,19 @@ public class VerbApp {
         try {
             ArithmeticQuestion aq;
 
-            aq = areader.read("files/", "arith-qs.ah");
-            arithmeticQuestions.add(aq);
-            System.out.println("Question: " + aq.getQuestionText());
-            System.out.println("States: " + aq.getQuestionTextStateList());
-            System.out.println("Question State: " + aq.getQuestionState() + "\n");
+//            aq = areader.read("files/", "arith-qs.ah");
+//            arithmeticQuestions.add(aq);
+//            System.out.println("Question: " + aq.getQuestionText());
+//            System.out.println("States: " + aq.getQuestionTextStateList());
+//            System.out.println("Question State: " + aq.getQuestionState() + "\n");
 
-//            while ((aq = areader.read()) != null) {
-//                arithmeticQuestions.add(aq);
-//
+            while ((aq = areader.read()) != null) {
+                arithmeticQuestions.add(aq);
+
 //                System.out.println("Question: " + aq.getQuestionText());
 //                System.out.println("States: " + aq.getQuestionTextStateList());
 //                System.out.println("Question State: " + aq.getQuestionState() + "\n");
-//            }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

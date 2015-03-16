@@ -64,6 +64,11 @@ public class VCExperiment {
     /* Distance to theme */
     List<Integer> distanceToQ = new ArrayList();
 
+    /* A0 and A2 labels */
+    List<String> A0Labels = new ArrayList();
+    List<String> A2Labels = new ArrayList();
+
+
     public VCExperiment(ArithmeticQuestion _arithmeticQuestion, List<Double> _selectedPolarities){
         arithmeticQuestion = _arithmeticQuestion;
         selectedPolarities = _selectedPolarities;
@@ -222,7 +227,8 @@ public class VCExperiment {
         calculateDistances();
         //System.out.println("dq: " + distanceToQ);
 
-        /* Prepare same theme as Question */
+        /* Prepare A0 and A2 labels */
+        prepareA0A2Labels();
 
         for (int i = 0; i < Polarities.size(); i++)
         {
@@ -234,8 +240,8 @@ public class VCExperiment {
             s += "verb[0]=" + selectedVerbs.get(i) + " ";
             s += "tf[0]=" + themeFrequencies.get(i) + " ";
             s += "vf[0]=" + verbFrequencies.get(i) + " ";
-            s += "a0=" + hasA0Labels.get(i) + " ";
-            s += "a2=" + hasA2Labels.get(i) + " ";
+//            s += "a0=" + hasA0Labels.get(i) + " ";
+//            s += "a2=" + hasA2Labels.get(i) + " ";
             s += "st=" + sameThemeAsQ.get(i) + " ";
             s += "dq=" + distanceToQ.get(i) + " ";
 
@@ -251,37 +257,188 @@ public class VCExperiment {
 
 
 
-//            if (i - 1 >= 0)
-//            {
-//                s += "verb[-1]=" + selectedVerbs.get(i-1) + " ";
-//            }
-//
-//            if (i - 2 >= 0)
-//            {
-//                s += "verb[-2]=" + selectedVerbs.get(i-2) + " ";
-//            }
-//
-//            if (i + 1 < Polarities.size())
-//            {
-//                s += "verb[1]=" + selectedVerbs.get(i+1) + " ";
-//            }
-//
-//            if (i + 2 < Polarities.size())
-//            {
-//                s += "verb[2]=" + selectedVerbs.get(i+2) + " ";
-//            }
+            if (i - 1 >= 0)
+            {
+                s += "verb[-1]=" + selectedVerbs.get(i-1) + " ";
+            }
+
+            if (i - 2 >= 0)
+            {
+                s += "verb[-2]=" + selectedVerbs.get(i-2) + " ";
+            }
+
+            if (i + 1 < Polarities.size())
+            {
+                s += "verb[1]=" + selectedVerbs.get(i+1) + " ";
+            }
+
+            if (i + 2 < Polarities.size())
+            {
+                s += "verb[2]=" + selectedVerbs.get(i+2) + " ";
+            }
 
             if (i < Polarities.size() - 1)
             {
                 //System.out.println("Comparing: " + selectedThemes.get(i) + " with " + selectedThemes.get(Polarities.size()-1));
                 if (selectedVerbs.get(i).equals(selectedVerbs.get(Polarities.size()-1)))
                 {
-                    s += "sv=true";
+                    s += "sv=true ";
                 }
                 else
                 {
-                    s += "sv=false";
+                    s += "sv=false ";
                 }
+            }
+
+            /* A0/A2 labels of [0] matching with -1 */
+            if (i - 1 >= 0)
+            {
+                if (A0Labels.get(i).equals(A0Labels.get(i-1)))
+                {
+                    s += "A0[0]A0[-1]=1 ";
+                }
+                else
+                {
+                    s += "A0[0]A0[-1]=0 ";
+                }
+
+                if (A0Labels.get(i).equals(A2Labels.get(i-1)))
+                {
+                    s += "A0[0]A2[-1]=1 ";
+                }
+                else
+                {
+                    s += "A0[0]A2[-1]=0 ";
+                }
+
+                if (A2Labels.get(i).equals(A0Labels.get(i-1)))
+                {
+                    s += "A2[0]A0[-1]=1 ";
+                }
+                else
+                {
+                    s += "A2[0]A0[-1]=0 ";
+                }
+
+                if (A2Labels.get(i).equals(A2Labels.get(i-1)))
+                {
+                    s += "A2[0]A2[-1]=1 ";
+                }
+                else
+                {
+                    s += "A2[0]A2[-1]=0 ";
+                }
+            }
+
+            /* A0/A2 labels of [0] matching with 1 */
+            if (i +1 < Polarities.size())
+            {
+                if (A0Labels.get(i).equals(A0Labels.get(i+1)))
+                {
+                    s += "A0[0]A0[1]=1 ";
+                }
+                else
+                {
+                    s += "A0[0]A0[1]=0 ";
+                }
+
+                if (A0Labels.get(i).equals(A2Labels.get(i+1)))
+                {
+                    s += "A0[0]A2[1]=1 ";
+                }
+                else
+                {
+                    s += "A0[0]A2[1]=0 ";
+                }
+
+                if (A2Labels.get(i).equals(A0Labels.get(i+1)))
+                {
+                    s += "A2[0]A0[1]=1 ";
+                }
+                else
+                {
+                    s += "A2[0]A0[1]=0 ";
+                }
+
+                if (A2Labels.get(i).equals(A2Labels.get(i+1)))
+                {
+                    s += "A2[0]A2[1]=1 ";
+                }
+                else
+                {
+                    s += "A2[0]A2[1]=0 ";
+                }
+            }
+
+            /* A0/A2 labels between 0 and question */
+            if (i < Polarities.size() - 1)
+            {
+                if (A0Labels.get(i).equals(A0Labels.get(Polarities.size() -1)))
+                {
+                    s += "A0[0]A0[q]=1 ";
+                }
+                else
+                {
+                    s += "A0[0]A0[q]=1 ";
+                }
+                if (A0Labels.get(i).equals(A2Labels.get(Polarities.size() -1)))
+                {
+                    s += "A0[0]A2[q]=1 ";
+                }
+                else
+                {
+                    s += "A0[0]A2[q]=1 ";
+                }
+                if (A2Labels.get(i).equals(A0Labels.get(Polarities.size() -1)))
+                {
+                    s += "A2[0]A0[q]=1 ";
+                }
+                else
+                {
+                    s += "A2[0]A0[q]=1 ";
+                }
+                if (A2Labels.get(i).equals(A2Labels.get(Polarities.size() -1)))
+                {
+                    s += "A2[0]A2[q]=1 ";
+                }
+                else
+                {
+                    s += "A2[0]A2[q]=1 ";
+                }
+            }
+
+            /* theme|theme */
+            if (i - 1 >= 0 && i + 1 < Polarities.size())
+            {
+                s += "th[-1]|th[0]|th[1]=" + selectedThemes.get(i-1) + "|" + selectedThemes.get(i) + "|" + selectedThemes.get(i+1) + " ";
+                s += "vb[-1]|vb[0]|vb[1]=" + selectedVerbs.get(i-1) + "|" + selectedVerbs.get(i) + "|" + selectedVerbs.get(i+1) + " ";
+            }
+            else if (i - 1 >= 0)
+            {
+                s += "th[-1]|th[0]=" + selectedThemes.get(i-1) + "|" + selectedThemes.get(i) + " ";
+                s += "vb[-1]|vb[0]=" + selectedVerbs.get(i-1) + "|" + selectedVerbs.get(i) + " ";
+            }
+            else if (i + 1 < Polarities.size())
+            {
+                s += "th[0]|th[1]=" + selectedThemes.get(i) + "|" + selectedThemes.get(i+1) + " ";
+                s += "vb[0]|vb[1]=" + selectedVerbs.get(i) + "|" + selectedVerbs.get(i+1) + " ";
+            }
+
+            /* A0|A0 and A2|A2 */
+            if (i - 1 >= 0 && i + 1 < Polarities.size())
+            {
+                s += "A0[-1]|A0[0]|A0[1]=" + A0Labels.get(i-1) + "|" + A0Labels.get(i) + "|" + A0Labels.get(i+1) + " ";
+                s += "A2[-1]|A2[0]|A2[1]=" + A2Labels.get(i-1) + "|" + A2Labels.get(i) + "|" + A2Labels.get(i+1) + " ";
+            }
+            else if (i - 1 >= 0)
+            {
+                s += "A0[-1]|A0[0]=" + A0Labels.get(i-1) + "|" + A0Labels.get(i) + " ";
+                s += "A2[-1]|A2[0]=" + A2Labels.get(i-1) + "|" + A2Labels.get(i) + " ";
+            }
+            else if (i + 1 < Polarities.size())
+            {
+                s += "A0[0]|A0[1]=" + A0Labels.get(i) + "|" + A0Labels.get(i+1) + " ";
+                s += "A2[0]|A2[1]=" + A2Labels.get(i) + "|" + A2Labels.get(i+1) + " ";
             }
 
             trainString += s + "\n";
@@ -460,6 +617,51 @@ public class VCExperiment {
         {
             distanceToQ.add(verbsLength - i - 1);
         }
+    }
+
+    private void prepareA0A2Labels()
+    {
+        List<State> stateList = new ArrayList();
+        stateList.addAll(arithmeticQuestion.getQuestionTextStateList());
+        stateList.add(arithmeticQuestion.getQuestionState());
+
+        for (State s: stateList)
+        {
+            Instance pred_inst = s.getPredicateInstance();
+            Instance A0_inst;
+            Instance A2_inst;
+
+            if (pred_inst.getArgumentList(SemanticType.A0) != null &&
+                    pred_inst.getArgumentList(SemanticType.A0).size() > 0)
+            {
+                A0_inst = pred_inst.getArgumentList(SemanticType.A0).get(0);
+                if (s.get(A0_inst) != null)
+                {
+                    A0Labels.add(s.get(A0_inst).getLemma());
+                }
+            }
+            else
+            {
+                A0Labels.add("none");
+            }
+
+            if (pred_inst.getArgumentList(SemanticType.A2) != null &&
+                    pred_inst.getArgumentList(SemanticType.A2).size() > 0)
+            {
+                A2_inst = pred_inst.getArgumentList(SemanticType.A2).get(0);
+                if (s.get(A2_inst) != null)
+                {
+                    A2Labels.add(s.get(A2_inst).getLemma());
+                }
+            }
+            else
+            {
+                A2Labels.add("none");
+            }
+        }
+
+//        System.out.println("A0 labels = " + A0Labels);
+//        System.out.println("A2 labels = " + A2Labels);
     }
 
     public String toString()
