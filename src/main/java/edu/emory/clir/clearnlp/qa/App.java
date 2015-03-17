@@ -4,7 +4,6 @@ import edu.emory.clir.clearnlp.component.AbstractComponent;
 import edu.emory.clir.clearnlp.dependency.DEPLib;
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
-import edu.emory.clir.clearnlp.nlp.NLPGetter;
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
 import edu.emory.clir.clearnlp.reader.TSVReader;
 import edu.emory.clir.clearnlp.srl.SRLTree;
