@@ -18,13 +18,18 @@ package edu.emory.clir.clearnlp.qa.structure.document;
 import edu.emory.clir.clearnlp.dependency.DEPLib;
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
+import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
+import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
+import edu.emory.clir.clearnlp.qa.util.StringUtils;
 import edu.emory.clir.clearnlp.util.arc.SRLArc;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
+
+
 public class EnglishDocument extends AbstractDocument
 {
 	private static final long serialVersionUID = -1190545348244741736L;
@@ -32,46 +37,55 @@ public class EnglishDocument extends AbstractDocument
 	@Override
 	public void addInstances(DEPTree tree)
 	{
-
 		for (DEPNode node : tree)
 		{
-            Instance instance;
-
-            if ((instance = getInstance(node)) == null)
+            if (POSLibEn.isPunctuation(node.getPOSTag()))
             {
-                instance = new Instance();
-                addInstance(node, instance);
+                continue;
             }
 
-            Instance headInstance;
+            Instance nodeInstance       = null;
+            DEPNode headNode            = node.getHead();
+            Instance headInstance       = null;
 
-            if (! node.getSemanticHeadArcList().isEmpty())
+            SemanticType semanticType   = null;
+            AttributeType attributeType = null;
+
+            /* Create if necessary instances of node and headNode */
+            if ((nodeInstance = getInstance(node)) == null)
             {
-                for (SRLArc arc : node.getSemanticHeadArcList()) {
-
-                    SemanticType type = SemanticType.valueOf(parseSemanticRelation(arc.getLabel()));
-                    headInstance = getInstance(arc.getNode());
-                    if (headInstance == null) {
-                        headInstance = new Instance();
-                        addInstance(arc.getNode(), headInstance);
-                    }
-
-                    headInstance.putArgumentList(type, instance);
-                    instance.putPredicateList(type, headInstance);
-                }
+                nodeInstance = new Instance(node);
+                addInstance(node, nodeInstance);
             }
-            else if (! node.isLabel("root"))
+
+            if ((headInstance = getInstance(headNode)) == null)
             {
-                SemanticType type = SemanticType.valueOf(parseSemanticRelation(node.getLabel()));
-                if ((headInstance = getInstance(node.getHead())) == null)
-                {
-                    headInstance = new Instance();
-                    addInstance(node.getHead(), headInstance);
-                }
-
-                headInstance.putArgumentList(type, instance);
-                instance.putArgumentList(type, headInstance);
+                headInstance = new Instance(headNode);
+                addInstance(headNode, headInstance);
             }
+
+            /* Check if is Argument of the head */
+            if (headNode != null && (semanticType = getArgument(headNode, node)) != null)
+            {
+                headInstance.putArgumentList(semanticType, nodeInstance);
+                nodeInstance.putPredicateList(semanticType, headInstance);
+            }
+            /* Check if is Attribute of the head */
+            else if ((attributeType = getAttribute(headNode, node)) != null)
+            {
+                headInstance.putAttribute(attributeType, nodeInstance);
+                nodeInstance.putAttribute(attributeType, headInstance);
+
+            }
+            /* Otherwise, store the syntactic relation */
+            else
+            {
+                semanticType = StringUtils.extractSemanticRelation(node.getLabel());
+                headInstance.putArgumentList(semanticType, nodeInstance);
+                nodeInstance.putArgumentList(semanticType, headInstance);
+            }
+
+            /* Perform entity check for instance */
 		}
 	}
 

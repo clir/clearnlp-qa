@@ -21,10 +21,12 @@ import java.util.Map;
 
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
+import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.structure.Entity;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
+import edu.emory.clir.clearnlp.qa.util.StringUtils;
 
 public abstract class AbstractDocument implements Serializable
 {
@@ -124,6 +126,30 @@ public abstract class AbstractDocument implements Serializable
 		
 		entity.addInstance(instance);		
 	}
+
+    protected SemanticType getArgument(DEPNode parent, DEPNode child)
+    {
+        SemanticType semanticType = null;
+        semanticType = StringUtils.extractSemanticRelation(child.getSemanticLabel(parent));
+        return semanticType;
+    }
+
+    protected AttributeType getAttribute(DEPNode parent, DEPNode child)
+    {
+        AttributeType attributeType = null;
+
+        if (StringUtils.isDouble(child.getWordForm()) || StringUtils.isInteger(child.getWordForm()))
+        {
+            /* Quantitive attribute */
+            attributeType = AttributeType.QUANTITY;
+        }
+        else if (POSLibEn.isAdjective(child.getPOSTag()))
+        {
+            /* Quality attribute */
+            attributeType = AttributeType.QUALITY;
+        }
+        return attributeType;
+    }
 
     public String toString()
     {
