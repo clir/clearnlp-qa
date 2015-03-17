@@ -20,6 +20,8 @@ public enum AttributeType
 {
 	LOCATIVE,
     TEMPORAL,
-    QUALITY,
-    QUANTITY;
+    POSSESSIVE,
+    QUANTITY,
+    QUALITY;
+
 }
