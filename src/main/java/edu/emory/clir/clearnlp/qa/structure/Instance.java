@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AbstractAttribute;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 
@@ -31,6 +32,7 @@ public class Instance implements Serializable
 	private Map<AttributeType,List<Instance>>    m_attributes;
 	private Map<SemanticType,List<Instance>>     m_predicates;
 	private Map<SemanticType,List<Instance>>     m_arguments;
+    private DEPNode                              depNode;
 	
 	public Instance()
 	{
@@ -38,7 +40,23 @@ public class Instance implements Serializable
 		m_predicates = new HashMap<>();
 		m_arguments  = new HashMap<>();
 	}
-	
+
+    public Instance(DEPNode _depNode)
+    {
+        m_attributes = new HashMap<>();
+        m_predicates = new HashMap<>();
+        m_arguments  = new HashMap<>();
+        depNode      = _depNode;
+    }
+
+    public DEPNode getDepNode() {
+        return depNode;
+    }
+
+    public void setDepNode(DEPNode depNode) {
+        this.depNode = depNode;
+    }
+
 	public Set<AttributeType> getAttributeTypeSet()
 	{
 		return m_attributes.keySet();
