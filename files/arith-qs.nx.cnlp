@@ -1,0 +1,31 @@
+1	Mary	mary	NNP	_	2	nsubj	2:A0=PAG
+2	had	have	VBD	pb=have.03	0	root	_
+3	33	0	CD	_	5	num	_
+4	Pokemon	pokemon	NNP	p2=NN	5	nn	_
+5	cards	card	NNS	_	2	dobj	2:A1=PPT
+6	,	,	,	_	2	punct	_
+7	and	and	CC	_	2	cc	_
+8	6	0	CD	_	10	nsubjpass	10:A1=PPT
+9	were	be	VBD	_	10	auxpass	_
+10	torn	tear	VBN	pb=tear.01	2	conj	_
+11	.	.	.	_	10	punct	_
+
+1	Sam	sam	NNP	_	2	nsubj	2:A0=PAG
+2	gave	give	VBD	pb=give.01	0	root	_
+3	Mary	mary	NNP	_	2	iobj	2:A2=GOL
+4	23	0	CD	_	7	num	_
+5	new	new	JJ	_	7	amod	_
+6	Pokemon	pokemon	NNP	p2=NN	7	nn	_
+7	cards	card	NNS	_	2	dobj	2:A1=PPT
+8	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	Pokemon	pokemon	NNP	p2=JJ	4	nn	_
+4	cards	card	NNS	_	7	dobj	7:R-A1
+5	does	do	VBZ	_	7	aux	_
+6	Mary	mary	NNP	_	7	nsubj	7:A0=PAG
+7	have	have	VB	p2=VBP|pb=have.03	0	root	_
+8	now	now	RB	_	7	advmod	7:AM-TMP
+9	?	?	.	_	7	punct	_
+

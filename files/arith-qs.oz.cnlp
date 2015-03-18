@@ -1,0 +1,32 @@
+1	A	a	DT	_	2	det	_
+2	restaurant	restaurant	NN	_	3	nsubj	3:A0=PAG
+3	served	serve	VBD	pb=serve.01	0	root	_
+4	9	0	CD	_	6	num	_
+5	hot	hot	JJ	_	6	amod	_
+6	dogs	dog	NNS	_	3	dobj	3:A2=GOL
+7	during	during	IN	_	3	prep	3:AM-TMP
+8	lunch	lunch	NN	_	7	pobj	_
+9	and	and	CC	_	8	cc	_
+10	2	0	CD	_	8	conj	_
+11	during	during	IN	_	3	prep	_
+12	dinner	dinner	NN	_	11	pobj	_
+13	today	today	NN	_	3	npadvmod	_
+14	.	.	.	_	3	punct	_
+
+1	It	it	PRP	_	2	nsubj	2:A0=PAG
+2	served	serve	VBD	pb=serve.01	0	root	_
+3	5	0	CD	_	2	dobj	2:A1=PPT
+4	of	of	IN	_	3	prep	_
+5	them	them	PRP	_	4	pobj	_
+6	yesterday	yesterday	NN	_	2	npadvmod	2:AM-TMP
+7	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	hot	hot	JJ	_	4	amod	_
+4	dogs	dog	NNS	_	6	nsubjpass	6:A2=GOL
+5	were	be	VBD	_	6	auxpass	_
+6	served	serve	VBN	pb=serve.02	0	root	_
+7	today	today	NN	_	6	npadvmod	6:AM-TMP
+8	?	?	.	_	6	punct	_
+

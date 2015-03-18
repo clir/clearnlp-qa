@@ -1,0 +1,24 @@
+1	Pamela	pamela	NNP	_	2	nsubj	2:A0=PAG
+2	bought	buy	VBD	pb=buy.01	0	root	_
+3	9.8	0	CD	_	4	num	_
+4	ounces	ounce	NNS	_	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	sugar	sugar	NN	_	5	pobj	_
+7	,	,	,	_	2	punct	_
+8	and	and	CC	_	2	cc	_
+9	she	she	PRP	_	10	nsubj	10:A0
+10	spilled	spill	VBD	pb=spill.01	2	conj	_
+11	5.2	0	CD	_	12	num	_
+12	ounces	ounce	NNS	_	10	dobj	10:A1=PPT
+13	of	of	IN	_	12	prep	_
+14	it	it	PRP	_	13	pobj	_
+15	on	on	IN	_	10	prep	10:A2=LOC
+16	the	the	DT	_	17	det	_
+17	floor	floor	NN	_	15	pobj	_
+18	.	.	.	_	10	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	_	3	attr	3:R-A2
+3	is	be	VBZ	p2=NN|pb=be.01	0	root	_
+4	?	?	.	_	3	punct	_
+

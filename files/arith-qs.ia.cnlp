@@ -1,0 +1,33 @@
+1	Jonah	jonah	NNP	_	2	nsubj	2:A4=PRD
+2	added	add	VBD	pb=add.03	0	root	_
+3	0.3	0	CD	_	4	num	_
+4	cup	cup	NN	_	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	yellow	yellow	JJ	_	7	amod	_
+7	raisins	raisin	NNS	_	5	pobj	_
+8	and	and	CC	_	4	cc	_
+9	0.4	0	CD	_	10	num	_
+10	cup	cup	NN	_	4	conj	_
+11	of	of	IN	_	10	prep	_
+12	black	black	JJ	_	13	amod	_
+13	raisins	raisin	NNS	_	11	pobj	_
+14	to	to	IN	_	2	prep	2:A2=EXT
+15	a	a	DT	_	16	det	_
+16	batch	batch	NN	_	14	pobj	_
+17	of	of	IN	_	16	prep	_
+18	trail	trail	NN	_	19	nn	_
+19	mix	mix	NN	_	17	pobj	_
+20	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	cups	cup	NNS	_	8	dobj	8:R-A1
+4	of	of	IN	_	3	prep	_
+5	raisins	raisin	NNS	_	4	pobj	_
+6	did	do	VBD	_	8	aux	_
+7	Jonah	jonah	NNP	_	8	nsubj	8:A0=PAG
+8	add	add	VB	pb=add.02	0	root	_
+9	in	in	IN	p2=RB	8	prep	8:AM-LOC
+10	all	all	DT	p2=PDT	9	pobj	_
+11	?	?	.	_	8	punct	_
+

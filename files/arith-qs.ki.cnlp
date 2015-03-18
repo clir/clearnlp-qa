@@ -1,0 +1,28 @@
+1	Gordon	gordon	NNP	_	2	nsubj	2:A0=PAG
+2	bought	buy	VBD	pb=buy.01	0	root	_
+3	3.42	0	CD	_	4	num	_
+4	pounds	pound	NNS	_	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	fruit	fruit	NN	_	5	pobj	_
+7	for	for	IN	_	2	prep	2:AM-PNC
+8	a	a	DT	_	10	det	_
+9	class	class	NN	_	10	nn	_
+10	party	party	NN	_	7	pobj	_
+11	.	.	.	_	2	punct	_
+
+1	The	the	DT	_	2	det	_
+2	class	class	NN	_	3	nsubj	3:A0=PAG
+3	ate	eat	VBD	pb=eat.01	0	root	_
+4	2.2	0	CD	_	5	num	_
+5	pounds	pound	NNS	_	3	dobj	3:A1=PPT
+6	of	of	IN	_	5	prep	_
+7	the	the	DT	_	8	det	_
+8	fruit	fruit	NN	_	6	pobj	_
+9	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	_	3	amod	_
+3	fruit	fruit	NN	_	4	nsubj	4:A1=PPT
+4	is	be	VBZ	pb=be.01	0	root	_
+5	?	?	.	_	4	punct	_
+

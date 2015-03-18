@@ -1,0 +1,27 @@
+1	Keith	keith	NNP	p2=NN	2	nsubj	2:A1=PPT
+2	grew	grow	VBD	pb=grow.01	0	root	_
+3	29	0	CD	_	4	num	_
+4	cantelopes	cantelopes	NNS	_	2	npadvmod	2:A2=EXT
+5	,	,	,	_	7	punct	_
+6	Fred	fred	NNP	_	7	nsubj	7:A1=PPT
+7	grew	grow	VBD	pb=grow.01	2	conj	_
+8	16	0	CD	_	9	num	_
+9	cantelopes	cantelopes	NNS	_	7	npadvmod	7:A2=EXT
+10	,	,	,	_	7	punct	_
+11	and	and	CC	_	7	cc	_
+12	Jason	jason	NNP	_	13	nsubj	_
+13	grew	grow	VBD	pb=grow.01	7	conj	_
+14	20	0	CD	_	15	num	_
+15	cantelopes	cantelopes	NNS	_	13	dobj	13:A1=PPT
+16	.	.	.	_	13	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	cantelopes	cantelopes	NNS	_	6	dobj	6:R-A2
+4	did	do	VBD	_	6	aux	_
+5	they	they	PRP	_	6	nsubj	6:A1=PPT
+6	grow	grow	VB	pb=grow.01	0	root	_
+7	in	in	IN	p2=RP	6	prep	6:R-AM-LOC
+8	total	total	NN	p2=JJ	7	pobj	_
+9	?	?	.	_	6	punct	_
+

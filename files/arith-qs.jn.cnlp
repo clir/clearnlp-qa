@@ -1,0 +1,44 @@
+1	Nicole	nicole	NNP	p2=NN	2	nsubj	2:A0=PAG
+2	found	find	VBD	pb=find.01	0	root	_
+3	an	an	DT	_	5	det	_
+4	orange	orange	NN	p2=JJ	5	nn	_
+5	caterpillar	caterpillar	NN	_	2	dobj	2:A1=PPT
+6	and	and	CC	_	5	cc	_
+7	a	a	DT	_	9	det	_
+8	green	green	JJ	p2=NN	9	amod	_
+9	caterpillar	caterpillar	NN	_	5	conj	_
+10	in	in	IN	_	9	prep	_
+11	her	her	PRP$	_	12	poss	_
+12	backyard	backyard	NN	_	10	pobj	_
+13	.	.	.	_	2	punct	_
+
+1	The	the	DT	_	3	det	_
+2	green	green	JJ	p2=NN	3	amod	_
+3	caterpillar	caterpillar	NN	_	4	nsubj	4:A1=PPT
+4	was	be	VBD	pb=be.01	0	root	_
+5	3	0	CD	_	6	num	_
+6	inches	inch	NNS	_	7	npadvmod	_
+7	long	long	JJ	p2=RB	4	acomp	4:A2=PRD
+8	and	and	CC	_	4	cc	_
+9	the	the	DT	_	11	det	_
+10	orange	orange	NN	p2=JJ	11	nn	_
+11	caterpillar	caterpillar	NN	_	12	nsubj	12:A1=PPT
+12	was	be	VBD	pb=be.01	4	conj	_
+13	1.1666666666666667	0	CD	_	14	num	_
+14	inches	inch	NNS	_	15	npadvmod	_
+15	long	long	JJ	p2=RB	12	acomp	12:A2=PRD
+16	.	.	.	_	12	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	RB	p2=JJ	3	advmod	_
+3	longer	long	RBR	p2=JJR	4	advmod	4:AM-TMP
+4	was	be	VBD	pb=be.01	0	root	_
+5	the	the	DT	_	7	det	_
+6	green	green	JJ	p2=NN	7	amod	_
+7	caterpillar	caterpillar	NN	p2=NNS	4	nsubj	4:A1=PPT
+8	than	than	IN	_	7	prep	_
+9	the	the	DT	_	11	det	_
+10	orange	orange	NN	p2=JJ	11	nn	_
+11	caterpillar	caterpillar	NN	p2=XX	8	pobj	_
+12	?	?	.	_	4	punct	_
+

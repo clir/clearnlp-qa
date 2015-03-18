@@ -1,0 +1,41 @@
+1	Ella	ella	NNP	p2=NN	2	nsubj	2:A0=PAG
+2	owns	own	VBZ	pb=own.01	0	root	_
+3	2	0	CD	_	4	num	_
+4	dogs	dog	NNS	_	2	dobj	2:A1=PPT
+5	.	.	.	_	2	punct	_
+
+1	Each	each	DT	_	2	det	_
+2	day	day	NN	_	6	npadvmod	6:AM-TMP
+3	,	,	,	_	6	punct	_
+4	1	0	CD	_	5	num	_
+5	dog	dog	NN	_	6	nsubj	6:A0=PAG;16:A0=PAG
+6	eats	eat	VBZ	pb=eat.01	0	root	_
+7	0.125	0	CD	_	8	num	_
+8	scoop	scoop	NN	_	6	dobj	6:A1=PPT
+9	of	of	IN	_	8	prep	_
+10	dog	dog	NN	p2=VBG	11	nn	_
+11	food	food	NN	_	9	pobj	_
+12	and	and	CC	_	11	cc	_
+13	the	the	DT	_	15	det	_
+14	other	other	JJ	_	15	amod	_
+15	dog	dog	NN	_	11	conj	_
+16	eats	eat	VBZ	pb=eat.01	6	conj	_
+17	0.125	0	CD	_	18	num	_
+18	scoop	scoop	NN	_	16	dobj	16:A1=PPT
+19	.	.	.	_	6	punct	_
+
+1	Together	together	RB	_	11	advmod	_
+2	,	,	,	_	11	punct	_
+3	how	how	WRB	_	4	advmod	_
+4	much	much	JJ	_	6	amod	_
+5	dog	dog	NN	_	6	nn	_
+6	food	food	NN	_	1	pobj	_
+7	do	do	VBP	p2=VB	11	aux	_
+8	the	the	DT	_	10	det	_
+9	2	0	CD	_	10	num	_
+10	dogs	dog	NNS	_	11	nsubj	11:A0=PAG
+11	eat	eat	VBP	p2=VB|pb=eat.01	0	root	_
+12	each	each	DT	_	13	det	_
+13	day	day	NN	_	11	npadvmod	11:AM-TMP
+14	?	?	.	_	11	punct	_
+

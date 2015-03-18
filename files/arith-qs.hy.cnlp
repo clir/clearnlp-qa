@@ -1,0 +1,35 @@
+1	While	while	IN	_	2	mark	_
+2	making	make	VBG	pb=make.01	10	advcl	10:AM-ADV
+3	desserts	dessert	NNS	_	2	dobj	2:A1=PRD
+4	for	for	IN	_	2	prep	_
+5	a	a	DT	_	7	det	_
+6	bake	bake	NN	p2=JJ	7	nn	_
+7	sale	sale	NN	_	4	pobj	_
+8	,	,	,	_	10	punct	_
+9	Victor	victor	NNP	_	10	nsubj	2:A0=PAG;10:A0=PAG
+10	used	use	VBD	pb=use.01	0	root	_
+11	0.625	0	CD	p2=DT	12	num	_
+12	scoop	scoop	NN	_	10	dobj	10:A1=PPT
+13	of	of	IN	_	12	prep	_
+14	brown	brown	JJ	_	15	amod	_
+15	sugar	sugar	NN	_	13	pobj	_
+16	as	as	RB	_	18	advmod	_
+17	well	well	RB	_	18	advmod	_
+18	as	as	IN	_	15	cc	_
+19	0.25	0	CD	_	20	num	_
+20	scoop	scoop	NN	_	15	conj	_
+21	of	of	IN	_	20	prep	_
+22	white	white	JJ	_	23	amod	_
+23	sugar	sugar	NN	_	21	pobj	_
+24	.	.	.	_	10	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	RB	p2=JJ	4	advmod	_
+3	more	more	RBR	p2=JJR	4	advmod	_
+4	brown	brown	JJ	_	5	amod	_
+5	sugar	sugar	NN	_	8	dobj	8:R-A1
+6	did	do	VBD	_	8	aux	_
+7	Victor	victor	NNP	p2=NN	8	nsubj	8:A0=PAG
+8	use	use	VB	p2=NN|pb=use.01	0	root	_
+9	?	?	.	_	8	punct	_
+

@@ -1,0 +1,23 @@
+1	Mary	mary	NNP	_	2	nsubj	2:A0=PAG
+2	found	find	VBD	pb=find.01	0	root	_
+3	18	0	CD	_	4	num	_
+4	seashells	seashell	NNS	_	2	dobj	2:A1=PPT
+5	and	and	CC	_	2	cc	_
+6	Jessica	jessica	NNP	_	7	nsubj	7:A0=PAG
+7	found	find	VBD	pb=find.01	2	conj	_
+8	41	0	CD	_	9	num	_
+9	seashells	seashell	NNS	_	7	dobj	7:A1=PPT
+10	on	on	IN	_	9	prep	_
+11	the	the	DT	_	12	det	_
+12	beach	beach	NN	_	10	pobj	_
+13	.	.	.	_	7	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	seashells	seashell	NNS	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	they	they	PRP	_	6	nsubj	6:A0=PAG
+6	find	find	VB	pb=find.01	0	root	_
+7	together	together	RB	p2=RP	6	advmod	6:C-V
+8	?	?	.	_	6	punct	_
+

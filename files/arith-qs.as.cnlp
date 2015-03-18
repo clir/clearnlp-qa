@@ -1,0 +1,36 @@
+1	Tim	tim	NNP	_	3	poss	_
+2	's	's	POS	_	1	possessive	_
+3	cat	cat	NN	_	4	nsubj	4:A0=PAG
+4	had	have	VBD	pb=have.03	0	root	_
+5	kittens	kitten	NNS	_	4	dobj	4:A1=PPT
+6	.	.	.	_	4	punct	_
+
+1	He	he	PRP	_	2	nsubj	2:A0=PAG
+2	gave	give	VBD	pb=give.01	0	root	_
+3	3	0	CD	_	2	dobj	2:A1=PPT
+4	to	to	IN	_	2	prep	2:A2=GOL
+5	Jessica	jessica	NNP	_	4	pobj	_
+6	and	and	CC	_	2	cc	_
+7	6	0	CD	p2=NFP	2	conj	_
+8	to	to	IN	_	7	prep	_
+9	Sara	sara	NNP	_	8	pobj	_
+10	.	.	.	_	2	punct	_
+
+1	He	he	PRP	_	3	nsubj	3:A0=PAG
+2	now	now	RB	_	3	advmod	3:AM-TMP
+3	has	have	VBZ	pb=have.03	0	root	_
+4	9	0	CD	_	5	num	_
+5	kittens	kitten	NNS	_	3	dobj	3:A1=PPT
+6	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	kittens	kitten	NNS	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	he	he	PRP	_	6	nsubj	6:A0=PAG;8:A0=PAG
+6	have	have	VB	pb=have.03	0	root	_
+7	to	to	TO	_	8	aux	_
+8	start	start	VB	pb=start.01	6	xcomp	_
+9	with	with	IN	_	8	prep	8:A2=MNR
+10	?	?	.	_	6	punct	_
+

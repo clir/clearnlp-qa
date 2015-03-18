@@ -1,0 +1,25 @@
+1	Darnel	darnel	NNP	p2=VB	2	nsubj	2:A0;7:A0
+2	sprinted	sprint	VBD	pb=sprint.01	0	root	_
+3	0.875	0	CD	_	4	num	_
+4	lap	lap	NN	_	2	dobj	2:A1
+5	and	and	CC	_	2	cc	_
+6	then	then	RB	_	7	advmod	7:AM-TMP
+7	took	take	VBD	pb=take.01	2	conj	_
+8	a	a	DT	_	9	det	_
+9	break	break	NN	_	7	dobj	7:AM-PRR
+10	by	by	IN	_	7	prep	7:AM-MNR
+11	jogging	jog	VBG	p2=NN|pb=jog.02	10	pcomp	_
+12	0.75	0	CD	_	13	num	_
+13	lap	lap	NN	_	11	dobj	11:A1=GOL
+14	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	p2=RB	3	amod	_
+3	farther	farther	NN	p2=JJR	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	Darnel	darnel	NNP	p2=VB	6	nsubj	6:A0;8:A0=PAG
+6	sprint	sprint	VB	pb=sprint.01	0	root	_
+7	than	than	IN	_	8	mark	_
+8	jog	jog	VB	p2=NN|pb=jog.02	6	advcl	_
+9	?	?	.	_	6	punct	_
+

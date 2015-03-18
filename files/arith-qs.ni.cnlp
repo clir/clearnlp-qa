@@ -1,0 +1,33 @@
+1	Mike	mike	NNP	_	2	nsubj	2:A0=PAG
+2	picked	pick	VBD	pb=pick.01	7	ccomp	_
+3	7	0	CD	_	4	num	_
+4	apples	apple	NNS	_	2	dobj	2:A1=PPT
+5	,	,	,	_	7	punct	_
+6	Nancy	nancy	NNP	_	7	nsubj	7:A0=PAG
+7	picked	pick	VBD	pb=pick.01	0	root	_
+8	3	0	CD	_	9	num	_
+9	apples	apple	NNS	_	7	dobj	7:A1=PPT
+10	,	,	,	_	7	punct	_
+11	and	and	CC	_	7	cc	_
+12	Keith	keith	NNP	_	13	nsubj	13:A0=PAG
+13	picked	pick	VBD	pb=pick.01	7	conj	_
+14	6	0	CD	_	15	num	_
+15	apples	apple	NNS	_	13	dobj	13:A1=PPT
+16	and	and	CC	_	15	cc	_
+17	4	0	CD	_	18	num	_
+18	pears	pear	NNS	_	15	conj	_
+19	,	,	,	_	13	punct	_
+20	at	at	IN	_	13	prep	_
+21	the	the	DT	_	22	det	_
+22	farm	farm	NN	_	20	pobj	_
+23	.	.	.	_	13	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	apples	apple	NNS	_	5	nsubjpass	5:A1=PPT
+4	were	be	VBD	_	5	auxpass	_
+5	picked	pick	VBN	pb=pick.01	0	root	_
+6	in	in	IN	_	5	prep	5:AM-PRD
+7	total	total	NN	p2=JJ	6	pobj	_
+8	?	?	.	_	5	punct	_
+

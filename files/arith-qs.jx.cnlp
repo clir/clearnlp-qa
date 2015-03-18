@@ -1,0 +1,25 @@
+1	Kelly	kelly	NNP	_	2	nsubj	2:A0=PAG
+2	bought	buy	VBD	pb=buy.01	0	root	_
+3	0.1	0	CD	_	4	num	_
+4	pounds	pound	NNS	_	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	peanuts	peanut	NNS	_	5	pobj	_
+7	and	and	CC	_	4	cc	_
+8	0.4	0	CD	_	9	num	_
+9	pounds	pound	NNS	_	4	conj	_
+10	of	of	IN	_	9	prep	_
+11	raisins	raisin	NNS	_	10	pobj	_
+12	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	pounds	pound	NNS	_	8	dobj	8:R-A1
+4	of	of	IN	_	3	prep	_
+5	snacks	snack	NNS	_	4	pobj	_
+6	did	do	VBD	_	8	aux	_
+7	she	she	PRP	_	8	nsubj	8:A0=PAG
+8	buy	buy	VB	pb=buy.01	0	root	_
+9	in	in	IN	p2=RB	8	prep	8:AM-LOC
+10	all	all	DT	p2=PDT	9	pobj	_
+11	?	?	.	_	8	punct	_
+

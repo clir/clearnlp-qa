@@ -1,0 +1,34 @@
+1	A	a	DT	_	3	det	_
+2	construction	construction	NN	_	3	nn	_
+3	company	company	NN	_	4	nsubj	4:A0=PAG
+4	ordered	order	VBD	pb=order.01	0	root	_
+5	0.16666666666666666	0	CD	_	6	num	_
+6	ton	ton	NN	_	4	dobj	4:A1=GOL
+7	of	of	IN	_	6	prep	_
+8	concrete	concrete	NN	p2=JJ	7	pobj	_
+9	,	,	,	_	4	punct	_
+10	0.16666666666666666	0	CD	_	11	num	_
+11	ton	ton	NN	_	4	npadvmod	4:A2=PPT
+12	of	of	IN	_	11	prep	_
+13	bricks	brick	NNS	_	12	pobj	_
+14	,	,	,	_	4	punct	_
+15	and	and	CC	_	4	cc	_
+16	0.5	0	CD	_	17	num	_
+17	ton	ton	NN	_	4	conj	_
+18	of	of	IN	_	17	prep	_
+19	stone	stone	NN	_	18	pobj	_
+20	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	tons	ton	NNS	_	9	dobj	9:R-A1
+4	of	of	IN	_	3	prep	_
+5	material	material	NN	_	4	pobj	_
+6	did	do	VBD	_	9	aux	_
+7	the	the	DT	_	8	det	_
+8	company	company	NN	_	9	nsubj	9:A0=PAG
+9	order	order	VB	pb=order.01	0	root	_
+10	in	in	IN	p2=RB	9	prep	9:AM-TMP
+11	all	all	DT	_	10	pobj	_
+12	?	?	.	_	9	punct	_
+

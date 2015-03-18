@@ -1,0 +1,37 @@
+1	Sara	sara	NNP	_	2	nsubj	2:A0=PAG
+2	had	have	VBD	pb=have.03	0	root	_
+3	24	0	CD	_	4	num	_
+4	peaches	peach	NNS	_	2	dobj	2:A1=PPT
+5	and	and	CC	_	4	cc	_
+6	37	0	CD	_	7	num	_
+7	pears	pear	NNS	_	4	conj	_
+8	at	at	IN	_	7	prep	_
+9	her	her	PRP$	_	11	poss	_
+10	fruit	fruit	NN	_	11	nn	_
+11	dish	dish	NN	_	8	pobj	_
+12	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PPT;7:A0=PAG
+2	went	go	VBD	pb=go.02	0	root	_
+3	to	to	IN	_	2	prep	2:A4=GOL
+4	the	the	DT	_	5	det	_
+5	orchard	orchard	NN	_	3	pobj	_
+6	and	and	CC	_	2	cc	_
+7	picked	pick	VBD	p2=VBN|pb=pick.01	2	conj	_
+8	peaches	peach	NNS	_	7	dobj	7:A1=PPT
+9	.	.	.	_	2	punct	_
+
+1	There	there	EX	_	2	expl	_
+2	are	be	VBP	pb=be.02	0	root	_
+3	now	now	RB	_	2	advmod	2:AM-TMP
+4	61	0	CD	_	5	num	_
+5	peaches	peach	NNS	_	2	attr	2:A1=PPT
+6	.	.	.	_	2	punct	_
+
+1	how	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	5	dobj	5:R-A1
+3	did	do	VBD	_	5	aux	_
+4	she	she	PRP	_	5	nsubj	5:A0=PAG
+5	pick	pick	VB	pb=pick.01	0	root	_
+6	?	?	.	_	5	punct	_
+

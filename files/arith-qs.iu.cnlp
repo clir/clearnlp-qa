@@ -1,0 +1,41 @@
+1	Logan	logan	NNP	p2=NN	2	nsubj	2:A0=PAG
+2	recorded	record	VBD	pb=record.01	0	root	_
+3	the	the	DT	_	4	det	_
+4	snowfall	snowfall	NN	_	2	dobj	2:A1=PPT
+5	every	every	DT	_	6	det	_
+6	day	day	NN	_	2	npadvmod	2:AM-TMP
+7	during	during	IN	_	2	prep	2:AM-TMP
+8	a	a	DT	_	9	det	_
+9	snowstorm	snowstorm	NN	_	7	pobj	_
+10	.	.	.	_	2	punct	_
+
+1	He	he	PRP	_	2	nsubj	2:A0=PAG
+2	recorded	record	VBD	pb=record.01	0	root	_
+3	0.3333333333333333	0	CD	_	4	num	_
+4	centimeter	centimeter	NN	p2=JJR	2	dobj	2:A1=PPT
+5	on	on	IN	_	2	prep	2:AM-TMP
+6	Wednesday	wednesday	NNP	_	5	pobj	_
+7	,	,	,	_	6	punct	_
+8	0.3333333333333333	0	CD	_	9	num	_
+9	centimeter	centimeter	NN	p2=JJR	6	appos	_
+10	on	on	IN	_	9	prep	_
+11	Thursday	thursday	NNP	_	10	pobj	_
+12	,	,	,	_	9	punct	_
+13	and	and	CC	_	9	cc	_
+14	0.2222222222222222	0	CD	_	15	num	_
+15	centimeter	centimeter	NN	p2=JJR	9	conj	_
+16	on	on	IN	_	15	prep	_
+17	Friday	friday	NNP	_	16	pobj	_
+18	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	total	total	JJ	_	4	amod	_
+4	centimeters	centimeter	NNS	_	9	dobj	9:R-A1
+5	of	of	IN	_	4	prep	_
+6	snow	snow	NN	_	5	pobj	_
+7	did	do	VBD	_	9	aux	_
+8	Logan	logan	NNP	p2=VB	9	nsubj	9:A0=PAG
+9	record	record	VB	p2=NN|pb=record.01	0	root	_
+10	?	?	.	_	9	punct	_
+

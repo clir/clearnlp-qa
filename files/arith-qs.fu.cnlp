@@ -1,0 +1,26 @@
+1	A	a	DT	_	3	det	_
+2	multi-national	multi-national	JJ	_	3	amod	_
+3	corporation	corporation	NN	_	4	nsubj	4:A0=PAG
+4	has	have	VBZ	pb=have.03	0	root	_
+5	2041	0	CD	_	9	num	_
+6	part	part	NN	p2=JJ	8	hmod	_
+7	-	-	HYPH	_	8	hyph	_
+8	time	time	NN	_	9	nn	_
+9	employees	employee	NNS	_	4	dobj	4:A1=PPT
+10	and	and	CC	_	9	cc	_
+11	63093	0	CD	_	15	num	_
+12	full	full	JJ	_	14	hmod	_
+13	-	-	HYPH	_	14	hyph	_
+14	time	time	NN	_	15	nn	_
+15	employees	employee	NNS	_	9	conj	_
+16	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	employees	employee	NNS	_	4	nsubj	4:A0=PAG
+4	work	work	VBP	p2=VB|pb=work.01	0	root	_
+5	for	for	IN	_	4	prep	4:A2=GOL
+6	the	the	DT	_	7	det	_
+7	corporation	corporation	NN	_	5	pobj	_
+8	?	?	.	_	4	punct	_
+

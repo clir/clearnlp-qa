@@ -1,0 +1,42 @@
+1	Mary	mary	NNP	_	2	nsubj	2:A0=PPT
+2	went	go	VBD	pb=go.02	0	root	_
+3	to	to	IN	_	2	prep	2:A4=GOL
+4	the	the	DT	_	5	det	_
+5	mall	mall	NN	_	3	pobj	_
+6	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PAG
+2	spent	spend	VBD	pb=spend.01	0	root	_
+3	$	$	$	_	4	nmod	_
+4	13.04	0	CD	_	2	dobj	2:A3=VSP
+5	on	on	IN	_	2	prep	2:A1=PPT
+6	a	a	DT	_	7	det	_
+7	shirt	shirt	NN	_	5	pobj	_
+8	and	and	CC	_	2	cc	_
+9	$	$	$	_	10	nmod	_
+10	12.27	0	CD	_	2	conj	_
+11	on	on	IN	_	10	prep	_
+12	a	a	DT	_	13	det	_
+13	jacket	jacket	NN	_	11	pobj	_
+14	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PPT
+2	went	go	VBD	pb=go.02	0	root	_
+3	to	to	IN	_	2	prep	2:A4=GOL
+4	2	0	CD	_	5	num	_
+5	shops	shop	NNS	_	3	pobj	_
+6	.	.	.	_	2	punct	_
+
+1	In	in	IN	_	9	prep	9:AM-LOC
+2	total	total	NN	p2=JJ	1	pobj	_
+3	,	,	,	_	9	punct	_
+4	how	how	WRB	_	5	advmod	_
+5	much	much	JJ	_	6	amod	_
+6	money	money	NN	_	9	dobj	_
+7	did	do	VBD	_	9	aux	_
+8	Mary	mary	NNP	p2=JJ	9	nsubj	9:A0=PAG
+9	spend	spend	VB	pb=spend.01	0	root	_
+10	on	on	IN	p2=RP	9	prep	9:A1=PPT
+11	clothing	clothing	NN	_	10	pobj	_
+12	?	?	.	_	9	punct	_
+

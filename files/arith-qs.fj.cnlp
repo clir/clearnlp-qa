@@ -1,0 +1,46 @@
+1	Abe	abe	NNP	_	3	poss	_
+2	's	's	POS	_	1	possessive	_
+3	family	family	NN	_	4	nsubj	4:A1=PPT
+4	moved	move	VBD	pb=move.01	14	ccomp	_
+5	from	from	IN	_	4	prep	4:AM-DIR
+6	the	the	DT	_	7	det	_
+7	Bahamas	bahamas	NNPS	p2=NNP	5	pobj	_
+8	to	to	IN	_	4	prep	4:A2=GOL
+9	Japan	japan	NNP	_	8	pobj	_
+10	,	,	,	_	14	punct	_
+11	so	so	RB	p2=CC	14	advmod	_
+12	they	they	PRP	_	14	nsubj	14:A0=PAG
+13	had	have	VBD	_	14	aux	_
+14	convert	convert	VB	p2=VBN|pb=convert.01	0	root	_
+15	their	their	PRP$	_	16	poss	_
+16	money	money	NN	_	14	dobj	14:A1=PPT
+17	into	into	IN	_	14	prep	14:A2=PRD
+18	Japanese	japanese	JJ	_	19	amod	_
+19	yen	yen	NNS	p2=NN	17	pobj	_
+20	.	.	.	_	14	punct	_
+
+1	Their	their	PRP$	_	3	poss	_
+2	checking	check	VBG	p2=NN	3	nn	_
+3	account	account	NN	_	5	nsubj	5:A0=PAG;13:A0=PAG
+4	now	now	RB	_	5	advmod	5:AM-TMP
+5	has	have	VBZ	pb=have.03	0	root	_
+6	6359	0	CD	_	7	num	_
+7	yen	yen	NNS	_	5	dobj	5:A1=PPT
+8	and	and	CC	_	7	cc	_
+9	their	their	PRP$	_	11	poss	_
+10	savings	saving	NNS	_	11	nn	_
+11	account	account	NN	p2=VBP	7	conj	_
+12	now	now	RB	_	5	advmod	_
+13	has	have	VBZ	pb=have.03	5	dep	_
+14	3485	0	CD	_	15	num	_
+15	yen	yen	NNS	p2=NN	13	dobj	13:A1=PPT
+16	.	.	.	_	5	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	yen	yen	NNS	p2=NN	6	dobj	6:R-A1
+4	do	do	VBP	_	6	aux	_
+5	they	they	PRP	_	6	nsubj	6:A0=PAG
+6	have	have	VB	pb=have.03	0	root	_
+7	?	?	.	p2=,	6	punct	_
+

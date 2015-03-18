@@ -1,0 +1,19 @@
+1	Tom	tom	NNP	_	2	nsubj	2:A0=PAG
+2	found	find	VBD	pb=find.01	0	root	_
+3	7	0	CD	_	4	num	_
+4	seashells	seashell	NNS	_	2	dobj	2:A1=PPT
+5	but	but	CC	_	2	cc	_
+6	4	0	CD	_	8	nsubjpass	8:A1=PPT
+7	were	be	VBD	_	8	auxpass	_
+8	broken	break	VBN	p2=JJ|pb=break.01	2	conj	_
+9	.	.	.	_	8	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	unbroken	unbroken	JJ	_	4	amod	_
+4	seashells	seashell	NNS	p2=NNPS	7	dobj	7:R-A1
+5	did	do	VBD	_	7	aux	_
+6	Tom	tom	NNP	_	7	nsubj	7:A0=PAG
+7	find	find	VB	pb=find.01	0	root	_
+8	?	?	.	_	7	punct	_
+

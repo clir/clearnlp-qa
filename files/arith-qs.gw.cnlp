@@ -1,0 +1,29 @@
+1	At	at	IN	_	10	prep	10:AM-LOC
+2	Lindsey	lindsey	NNP	_	5	poss	_
+3	's	's	POS	_	2	possessive	_
+4	Vacation	vacation	NN	p2=NNP	5	nn	_
+5	Wear	wear	NNP	p2=NN	1	pobj	_
+6	,	,	,	_	10	punct	_
+7	0.375	0	CD	p2=VBZ	9	num	_
+8	the	the	DT	_	9	det	_
+9	garments	garment	NNS	_	10	nsubj	10:A1=PPT
+10	are	be	VBP	pb=be.01	0	root	_
+11	bikinis	bikini	NNS	p2=NN	10	attr	10:A2=PRD
+12	and	and	CC	_	10	cc	_
+13	0.25	0	CD	_	14	nsubj	14:A1=PPT
+14	are	be	VBP	pb=be.01	10	conj	_
+15	trunks	trunk	NNS	_	14	attr	14:A2=PRD
+16	.	.	.	_	14	punct	_
+
+1	What	what	WP	p2=WDT	2	det	_
+2	fraction	fraction	NN	_	6	attr	6:R-A2
+3	of	of	IN	_	2	prep	_
+4	the	the	DT	_	5	det	_
+5	garments	garment	NNS	_	3	pobj	_
+6	are	be	VBP	pb=be.01	0	root	_
+7	either	either	CC	p2=RB	8	preconj	_
+8	bikinis	bikini	NNS	p2=JJ	6	attr	6:A1=PPT
+9	or	or	CC	_	8	cc	_
+10	trunks	trunk	NNS	_	8	conj	_
+11	?	?	.	_	6	punct	_
+

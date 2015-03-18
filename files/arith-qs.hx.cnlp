@@ -1,0 +1,37 @@
+1	At	at	IN	_	9	prep	9:AM-LOC
+2	the	the	DT	_	4	det	_
+3	hardware	hardware	NN	_	4	nn	_
+4	store	store	NN	_	1	pobj	_
+5	,	,	,	_	9	punct	_
+6	0.25	0	CD	p2=NFP	8	num	_
+7	the	the	DT	_	8	det	_
+8	nails	nail	NNS	_	9	nsubj	9:A1=PPT
+9	are	be	VBP	pb=be.01	0	root	_
+10	size	size	NN	_	9	attr	9:A2=PRD
+11	2	0	CD	_	12	num	_
+12	d	d	NN	p2=NNS	9	npadvmod	_
+13	and	and	CC	_	12	cc	_
+14	0.5	0	CD	_	12	conj	_
+15	the	the	DT	_	16	det	_
+16	nails	nail	NNS	_	17	nsubj	17:A1=PPT
+17	are	be	VBP	pb=be.01	9	conj	_
+18	size	size	NN	_	20	nn	_
+19	4	0	CD	_	20	num	_
+20	d	d	NN	p2=LS	17	attr	17:A2=PRD
+21	.	.	.	_	17	punct	_
+
+1	What	what	WP	p2=WDT	2	det	_
+2	fraction	fraction	NN	_	6	attr	6:R-A2
+3	of	of	IN	_	2	prep	_
+4	the	the	DT	_	5	det	_
+5	nails	nail	NNS	_	3	pobj	_
+6	are	be	VBP	pb=be.01	0	root	_
+7	either	either	CC	p2=DT	6	preconj	_
+8	size	size	VBP	p2=NN|pb=size.02	6	conj	_
+9	2	0	CD	_	8	dobj	8:A1=PPT
+10	d	d	NN	p2=NNS	9	quantmod	_
+11	or	or	CC	_	10	cc	_
+12	4	0	CD	_	13	num	_
+13	d	d	NNS	p2=NN	10	conj	_
+14	?	?	.	_	6	punct	_
+

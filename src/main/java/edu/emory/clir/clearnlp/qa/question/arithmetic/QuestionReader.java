@@ -39,12 +39,12 @@ public class QuestionReader {
         this.questionsNamePrefix = questionFilesPrefix;
     }
 
-    public AbstractDocument readFile(String questionsDirPrefix, String questionsNamePrefix) throws IOException
+    public EnglishDocument readFile(String questionsDirPrefix, String questionsNamePrefix) throws IOException
     {
         return read(questionsDirPrefix, questionsNamePrefix);
     }
 
-    public AbstractDocument read() throws IOException
+    public EnglishDocument read() throws IOException
     {
         if (currentSuffix == null)
         {
@@ -67,7 +67,7 @@ public class QuestionReader {
         }
     }
 
-    private AbstractDocument readFile(String path) throws IOException{
+    private EnglishDocument readFile(String path) throws IOException{
         BufferedReader bufferedReader;
         try {
             String questionText = null;
@@ -99,12 +99,12 @@ public class QuestionReader {
         }
     }
 
-    public AbstractDocument read(String dirPath, String filePath) throws IOException{
+    public EnglishDocument read(String dirPath, String filePath) throws IOException{
         String path = dirPath + filePath;
         return readFile(path);
     }
 
-    public AbstractDocument read(String suffix) throws IOException{
+    public EnglishDocument read(String suffix) throws IOException{
         String path = questionsDirPrefix + questionsNamePrefix + suffix;
         return readFile(path);
     }

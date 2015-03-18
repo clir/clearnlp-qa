@@ -1,0 +1,43 @@
+1	Each	each	DT	_	2	det	_
+2	year	year	NN	_	6	nn	_
+3	,	,	,	_	6	punct	_
+4	salmon	salmon	NN	_	6	nn	_
+5	travel	travel	NN	p2=VBP	6	nn	_
+6	upstream	upstream	NN	p2=JJ	0	root	_
+7	,	,	,	_	6	punct	_
+8	going	go	VBG	pb=go.01	6	partmod	_
+9	from	from	IN	_	8	prep	8:A3=DIR
+10	the	the	DT	_	11	det	_
+11	ocean	ocean	NN	_	9	pobj	_
+12	to	to	IN	_	8	prep	8:A4=GOL
+13	the	the	DT	_	14	det	_
+14	rivers	river	NNS	_	12	pobj	18:AM-LOC
+15	where	where	WRB	_	18	advmod	18:R-AM-LOC
+16	they	they	PRP	_	18	nsubjpass	18:A1=PPT
+17	were	be	VBD	_	18	auxpass	_
+18	born	bear	VBN	pb=bear.02	14	rcmod	_
+19	.	.	.	_	6	punct	_
+
+1	This	this	DT	_	2	det	_
+2	year	year	NN	_	10	npadvmod	10:AM-TMP
+3	,	,	,	_	10	punct	_
+4	712261	0	CD	_	2	appos	_
+5	male	male	JJ	p2=NN	4	amod	_
+6	and	and	CC	_	4	cc	_
+7	259378	0	CD	_	9	num	_
+8	female	female	JJ	_	9	amod	_
+9	salmon	salmon	NN	_	10	nsubj	10:A1=PPT
+10	returned	return	VBD	p2=VBN|pb=return.01	0	root	_
+11	to	to	IN	_	10	prep	10:A4=GOL
+12	their	their	PRP$	_	13	poss	_
+13	rivers	river	NNS	_	11	pobj	_
+14	.	.	.	_	10	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	salmon	salmon	NN	_	4	nsubj	4:A0=PAG
+4	made	make	VBD	pb=make.01	0	root	_
+5	the	the	DT	_	6	det	_
+6	trip	trip	NN	_	4	dobj	4:AM-PRR
+7	?	?	.	_	4	punct	_
+

@@ -1,0 +1,25 @@
+1	A	a	DT	_	3	det	_
+2	car	car	NN	_	3	nn	_
+3	company	company	NN	_	4	nsubj	4:A0=PAG
+4	produced	produce	VBD	pb=produce.01	0	root	_
+5	3884	0	CD	_	6	num	_
+6	cars	car	NNS	_	4	dobj	4:A1
+7	in	in	IN	_	4	prep	4:AM-LOC
+8	North	north	NNP	_	9	nn	_
+9	America	america	NNP	_	7	pobj	_
+10	and	and	CC	_	9	cc	_
+11	2871	0	CD	_	12	num	_
+12	cars	car	NNS	_	9	conj	_
+13	in	in	IN	_	4	prep	4:AM-LOC
+14	Europe	europe	NNP	_	13	pobj	_
+15	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	cars	car	NNS	_	4	nsubj	4:A1=PPT
+4	is	be	VBZ	pb=be.01	0	root	_
+5	that	that	DT	p2=IN	4	attr	4:A2=PRD
+6	in	in	IN	_	4	prep	_
+7	all	all	DT	p2=RB	6	pobj	_
+8	?	?	.	_	4	punct	_
+

@@ -1,0 +1,43 @@
+1	A	a	DT	_	2	det	_
+2	worker	worker	NN	_	8	nsubj	8:A0=PAG
+3	at	at	IN	_	2	prep	_
+4	a	a	DT	_	6	det	_
+5	medical	medical	JJ	_	6	amod	_
+6	lab	lab	NN	_	3	pobj	_
+7	is	be	VBZ	_	8	aux	_
+8	studying	study	VBG	pb=study.01	0	root	_
+9	blood	blood	NN	_	10	nn	_
+10	samples	sample	NNS	_	8	dobj	8:A1=PPT
+11	.	.	.	_	8	punct	_
+
+1	2	0	CD	_	2	num	_
+2	samples	sample	NNS	_	3	nsubj	3:A0
+3	contained	contain	VBD	pb=contain.01	0	root	_
+4	a	a	DT	_	5	det	_
+5	total	total	NN	_	3	dobj	3:A1
+6	of	of	IN	_	5	prep	_
+7	7341	0	CD	_	9	num	_
+8	blood	blood	NN	_	9	nn	_
+9	cells	cell	NNS	_	6	pobj	_
+10	.	.	.	_	3	punct	_
+
+1	The	the	DT	_	3	det	_
+2	first	#ord#	JJ	_	3	amod	_
+3	sample	sample	NN	_	4	nsubj	4:A0
+4	contained	contain	VBD	pb=contain.01	0	root	_
+5	4221	0	CD	_	7	num	_
+6	blood	blood	NN	_	7	nn	_
+7	cells	cell	NNS	_	4	dobj	4:A1
+8	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	blood	blood	NN	_	4	nn	_
+4	cells	cell	NNS	_	5	nsubj	5:A1=PPT
+5	were	be	VBD	pb=be.01	0	root	_
+6	in	in	IN	_	5	prep	5:A2=PRD
+7	the	the	DT	_	9	det	_
+8	second	#ord#	JJ	_	9	amod	_
+9	sample	sample	NN	_	6	pobj	_
+10	?	?	.	_	5	punct	_
+

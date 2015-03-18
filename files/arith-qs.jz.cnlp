@@ -1,0 +1,29 @@
+1	In	in	IN	_	4	prep	4:AM-TMP
+2	March	march	NNP	_	1	pobj	_
+3	it	it	PRP	_	4	nsubj	_
+4	rained	rain	VBD	pb=rain.01	0	root	_
+5	0.81	0	CD	_	6	num	_
+6	inches	inch	NNS	_	4	dobj	4:A1=PPT
+7	.	.	.	_	4	punct	_
+
+1	It	it	PRP	_	2	nsubj	_
+2	rained	rain	VBD	pb=rain.01	0	root	_
+3	0.35	0	CD	_	4	num	_
+4	inches	inch	NNS	_	5	npadvmod	_
+5	less	less	JJR	p2=RBR	2	advmod	_
+6	in	in	IN	_	5	prep	_
+7	April	april	NNP	_	6	pobj	_
+8	than	than	IN	_	5	prep	_
+9	in	in	IN	_	8	prep	_
+10	March	march	NNP	_	9	pobj	_
+11	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	p2=RB	5	dobj	5:R-A1
+3	did	do	VBD	_	5	aux	_
+4	it	it	PRP	_	5	nsubj	_
+5	rain	rain	VB	p2=NN|pb=rain.01	0	root	_
+6	in	in	IN	p2=RP	5	prep	5:AM-TMP
+7	April	april	NNP	_	6	pobj	_
+8	?	?	.	_	5	punct	_
+

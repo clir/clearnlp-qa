@@ -1,0 +1,38 @@
+1	Christina	christina	NNP	_	3	nsubj	3:A0=PAG
+2	just	just	RB	_	3	advmod	3:AM-ADV
+3	transferred	transfer	VBD	pb=transfer.01	0	root	_
+4	$	$	$	_	5	nmod	_
+5	69	0	CD	_	3	dobj	3:A1=PPT
+6	out	out	IN	_	3	prep	3:A3=DIR
+7	of	of	IN	_	6	prep	_
+8	her	her	PRP$	_	10	poss	_
+9	bank	bank	NN	_	10	nn	_
+10	account	account	NN	_	7	pobj	_
+11	.	.	.	_	3	punct	_
+
+1	As	as	IN	_	8	prep	8:AM-DIS
+2	a	a	DT	_	3	det	_
+3	result	result	NN	_	1	pobj	_
+4	,	,	,	_	8	punct	_
+5	the	the	DT	_	6	det	_
+6	account	account	NN	_	8	nsubj	8:A0=PAG
+7	now	now	RB	_	8	advmod	8:AM-TMP
+8	has	have	VBZ	pb=have.03	0	root	_
+9	$	$	$	_	10	nmod	_
+10	26935	0	CD	_	8	dobj	8:A1=PPT
+11	in	in	IN	_	10	prep	_
+12	it	it	PRP	_	11	pobj	_
+13	.	.	.	_	8	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	_	3	amod	_
+3	money	money	NN	_	4	nsubj	4:A1=PPT
+4	was	be	VBD	pb=be.01	0	root	_
+5	in	in	IN	_	4	prep	4:A2=PRD
+6	the	the	DT	_	7	det	_
+7	account	account	NN	_	5	pobj	_
+8	before	before	IN	_	7	prep	_
+9	the	the	DT	_	10	det	_
+10	transfer	transfer	NN	_	8	pobj	_
+11	?	?	.	_	4	punct	_
+

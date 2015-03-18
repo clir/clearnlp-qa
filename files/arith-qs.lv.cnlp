@@ -1,0 +1,28 @@
+1	Sara	sara	NNP	_	2	nsubj	2:A0=PAG
+2	picked	pick	VBD	pb=pick.01	0	root	_
+3	35	0	CD	_	4	num	_
+4	pears	pear	NNS	_	2	dobj	2:A1=PPT
+5	and	and	CC	_	4	cc	_
+6	27	0	CD	_	7	num	_
+7	apples	apple	NNS	_	4	conj	_
+8	from	from	IN	_	7	prep	_
+9	the	the	DT	_	10	det	_
+10	orchard	orchard	NN	_	8	pobj	_
+11	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PAG
+2	gave	give	VBD	pb=give.01	0	root	_
+3	28	0	CD	_	4	num	_
+4	pears	pear	NNS	_	2	dobj	2:A1=PPT
+5	to	to	IN	_	2	prep	2:A2=GOL
+6	Dan	dan	NNP	_	5	pobj	_
+7	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	pears	pear	NNS	_	6	dobj	6:R-A1
+4	does	do	VBZ	_	6	aux	_
+5	Sara	sara	NNP	_	6	nsubj	6:A0=PAG
+6	have	have	VB	pb=have.03	0	root	_
+7	?	?	.	_	6	punct	_
+

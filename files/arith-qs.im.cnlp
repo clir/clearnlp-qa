@@ -1,0 +1,47 @@
+1	During	during	IN	_	9	prep	9:AM-TMP
+2	a	a	DT	_	5	det	_
+3	canned	canned	JJ	p2=VBN	5	amod	_
+4	food	food	NN	_	5	nn	_
+5	drive	drive	NN	_	1	pobj	_
+6	,	,	,	_	9	punct	_
+7	items	item	NNS	_	9	nsubjpass	9:A1=PPT
+8	were	be	VBD	_	9	auxpass	_
+9	sorted	sort	VBN	pb=sort.01	0	root	_
+10	into	into	IN	_	9	prep	9:A2=MNR
+11	bins	bin	NNS	_	10	pobj	_
+12	.	.	.	_	9	punct	_
+
+1	The	the	DT	_	2	det	_
+2	drive	drive	NN	_	3	nsubj	3:A1=PPT
+3	resulted	result	VBD	pb=result.01	0	root	_
+4	in	in	IN	_	3	prep	3:A2=LOC
+5	0.125	0	CD	_	6	num	_
+6	bin	bin	NN	p2=NNS	4	pobj	_
+7	of	of	IN	_	6	prep	_
+8	soup	soup	NN	_	7	pobj	_
+9	,	,	,	_	8	punct	_
+10	0.125	0	CD	p2=NFP	11	num	_
+11	bin	bin	NN	p2=NNS	8	conj	_
+12	of	of	IN	_	11	prep	_
+13	vegetables	vegetable	NNS	_	12	pobj	_
+14	,	,	,	_	11	punct	_
+15	and	and	CC	_	11	cc	_
+16	0.5	0	CD	_	17	num	_
+17	bin	bin	NN	p2=NNS	11	conj	_
+18	of	of	IN	_	17	prep	_
+19	pasta	pasta	NN	_	18	pobj	_
+20	.	.	.	_	3	punct	_
+
+1	Altogether	altogether	RB	_	10	advmod	10:AM-DIS
+2	,	,	,	_	10	punct	_
+3	how	how	WRB	_	4	advmod	_
+4	many	many	JJ	_	5	amod	_
+5	bins	bin	NNS	_	10	dobj	10:R-A2
+6	would	would	MD	_	10	aux	10:AM-MOD
+7	the	the	DT	_	9	det	_
+8	canned	can	VBN	p2=JJ|pb=can.01	9	amod	_
+9	food	food	NN	_	10	nsubj	8:A1=PPT;10:A1=PPT
+10	take	take	VB	pb=take.13	0	root	_
+11	up	up	RP	_	10	prt	10:C-V
+12	?	?	.	_	10	punct	_
+

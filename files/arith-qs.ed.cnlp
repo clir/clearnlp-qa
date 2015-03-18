@@ -1,0 +1,27 @@
+1	Mary	mary	NNP	_	2	nsubj	2:A0=PAG
+2	had	have	VBD	pb=have.03	0	root	_
+3	8	0	CD	_	4	num	_
+4	potatoes	potato	NNS	_	2	dobj	2:A1=PPT
+5	in	in	IN	_	2	prep	2:AM-LOC
+6	the	the	DT	_	7	det	_
+7	garden	garden	NN	_	5	pobj	_
+8	.	.	.	_	2	punct	_
+
+1	The	the	DT	_	2	det	_
+2	rabbits	rabbit	NNS	p2=NN	3	nsubj	3:A0=PAG
+3	ate	eat	VBD	pb=eat.01	0	root	_
+4	3	0	CD	_	3	dobj	3:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	the	the	DT	_	7	det	_
+7	potatoes	potato	NNS	_	5	pobj	_
+8	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	potatoes	potato	NNS	_	7	dobj	7:R-A1
+4	does	do	VBZ	_	7	aux	_
+5	Mary	mary	NNP	_	7	nsubj	7:A0=PAG
+6	now	now	RB	_	7	advmod	7:AM-TMP
+7	have	have	VB	p2=VBP|pb=have.03	0	root	_
+8	?	?	.	_	7	punct	_
+

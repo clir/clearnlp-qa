@@ -1,0 +1,37 @@
+1	Kaleen	kaleen	NNP	p2=VBN	2	nsubj	2:A0=PAG
+2	filled	fill	VBD	pb=fill.01	0	root	_
+3	a	a	DT	_	4	det	_
+4	bucket	bucket	NN	_	2	dobj	2:A1=GOL
+5	with	with	IN	_	2	prep	2:A2=PPT
+6	0.75	0	CD	_	7	num	_
+7	gallon	gallon	NN	p2=NNS	5	pobj	_
+8	of	of	IN	_	7	prep	_
+9	water	water	NN	_	8	pobj	_
+10	.	.	.	_	2	punct	_
+
+1	A	a	DT	_	2	quantmod	_
+2	few	few	JJ	_	3	num	_
+3	minutes	minute	NNS	_	4	npadvmod	_
+4	later	later	RB	p2=RBR	7	advmod	7:AM-TMP
+5	,	,	,	_	7	punct	_
+6	she	she	PRP	_	7	nsubj	7:A0=PAG
+7	realized	realize	VBD	pb=realize.01	0	root	_
+8	only	only	RB	_	9	advmod	_
+9	0.5	0	CD	_	10	num	_
+10	gallon	gallon	NN	_	13	nsubj	13:A1=PPT
+11	of	of	IN	_	10	prep	_
+12	water	water	NN	_	11	pobj	_
+13	remained	remain	VBD	pb=remain.01	7	ccomp	7:A1=PPT
+14	.	.	.	_	7	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	JJ	_	3	amod	_
+3	water	water	NN	_	5	nsubj	5:A1=PPT
+4	had	have	VBD	_	5	aux	_
+5	leaked	leak	VBN	pb=leak.01	0	root	_
+6	out	out	IN	_	5	prep	5:AM-DIR
+7	of	of	IN	_	6	prep	_
+8	the	the	DT	_	9	det	_
+9	bucket	bucket	NN	_	7	pobj	_
+10	?	?	.	_	5	punct	_
+

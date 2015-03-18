@@ -1,0 +1,35 @@
+1	A	a	DT	_	3	det	_
+2	dust	dust	NN	_	3	nn	_
+3	storm	storm	NN	_	4	nsubj	4:A1=PPT
+4	sweeps	sweep	VBZ	pb=sweep.02	0	root	_
+5	across	across	IN	_	4	prep	4:A2=LOC
+6	the	the	DT	_	7	det	_
+7	prairie	prairie	NN	_	5	pobj	_
+8	.	.	.	_	4	punct	_
+
+1	It	it	PRP	_	2	nsubj	12:A0;2:A2
+2	covers	cover	VBZ	pb=cover.01	0	root	_
+3	64535	0	CD	_	4	num	_
+4	acres	acre	NNS	_	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	the	the	DT	_	7	det	_
+7	prairie	prairie	NN	_	5	pobj	_
+8	in	in	IN	_	7	prep	_
+9	dust	dust	NN	_	8	pobj	_
+10	,	,	,	_	2	punct	_
+11	but	but	CC	_	2	cc	_
+12	leaves	leave	VBZ	pb=leave.01	2	conj	_
+13	522	0	CD	_	14	num	_
+14	acres	acre	NNS	_	12	dobj	12:A1=DIR
+15	untouched	untouched	JJ	_	12	oprd	12:A2=PRD
+16	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	acres	acre	NNS	_	7	dobj	7:R-A1
+4	does	do	VBZ	_	7	aux	_
+5	the	the	DT	_	6	det	_
+6	prairie	prairie	NN	p2=JJ	7	nsubj	7:A2
+7	cover	cover	VB	pb=cover.01	0	root	_
+8	?	?	.	_	7	punct	_
+

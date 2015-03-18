@@ -1,0 +1,52 @@
+1	A	a	DT	_	2	det	_
+2	ship	ship	NN	_	0	root	_
+3	full	full	JJ	_	2	amod	_
+4	of	of	IN	_	3	prep	_
+5	grain	grain	NN	_	6	nn	_
+6	crashes	crash	NNS	p2=VBZ	4	pobj	_
+7	into	into	IN	_	2	prep	_
+8	a	a	DT	_	10	det	_
+9	coral	coral	NN	p2=JJ	10	nn	_
+10	reef	reef	NN	_	7	pobj	_
+11	.	.	.	_	2	punct	_
+
+1	By	by	IN	_	14	prep	14:AM-TMP
+2	the	the	DT	_	3	det	_
+3	time	time	NN	_	1	pobj	7:AM-TMP
+4	the	the	DT	_	5	det	_
+5	ship	ship	NN	_	7	nsubjpass	7:A1=PPT
+6	is	be	VBZ	_	7	auxpass	_
+7	fixed	fix	VBN	pb=fix.03	3	rcmod	_
+8	,	,	,	_	14	punct	_
+9	49952	0	CD	_	10	num	_
+10	tons	ton	NNS	_	14	nsubj	14:A1=PPT
+11	of	of	IN	_	10	prep	_
+12	grain	grain	NN	_	11	pobj	_
+13	have	have	VBP	_	14	aux	_
+14	spilled	spill	VBN	pb=spill.01	0	root	_
+15	into	into	IN	_	14	prep	14:A2=LOC
+16	the	the	DT	_	17	det	_
+17	water	water	NN	_	15	pobj	_
+18	.	.	.	_	14	punct	_
+
+1	Only	only	RB	_	2	advmod	_
+2	918	0	CD	_	3	num	_
+3	tons	ton	NNS	_	6	nsubj	6:A1=PPT
+4	of	of	IN	_	3	prep	_
+5	grain	grain	NN	_	4	pobj	_
+6	remain	remain	VBP	pb=remain.01	0	root	_
+7	onboard	onboard	RB	p2=IN	6	acomp	6:A3=PRD
+8	.	.	.	_	6	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	tons	ton	NNS	_	10	dobj	10:R-A1
+4	of	of	IN	_	3	prep	_
+5	grain	grain	NN	_	4	pobj	_
+6	did	do	VBD	_	10	aux	_
+7	the	the	DT	_	8	det	_
+8	ship	ship	NN	_	10	nsubj	10:A0
+9	originally	originally	RB	_	10	advmod	10:AM-TMP
+10	contain	contain	VBP	p2=VB|pb=contain.01	0	root	_
+11	?	?	.	_	10	punct	_
+

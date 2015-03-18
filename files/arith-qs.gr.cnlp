@@ -1,0 +1,32 @@
+1	Oscar	oscar	NNP	_	4	poss	_
+2	's	's	POS	_	1	possessive	_
+3	bus	bus	NN	_	4	nn	_
+4	ride	ride	NN	p2=VB	7	nsubj	7:A1=PPT
+5	to	to	IN	_	4	prep	_
+6	school	school	NN	_	5	pobj	_
+7	is	be	VBZ	pb=be.01	0	root	_
+8	0.75	0	CD	_	9	num	_
+9	mile	mile	NN	_	7	attr	7:A2=PRD
+10	and	and	CC	_	7	cc	_
+11	Charlie	charlie	NNP	_	14	poss	_
+12	's	's	POS	_	11	possessive	_
+13	bus	bus	NN	_	14	nn	_
+14	ride	ride	NN	_	15	nsubj	15:A1=PPT
+15	is	be	VBZ	pb=be.01	7	conj	_
+16	0.25	0	CD	_	17	num	_
+17	mile	mile	NN	_	15	attr	15:A2=PRD
+18	.	.	.	_	15	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	RB	p2=JJ	3	advmod	_
+3	longer	long	JJR	p2=RBR	4	advmod	4:A2=PRD
+4	is	be	VBZ	pb=be.01	0	root	_
+5	Oscar	oscar	NNP	_	8	poss	_
+6	's	's	POS	_	5	possessive	_
+7	bus	bus	NN	_	8	nn	_
+8	ride	ride	NN	p2=RB	4	nsubj	4:A1=PPT
+9	than	than	IN	_	8	prep	_
+10	Charlie	charlie	NNP	_	9	pobj	_
+11	's	's	POS	_	10	possessive	_
+12	?	?	.	_	4	punct	_
+

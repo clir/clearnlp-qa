@@ -1,0 +1,34 @@
+1	Mary	mary	NNP	_	3	nsubj	3:A0=PAG
+2	is	be	VBZ	_	3	aux	_
+3	baking	bake	VBG	pb=bake.01	0	root	_
+4	a	a	DT	_	5	det	_
+5	cake	cake	NN	_	3	dobj	3:A1=PPT
+6	.	.	.	_	3	punct	_
+
+1	The	the	DT	_	2	det	_
+2	recipe	recipe	NN	_	3	nsubj	3:A0=PAG
+3	wants	want	VBZ	pb=want.01	0	root	_
+4	8	0	CD	_	5	num	_
+5	cups	cup	NNS	_	3	dobj	3:A1=PPT
+6	of	of	IN	_	5	prep	_
+7	flour	flour	NN	_	6	pobj	_
+8	.	.	.	_	3	punct	_
+
+1	She	she	PRP	_	3	nsubj	3:A0=PAG
+2	already	already	RB	_	3	advmod	3:AM-TMP
+3	put	put	VBD	p2=VBN|pb=put.05	0	root	_
+4	in	in	IN	p2=RP	3	prep	3:C-V
+5	2	0	CD	_	6	num	_
+6	cups	cup	NNS	_	4	pobj	_
+7	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	cups	cup	NNS	_	6	dobj	6:R-A1
+4	does	do	VBZ	_	6	aux	_
+5	she	she	PRP	_	6	nsubj	6:A0=PAG;8:A0=PAG
+6	need	need	VB	pb=need.01	0	root	_
+7	to	to	TO	_	8	aux	_
+8	add	add	VB	pb=add.02	6	xcomp	6:AM-PRP
+9	?	?	.	_	6	punct	_
+

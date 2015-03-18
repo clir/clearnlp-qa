@@ -1,0 +1,36 @@
+1	A	a	DT	_	4	det	_
+2	bathing	bathing	NN	_	3	nn	_
+3	suit	suit	NN	_	4	nn	_
+4	manufacturer	manufacturer	NN	_	5	nsubj	5:A0=PAG
+5	has	have	VBZ	pb=have.03	0	root	_
+6	a	a	DT	_	7	det	_
+7	supply	supply	NN	_	5	dobj	5:A1=PPT
+8	of	of	IN	_	7	prep	_
+9	14797	0	CD	_	11	num	_
+10	bathing	bathing	NN	_	11	nn	_
+11	suits	suit	NNS	_	8	pobj	_
+12	for	for	IN	_	11	prep	_
+13	men	man	NNS	_	12	pobj	_
+14	.	.	.	_	5	punct	_
+
+1	In	in	IN	_	5	prep	5:AM-DIS
+2	addition	addition	NN	_	1	pobj	_
+3	,	,	,	_	5	punct	_
+4	it	it	PRP	_	5	nsubj	5:A0=PAG
+5	has	have	VBZ	pb=have.03	0	root	_
+6	4969	0	CD	_	8	num	_
+7	bathing	bathing	NN	_	8	nn	_
+8	suits	suit	NNS	_	5	dobj	5:A1=PPT
+9	for	for	IN	_	8	prep	_
+10	women	woman	NNS	_	9	pobj	_
+11	.	.	.	_	5	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	4	amod	_
+3	bathing	bathing	NN	_	4	nn	_
+4	suits	suit	NNS	_	5	nsubj	5:A1=PPT
+5	are	be	VBP	pb=be.01	0	root	_
+6	available	available	JJ	_	5	acomp	5:A2=PRD
+7	overall	overall	RB	p2=JJ	5	advmod	5:AM-TMP
+8	?	?	.	_	5	punct	_
+

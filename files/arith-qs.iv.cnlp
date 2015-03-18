@@ -1,0 +1,41 @@
+1	Ellen	ellen	NNP	_	2	nsubj	2:A0=PAG
+2	made	make	VBD	p2=VBN|pb=make.01	0	root	_
+3	smoothies	smoothy	NNS	_	2	dobj	2:A1=PRD
+4	in	in	IN	_	2	prep	2:AM-LOC
+5	the	the	DT	_	6	det	_
+6	blender	blender	NN	_	4	pobj	_
+7	.	.	.	_	2	punct	_
+
+1	She	she	PRP	_	2	nsubj	2:A0=PAG
+2	used	use	VBD	pb=use.01	0	root	_
+3	0.2	0	CD	_	4	num	_
+4	cup	cup	NN	_	2	dobj	2:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	strawberries	strawberry	NNS	_	5	pobj	_
+7	,	,	,	_	4	punct	_
+8	0.1	0	CD	_	9	num	_
+9	cup	cup	NN	_	4	conj	_
+10	of	of	IN	_	9	prep	_
+11	yogurt	yogurt	NN	p2=PRP	10	pobj	_
+12	,	,	,	_	9	punct	_
+13	and	and	CC	_	9	cc	_
+14	0.2	0	CD	_	15	num	_
+15	cup	cup	NN	_	9	conj	_
+16	of	of	IN	_	15	prep	_
+17	orange	orange	NN	p2=JJ	18	nn	_
+18	juice	juice	NN	_	16	pobj	_
+19	.	.	.	_	2	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	cups	cup	NNS	_	8	dobj	8:R-A1
+4	of	of	IN	_	3	prep	_
+5	ingredients	ingredient	NNS	_	4	pobj	_
+6	did	do	VBD	_	8	aux	_
+7	Ellen	ellen	NNP	_	8	nsubj	8:A0=PAG
+8	use	use	VB	p2=NN|pb=use.01	0	root	_
+9	for	for	IN	_	8	prep	8:A2=PRP
+10	the	the	DT	_	11	det	_
+11	smoothies	smoothy	NNS	_	9	pobj	_
+12	?	?	.	_	8	punct	_
+

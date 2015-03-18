@@ -1,0 +1,41 @@
+1	Suzie	suzie	NNP	p2=VB	2	nsubj	2:A0=PAG;9:A0=PAG
+2	found	find	VBD	pb=find.01	0	root	_
+3	2	0	CD	_	4	num	_
+4	worms	worm	NNS	_	2	dobj	2:A1=PPT
+5	in	in	IN	_	4	prep	_
+6	the	the	DT	_	7	det	_
+7	yard	yard	NN	_	5	pobj	_
+8	and	and	CC	_	2	cc	_
+9	measured	measure	VBD	pb=measure.01	2	conj	_
+10	them	them	PRP	_	9	dobj	9:A1=PPT
+11	with	with	IN	_	9	prep	9:A2=MNR
+12	a	a	DT	_	13	det	_
+13	ruler	ruler	NN	_	11	pobj	_
+14	.	.	.	_	2	punct	_
+
+1	1	0	CD	_	2	num	_
+2	worm	worm	NN	_	3	nsubj	3:A1=PPT
+3	was	be	VBD	pb=be.01	0	root	_
+4	0.8	0	CD	_	5	num	_
+5	inch	inch	NN	_	6	npadvmod	_
+6	long	long	RB	p2=JJ	3	advmod	3:AM-TMP
+7	.	.	.	_	3	punct	_
+
+1	The	the	DT	_	3	det	_
+2	other	other	JJ	_	3	amod	_
+3	worm	worm	NN	_	4	nsubj	4:A1=PPT
+4	was	be	VBD	pb=be.01	0	root	_
+5	0.1	0	CD	_	6	num	_
+6	inch	inch	NN	_	7	npadvmod	_
+7	long	long	RB	p2=JJ	4	advmod	4:AM-TMP
+8	.	.	.	_	4	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	much	much	RB	p2=JJ	3	advmod	_
+3	longer	long	RBR	p2=JJR	4	advmod	4:AM-TMP
+4	was	be	VBD	pb=be.01	0	root	_
+5	the	the	DT	_	7	det	_
+6	longer	long	JJR	p2=RBR	7	amod	_
+7	worm	worm	NN	_	4	nsubj	4:A1=PPT
+8	?	?	.	_	4	punct	_
+

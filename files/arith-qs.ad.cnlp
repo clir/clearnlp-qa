@@ -1,0 +1,37 @@
+1	Sara	sara	NNP	_	4	poss	_
+2	's	's	POS	_	1	possessive	_
+3	high	high	JJ	_	4	amod	_
+4	school	school	NN	_	5	nsubj	5:A0=PAG
+5	played	play	VBD	pb=play.01	0	root	_
+6	12	0	CD	_	8	num	_
+7	basketball	basketball	NN	_	8	nn	_
+8	games	game	NNS	_	5	dobj	5:A1=PPT
+9	this	this	DT	_	10	det	_
+10	year	year	NN	_	5	npadvmod	5:AM-TMP
+11	.	.	.	_	5	punct	_
+
+1	The	the	DT	_	2	det	_
+2	team	team	NN	_	3	nsubj	3:A0=PAG
+3	won	win	VBD	pb=win.01	0	root	_
+4	most	most	JJS	_	3	dobj	3:A1=PPT
+5	of	of	IN	_	4	prep	_
+6	their	their	PRP$	_	7	poss	_
+7	games	game	NNS	_	5	pobj	_
+8	.	.	.	_	3	punct	_
+
+1	They	they	PRP	_	3	nsubjpass	3:A1=PPT
+2	were	be	VBD	_	3	auxpass	_
+3	defeated	defeat	VBN	pb=defeat.01	0	root	_
+4	during	during	IN	_	3	prep	3:AM-TMP
+5	4	0	CD	_	6	num	_
+6	games	game	NNS	_	4	pobj	_
+7	.	.	.	_	3	punct	_
+
+1	How	how	WRB	_	2	advmod	_
+2	many	many	JJ	_	3	amod	_
+3	games	game	NNS	_	6	dobj	6:R-A1
+4	did	do	VBD	_	6	aux	_
+5	they	they	PRP	_	6	nsubj	6:A0=PAG
+6	win	win	VB	pb=win.01	0	root	_
+7	?	?	.	_	6	punct	_
+
