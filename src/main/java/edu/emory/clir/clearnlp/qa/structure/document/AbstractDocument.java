@@ -17,8 +17,14 @@ package edu.emory.clir.clearnlp.qa.structure.document;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import edu.emory.clir.clearnlp.collection.pair.Pair;
+import edu.emory.clir.clearnlp.collection.set.DisjointSet;
+import edu.emory.clir.clearnlp.coreference.AbstractCoreferenceResolution;
+import edu.emory.clir.clearnlp.coreference.EnglishCoreferenceResolution;
+import edu.emory.clir.clearnlp.coreference.mention.Mention;
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.pos.POSLibEn;
@@ -30,10 +36,10 @@ import edu.emory.clir.clearnlp.qa.util.StringUtils;
 
 public abstract class AbstractDocument implements Serializable
 {
-	private static final long serialVersionUID = -7660427524131511673L;
+	private static final long serialVersionUID  = -7660427524131511673L;
 	private Map<DEPNode,Instance> m_instances;
 	private Map<Instance,Entity>  m_entities;
-	
+
 	public AbstractDocument()
 	{
 		m_instances = new HashMap<>();
@@ -41,6 +47,8 @@ public abstract class AbstractDocument implements Serializable
 	}
 	
 	public abstract void addInstances(DEPTree tree);
+
+    public abstract void addInstances(List<DEPTree> tree);
 	
 	public void coreference(DEPNode node1, DEPNode node2)
 	{
@@ -184,6 +192,11 @@ public abstract class AbstractDocument implements Serializable
             }
 
             sb.append("\n");
+        }
+
+        for (Map.Entry<Instance, Entity> entry: m_entities.entrySet())
+        {
+            sb.append("Instance: " + entry.getKey().getDepNode().getLemma() + ", in entity: " + entry.getValue() + "\n");
         }
 
         return sb.toString();

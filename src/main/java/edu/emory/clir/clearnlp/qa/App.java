@@ -12,6 +12,7 @@ import edu.emory.clir.clearnlp.util.IOUtils;
 import edu.emory.clir.clearnlp.util.arc.SRLArc;
 import edu.emory.clir.clearnlp.util.lang.TLanguage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,18 +27,21 @@ public class App
     {
         document = new EnglishDocument();
 
-        String filename = "emory.txt.cnlp";
+        String filename = "arith-qs.ak.cnlp";
         TSVReader reader = new TSVReader(0,1,2,3,4,5,6,7);
         reader.open(IOUtils.createFileInputStream(filename));
+        List<DEPTree> treeList = new ArrayList();
 
         DEPTree tree = null;
 
         while ((tree = reader.next()) != null)
         {
-            document.addInstances(tree);
-            System.out.println("Document mapped to structure:");
-            System.out.println(document);
+            treeList.add(tree);
         }
+
+        document.addInstances(treeList);
+        System.out.println("Document mapped to structure:");
+        System.out.println(document);
     }
 
 

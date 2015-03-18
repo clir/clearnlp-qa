@@ -15,6 +15,11 @@
  */
 package edu.emory.clir.clearnlp.qa.structure.document;
 
+import edu.emory.clir.clearnlp.collection.pair.Pair;
+import edu.emory.clir.clearnlp.collection.set.DisjointSet;
+import edu.emory.clir.clearnlp.coreference.AbstractCoreferenceResolution;
+import edu.emory.clir.clearnlp.coreference.EnglishCoreferenceResolution;
+import edu.emory.clir.clearnlp.coreference.mention.Mention;
 import edu.emory.clir.clearnlp.dependency.DEPLib;
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
@@ -25,6 +30,9 @@ import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 import edu.emory.clir.clearnlp.qa.util.StringUtils;
 import edu.emory.clir.clearnlp.util.arc.SRLArc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
@@ -32,76 +40,95 @@ import edu.emory.clir.clearnlp.util.arc.SRLArc;
 
 public class EnglishDocument extends AbstractDocument
 {
+    private List<DEPTree> depTreeList = new ArrayList();
 	private static final long serialVersionUID = -1190545348244741736L;
-	
-	@Override
-	public void addInstances(DEPTree tree)
-	{
-		for (DEPNode node : tree)
-		{
-            if (POSLibEn.isPunctuation(node.getPOSTag()))
-            {
+
+    private AbstractCoreferenceResolution coRef = new EnglishCoreferenceResolution();
+    private Pair<List<Mention>,DisjointSet> coRefEntities;
+
+    @Override
+    public void addInstances(DEPTree tree)
+    {
+
+        for (DEPNode node : tree) {
+            if (POSLibEn.isPunctuation(node.getPOSTag())) {
                 continue;
             }
 
-            Instance nodeInstance       = null;
-            DEPNode headNode            = node.getHead();
-            Instance headInstance       = null;
+            Instance nodeInstance = null;
+            DEPNode headNode = node.getHead();
+            Instance headInstance = null;
 
-            SemanticType semanticType   = null;
+            SemanticType semanticType = null;
             AttributeType attributeType = null;
 
             /* Create if necessary instances of node and headNode */
-            if ((nodeInstance = getInstance(node)) == null)
-            {
+            if ((nodeInstance = getInstance(node)) == null) {
                 nodeInstance = new Instance(node);
                 addInstance(node, nodeInstance);
             }
 
-            if ((headInstance = getInstance(headNode)) == null)
-            {
+            if ((headInstance = getInstance(headNode)) == null) {
                 headInstance = new Instance(headNode);
                 addInstance(headNode, headInstance);
             }
 
             /* Check if is Argument of the head */
-            if (headNode != null && (semanticType = getArgument(headNode, node)) != null)
-            {
+            if (headNode != null && (semanticType = getArgument(headNode, node)) != null) {
                 headInstance.putArgumentList(semanticType, nodeInstance);
                 nodeInstance.putPredicateList(semanticType, headInstance);
             }
             /* Check if is Attribute of the head */
-            else if ((attributeType = getAttribute(headNode, node)) != null)
-            {
+            else if ((attributeType = getAttribute(headNode, node)) != null) {
                 headInstance.putAttribute(attributeType, nodeInstance);
                 nodeInstance.putAttribute(attributeType, headInstance);
 
             }
             /* Otherwise, store the syntactic relation */
-            else
-            {
+            else {
                 semanticType = StringUtils.extractSemanticRelation(node.getLabel());
                 headInstance.putArgumentList(semanticType, nodeInstance);
                 nodeInstance.putArgumentList(semanticType, headInstance);
             }
+        }
+    }
 
-            /* Perform entity check for instance */
-		}
-	}
-
-    private String parseSemanticRelation(String label)
+	@Override
+	public void addInstances(List<DEPTree> treeList)
     {
-        if (label.contains("-"))
+        /* Add each tree */
+        for (DEPTree depTree: treeList)
         {
-            return label.split("-")[1];
+            addInstances(depTree);
         }
-        else if (label.contains("="))
+
+        /* Get Coreference resolutions */
+        depTreeList.addAll(treeList);
+        coRefEntities = coRef.getEntities(depTreeList);
+
+//        for (int i = 0; i < coRefEntities.o1.size(); i++)
+//        {
+//            System.out.println("MentionList[" + i +"] = " + coRefEntities.o1.get(i).getNode());
+//        }
+//
+//        System.out.println("Set = " + coRefEntities.o2.toString());
+//
+//        System.out.println("Coref = " + coRefEntities);
+
+        processCoReference();
+    }
+
+    private void processCoReference()
+    {
+        int i = 0;
+        for (; i < coRefEntities.o1.size(); i++)
         {
-            return label.split("=")[0];
-        }
-        else
-        {
-            return label;
+            if (coRefEntities.o2.find(i) != -1)
+            {
+                DEPNode n1 = coRefEntities.o1.get(i).getNode();
+                DEPNode n2 = coRefEntities.o1.get(coRefEntities.o2.find(i)).getNode();
+                coreference(n1, n2);
+            }
         }
     }
 }
