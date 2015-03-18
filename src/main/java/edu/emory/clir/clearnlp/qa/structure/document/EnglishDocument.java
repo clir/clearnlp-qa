@@ -115,6 +115,7 @@ public class EnglishDocument extends AbstractDocument
 //
 //        System.out.println("Coref = " + coRefEntities);
 
+        /* Build entity set */
         processCoReference();
     }
 
