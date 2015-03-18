@@ -86,7 +86,7 @@ public class QuestionReader {
                 depTreeList.add(tree);
             }
 
-            AbstractDocument ed = new EnglishDocument();
+            EnglishDocument ed = new EnglishDocument();
             ed.addInstances(depTreeList);
             return ed;
 
