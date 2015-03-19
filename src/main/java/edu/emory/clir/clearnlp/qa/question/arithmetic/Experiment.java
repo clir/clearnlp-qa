@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Experiment {
     List<String>          questionsText = new ArrayList();
-    List<EnglishDocument> questions = new ArrayList();
+    List<ArithmeticQuestion> questions  = new ArrayList();
 
     public static void main(String[] args) {
 
@@ -26,7 +26,8 @@ public class Experiment {
         QuestionReader reader = new QuestionReader();
 
         try {
-            EnglishDocument ed;
+            ArithmeticQuestion aq;
+            int i = 0;
 
 //            aq = areader.read("files/", "arith-qs.ah");
 //            arithmeticQuestions.add(aq);
@@ -34,12 +35,14 @@ public class Experiment {
 //            System.out.println("States: " + aq.getQuestionTextStateList());
 //            System.out.println("Question State: " + aq.getQuestionState() + "\n");
 
-            while ((ed = reader.read()) != null) {
-                questions.add(ed);
+            while (i < 20 && (aq = reader.read()) != null) {
+                questions.add(aq);
 
-                System.out.println("Question: " + ed);
+                System.out.println("Question: " + aq.getDocument());
+                System.out.println("Question instance: " + aq.getQuestionRoot());
 //                System.out.println("States: " + aq.getQuestionTextStateList());
 //                System.out.println("Question State: " + aq.getQuestionState() + "\n");
+                i++;
             }
         } catch (IOException e) {
             e.printStackTrace();

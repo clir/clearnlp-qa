@@ -1,6 +1,8 @@
 package edu.emory.clir.clearnlp.qa.question.arithmetic;
 
+import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
+import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.document.AbstractDocument;
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
 import edu.emory.clir.clearnlp.qa.structure.document.utils.iterator.DocumentDEPTreeButtomUpIterator;
@@ -39,12 +41,12 @@ public class QuestionReader {
         this.questionsNamePrefix = questionFilesPrefix;
     }
 
-    public EnglishDocument readFile(String questionsDirPrefix, String questionsNamePrefix) throws IOException
+    public ArithmeticQuestion readFile(String questionsDirPrefix, String questionsNamePrefix) throws IOException
     {
         return read(questionsDirPrefix, questionsNamePrefix);
     }
 
-    public EnglishDocument read() throws IOException
+    public ArithmeticQuestion read() throws IOException
     {
         if (currentSuffix == null)
         {
@@ -67,8 +69,9 @@ public class QuestionReader {
         }
     }
 
-    private EnglishDocument readFile(String path) throws IOException{
+    private ArithmeticQuestion readFile(String path) throws IOException{
         BufferedReader bufferedReader;
+        ArithmeticQuestion aq = new ArithmeticQuestion();
         try {
             String questionText = null;
             List<DEPTree> depTreeList = new ArrayList();
@@ -88,7 +91,15 @@ public class QuestionReader {
 
             EnglishDocument ed = new EnglishDocument();
             ed.addInstances(depTreeList);
-            return ed;
+
+            /* Retrieve root instance of question */
+            DEPTree qTree = depTreeList.get(depTreeList.size()-1);
+            DEPNode root = qTree.getFirstRoot();
+            Instance rootInstance = ed.getInstance(root);
+
+            aq.setDocument(ed);
+            aq.setQuestionRoot(rootInstance);
+            return aq;
 
         } catch (FileNotFoundException e)
         {
@@ -99,12 +110,12 @@ public class QuestionReader {
         }
     }
 
-    public EnglishDocument read(String dirPath, String filePath) throws IOException{
+    public ArithmeticQuestion read(String dirPath, String filePath) throws IOException{
         String path = dirPath + filePath;
         return readFile(path);
     }
 
-    public EnglishDocument read(String suffix) throws IOException{
+    public ArithmeticQuestion read(String suffix) throws IOException{
         String path = questionsDirPrefix + questionsNamePrefix + suffix;
         return readFile(path);
     }
