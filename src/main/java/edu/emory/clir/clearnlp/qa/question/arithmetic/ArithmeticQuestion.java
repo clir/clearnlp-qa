@@ -1,7 +1,9 @@
 package edu.emory.clir.clearnlp.qa.question.arithmetic;
 
+import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
+import edu.emory.clir.clearnlp.qa.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,27 @@ public class ArithmeticQuestion {
     public void processQuestion()
     {
         /* Iterate through every instance and look for any numerical word forms */
-        for (Instance inst: document)
+        for (Instance inst: document.getInstances())
+        {
+            DEPNode instNode = document.getDEPNode(inst);
+
+            if (StringUtils.isInteger(instNode.getWordForm()) || StringUtils.isDouble(instNode.getWordForm()))
+            {
+                processState(inst);
+            }
+        }
+
+        /* Process question state */
+        processQuestionState(questionRoot);
+    }
+
+    private void processState(Instance numInstance)
+    {
+
+    }
+
+    private void processQuestionState(Instance rootInstance)
+    {
+
     }
 }
