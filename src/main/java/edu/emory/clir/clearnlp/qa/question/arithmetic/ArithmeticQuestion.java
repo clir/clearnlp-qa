@@ -11,24 +11,50 @@ import java.util.List;
  */
 
 public class ArithmeticQuestion {
-    public EnglishDocument getDocument() {
+    /* Rough part */
+    private EnglishDocument document;
+    private Instance questionRoot;
+    private String questionText;
+
+    public EnglishDocument getDocument()
+    {
         return document;
     }
 
-    public void setDocument(EnglishDocument document) {
+    public void setDocument(EnglishDocument document)
+    {
         this.document = document;
     }
 
-    public Instance getQuestionRoot() {
+    public Instance getQuestionRoot()
+    {
         return questionRoot;
     }
 
-    public void setQuestionRoot(Instance questionRoot) {
+    public void setQuestionRoot(Instance questionRoot)
+    {
         this.questionRoot = questionRoot;
     }
 
-    private EnglishDocument document;
-    private Instance questionRoot;
+    public String getQuestionText()
+    {
+        return questionText;
+    }
 
+    public void setQuestionText(String questionText)
+    {
+        this.questionText = questionText;
+    }
 
+    /* Actual part of extracted information */
+    private List<String> actors = new ArrayList();
+    private List<String> themes = new ArrayList();
+    private List<String> attrs  = new ArrayList();
+    private List<String> verbs  = new ArrayList();
+
+    public void processQuestion()
+    {
+        /* Iterate through every instance and look for any numerical word forms */
+        for (Instance inst: document)
+    }
 }

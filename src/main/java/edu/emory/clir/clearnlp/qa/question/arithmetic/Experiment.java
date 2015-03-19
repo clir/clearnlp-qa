@@ -23,6 +23,7 @@ public class Experiment {
 
     private void readQuestions()
     {
+        /* Read questions trees */
         QuestionReader reader = new QuestionReader();
 
         try {
@@ -47,6 +48,5 @@ public class Experiment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
