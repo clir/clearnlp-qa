@@ -16,6 +16,7 @@
 package edu.emory.clir.clearnlp.qa.structure.document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,6 +95,11 @@ public abstract class AbstractDocument implements Serializable
     public Instance getInstance(DEPNode node)
     {
         return m_instances.get(node);
+    }
+
+    public List<Instance> getInstances()
+    {
+        return (new ArrayList(m_instances.values()));
     }
 
     public DEPNode getDEPNode(Instance instance)
