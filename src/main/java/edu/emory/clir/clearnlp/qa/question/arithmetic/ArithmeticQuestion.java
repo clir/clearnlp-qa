@@ -1,11 +1,15 @@
 package edu.emory.clir.clearnlp.qa.question.arithmetic;
 
 import edu.emory.clir.clearnlp.dependency.DEPNode;
+import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
+import edu.emory.clir.clearnlp.qa.structure.SemanticType;
+import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
 import edu.emory.clir.clearnlp.qa.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,6 +21,7 @@ public class ArithmeticQuestion {
     private EnglishDocument document;
     private Instance questionRoot;
     private String questionText;
+    private HashMap<Instance,Boolean> visitedInstances = new HashMap();
 
     public EnglishDocument getDocument()
     {
@@ -56,14 +61,17 @@ public class ArithmeticQuestion {
 
     public void processQuestion()
     {
-        /* Iterate through every instance and look for any numerical word forms */
+        /* Iterate through every instance and look for any verbs */
+        List<Instance> verbInstances = new ArrayList();
+
         for (Instance inst: document.getInstances())
         {
             DEPNode instNode = document.getDEPNode(inst);
 
-            if (StringUtils.isInteger(instNode.getWordForm()) || StringUtils.isDouble(instNode.getWordForm()))
+            if (POSLibEn.isVerb(instNode.getPOSTag()))
             {
-                processState(inst);
+                /* If verb, look for any states under it */
+                processVerb(inst);
             }
         }
 
@@ -71,9 +79,19 @@ public class ArithmeticQuestion {
         processQuestionState(questionRoot);
     }
 
-    private void processState(Instance numInstance)
+    private void processVerb(Instance verbInstance)
     {
+        /* Try to retrieve A0 label */
+        Instance actor = null;
 
+        if (verbInstance.getArgumentList(SemanticType.A0) != null
+                && verbInstance.getArgumentList(SemanticType.A0).size() == 1)
+        {
+            actor = verbInstance.getArgumentList(SemanticType.A0).get(0);
+        }
+
+        List<Instance> queue = new ArrayList();
+        queue.add(verbInstance);
     }
 
     private void processQuestionState(Instance rootInstance)
