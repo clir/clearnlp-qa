@@ -61,8 +61,19 @@ public class Instance implements Serializable
 	{
 		return m_attributes.keySet();
 	}
+
+    public List<Instance> getAttributeList()
+    {
+        List<Instance> instanceList = new ArrayList();
+        for (List<Instance> l: m_arguments.values())
+        {
+            instanceList.addAll(l);
+        }
+
+        return instanceList;
+    }
     
-	public List<Instance> getAttribute(AttributeType type)
+	public List<Instance> getAttributeList(AttributeType type)
 	{
 		return m_attributes.get(type);
 	}
@@ -110,6 +121,17 @@ public class Instance implements Serializable
 	{
 		return m_arguments.keySet();
 	}
+
+    public List<Instance> getArgumentList()
+    {
+        List<Instance> instanceList = new ArrayList();
+        for (List<Instance> l: m_arguments.values())
+        {
+            instanceList.addAll(l);
+        }
+
+        return instanceList;
+    }
 	
 	public List<Instance> getArgumentList(SemanticType type)
 	{
