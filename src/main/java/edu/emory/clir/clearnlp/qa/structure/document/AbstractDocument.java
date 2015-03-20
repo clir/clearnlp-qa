@@ -191,7 +191,7 @@ public abstract class AbstractDocument implements Serializable
 
             for (AttributeType type : entry.getValue().getAttributeTypeSet())
             {
-                for (Instance i : entry.getValue().getAttribute(type))
+                for (Instance i : entry.getValue().getAttributeList(type))
                 {
                     sb.append("has an attribute relation " + type.toString() + " to -> " + getDEPNode(i).getWordForm() + "\n");
                 }
