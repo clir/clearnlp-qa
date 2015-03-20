@@ -65,7 +65,7 @@ public class Instance implements Serializable
     public List<Instance> getAttributeList()
     {
         List<Instance> instanceList = new ArrayList();
-        for (List<Instance> l: m_arguments.values())
+        for (List<Instance> l: m_attributes.values())
         {
             instanceList.addAll(l);
         }
