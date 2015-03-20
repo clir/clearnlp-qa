@@ -39,8 +39,8 @@ public class Experiment {
             while (i < 20 && (aq = reader.read()) != null) {
                 questions.add(aq);
 
-                System.out.println("Question: " + aq.getDocument());
-                System.out.println("Question instance: " + aq.getQuestionRoot());
+                //System.out.println("Question: " + aq.getDocument());
+                //System.out.println("Question instance: " + aq.getQuestionRoot());
 //                System.out.println("States: " + aq.getQuestionTextStateList());
 //                System.out.println("Question State: " + aq.getQuestionState() + "\n");
                 i++;

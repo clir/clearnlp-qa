@@ -100,6 +100,7 @@ public class QuestionReader {
             aq.setDocument(ed);
             aq.setQuestionRoot(rootInstance);
             aq.setQuestionText(questionText);
+            aq.processQuestion();
             return aq;
 
         } catch (FileNotFoundException e)
