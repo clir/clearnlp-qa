@@ -170,5 +170,18 @@ public class ArithmeticQuestion {
     {
 
     }
-    
+
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Question text: " + questionText + "\n");
+        sb.append("Verbs: " + verbs + "\n");
+        sb.append("Themes: " + themes + "\n");
+        sb.append("Nums: " + nums + "\n");
+        sb.append("Attrs: " + attrs + "\n");
+        sb.append("Actors: " + actors + "\n");
+
+        return sb.toString();
+    }
 }
