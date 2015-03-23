@@ -36,7 +36,7 @@ public class Experiment {
 //            System.out.println("States: " + aq.getQuestionTextStateList());
 //            System.out.println("Question State: " + aq.getQuestionState() + "\n");
 
-            while (i < 20 && (aq = reader.read()) != null) {
+            while (i < 10 && (aq = reader.read()) != null) {
                 questions.add(aq);
 
                 //System.out.println("Question: " + aq.getDocument());
