@@ -52,11 +52,15 @@ public class ArithmeticQuestion {
     }
 
     /* Actual part of extracted information */
-    private List<String> actors = new ArrayList();
-    private List<String> themes = new ArrayList();
-    private List<String> attrs  = new ArrayList();
-    private List<String> verbs  = new ArrayList();
-    private List<String> nums   = new ArrayList();
+    private List<String> actors     = new ArrayList();
+    private List<String> actorsA2   = new ArrayList();
+    private List<String> themes     = new ArrayList();
+    private List<String> attrs      = new ArrayList();
+    private List<String> verbs      = new ArrayList();
+    private List<String> nums       = new ArrayList();
+
+    /* Additional structures for DEPNodes */
+
 
     public void processQuestion()
     {
@@ -82,12 +86,19 @@ public class ArithmeticQuestion {
     {
         DEPNode verbNode = document.getDEPNode(verbInstance);
         /* Try to retrieve A0 label */
-        Instance actorInstance = null;
+        Instance actorInstance      = null;
+        Instance actorA2Instance    = null;
 
         if (verbInstance.getArgumentList(SemanticType.A0) != null
                 && verbInstance.getArgumentList(SemanticType.A0).size() == 1)
         {
             actorInstance = verbInstance.getArgumentList(SemanticType.A0).get(0);
+        }
+
+        if (verbInstance.getArgumentList(SemanticType.A2) != null
+                && verbInstance.getArgumentList(SemanticType.A2).size() == 1)
+        {
+            actorA2Instance = verbInstance.getArgumentList(SemanticType.A2).get(0);
         }
 
         Queue<Instance> queue = new ArrayDeque();
@@ -122,12 +133,13 @@ public class ArithmeticQuestion {
             /* If this is numerical, extract state */
             if (StringUtils.isInteger(currentNode.getWordForm()) || StringUtils.isDouble(currentNode.getWordForm()))
             {
-                processState(verbInstance, actorInstance, current);
+                processState(verbInstance, actorInstance, actorA2Instance, current);
             }
         }
     }
 
-    private void processState(Instance verbInstance, Instance actorInstance, Instance numInstance)
+    private void processState(Instance verbInstance, Instance actorInstance, Instance actorA2Instance,
+                              Instance numInstance)
     {
         Instance themeInstance  = null;
         Instance attrInstance   = null;
@@ -163,6 +175,7 @@ public class ArithmeticQuestion {
 
         themes.add(themeInstance != null ? document.getDEPNode(themeInstance).getLemma() : "");
         actors.add(actorInstance != null ? document.getDEPNode(actorInstance).getLemma() : "");
+        actorsA2.add(actorA2Instance != null ? document.getDEPNode(actorA2Instance).getLemma() : "");
         attrs.add(attrInstance != null ? document.getDEPNode(attrInstance).getLemma() : "");
     }
 
@@ -181,6 +194,7 @@ public class ArithmeticQuestion {
         sb.append("Nums: " + nums + "\n");
         sb.append("Attrs: " + attrs + "\n");
         sb.append("Actors: " + actors + "\n");
+        sb.append("Actors A2: " + actorsA2 + "\n");
 
         return sb.toString();
     }
