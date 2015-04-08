@@ -27,7 +27,7 @@ public class App
     {
         document = new EnglishDocument();
 
-        String filename = "arith-qs.al.cnlp";
+        String filename = "emory.txt.cnlp";
         TSVReader reader = new TSVReader(0,1,2,3,4,5,6,7);
         reader.open(IOUtils.createFileInputStream(filename));
         List<DEPTree> treeList = new ArrayList();

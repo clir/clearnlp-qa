@@ -1,22 +1,7 @@
-1	John	john	NNP	_	2	nsubj	2:A0=PAG
-2	bought	buy	VBD	pb=buy.01	0	root	_
-3	a	a	DT	_	5	det	_
-4	new	new	JJ	_	5	amod	_
-5	car	car	NN	_	2	dobj	2:A1=PPT
-6	.	.	.	_	2	punct	_
-
-1	The	the	DT	_	2	det	_
-2	car	car	NN	_	3	nsubj	3:A1=PPT
-3	was	be	VBD	pb=be.01	0	root	_
-4	black	black	JJ	_	5	amod	_
-5	SUV	suv	NN	p2=NNP	3	attr	3:A2=PRD
-6	.	.	.	_	3	punct	_
-
-1	He	he	PRP	_	2	nsubj	2:A0=PAG
-2	sold	sell	VBD	pb=sell.01	0	root	_
-3	his	his	PRP$	_	5	poss	_
-4	old	old	JJ	_	5	amod	_
-5	car	car	NN	_	2	dobj	2:A1=PPT
+1	John	john	NNP	_	2	nsubj	2:A0=PPT
+2	went	go	VBD	pb=go.02	0	root	_
+3	to	to	IN	_	2	prep	2:A4=GOL
+4	a	a	DT	_	5	det	_
+5	bookstore	bookstore	NN	_	3	pobj	_
 6	yesterday	yesterday	NN	_	2	npadvmod	2:AM-TMP
 7	.	.	.	_	2	punct	_
-
