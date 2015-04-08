@@ -31,7 +31,9 @@ import edu.emory.clir.clearnlp.qa.util.StringUtils;
 import edu.emory.clir.clearnlp.util.arc.SRLArc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -59,7 +61,7 @@ public class EnglishDocument extends AbstractDocument
             DEPNode headNode = node.getHead();
             Instance headInstance = null;
 
-            SemanticType semanticType = null;
+            Map<SemanticType, DEPNode> semanticTypeMap = null;
             AttributeType attributeType = null;
 
             /* Create if necessary instances of node and headNode */
@@ -74,21 +76,36 @@ public class EnglishDocument extends AbstractDocument
             }
 
             /* Check if is Argument of the head */
-            if (headNode != null && (semanticType = getArgument(headNode, node)) != null) {
-                headInstance.putArgumentList(semanticType, nodeInstance);
-                nodeInstance.putPredicateList(semanticType, headInstance);
+            if ((semanticTypeMap = getArguments(node)) != null) {
+                Instance SemanticHeadInstance = null;
+                for (Map.Entry<SemanticType,DEPNode> entry: semanticTypeMap.entrySet())
+                {
+                    if ((SemanticHeadInstance = getInstance(entry.getValue())) == null) {
+                        SemanticHeadInstance = new Instance(entry.getValue());
+                        addInstance(entry.getValue(), SemanticHeadInstance);
+                    }
+
+                    nodeInstance.putPredicateList(entry.getKey(), SemanticHeadInstance);
+                    SemanticHeadInstance.putArgumentList(entry.getKey(), nodeInstance);
+                }
             }
             /* Check if is Attribute of the head */
-            else if ((attributeType = getAttribute(headNode, node)) != null) {
+            else if ((attributeType = getAttribute(node)) != null) {
+                /* Connect within two attribute relations */
                 headInstance.putAttribute(attributeType, nodeInstance);
                 nodeInstance.putAttribute(attributeType, headInstance);
+
+                /* Also, connect within regular P-A relation */
+                SemanticType semanticType = StringUtils.getSemanticType(node.getLabel());
+                headInstance.putArgumentList(semanticType, nodeInstance);
+                nodeInstance.putPredicateList(semanticType, headInstance);
 
             }
             /* Otherwise, store the syntactic relation */
             else {
-                semanticType = StringUtils.extractSemanticRelation(node.getLabel());
+                SemanticType semanticType = StringUtils.getSemanticType(node.getLabel());
                 headInstance.putArgumentList(semanticType, nodeInstance);
-                nodeInstance.putArgumentList(semanticType, headInstance);
+                nodeInstance.putPredicateList(semanticType, headInstance);
             }
         }
     }

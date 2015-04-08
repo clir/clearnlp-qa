@@ -3,23 +3,35 @@ package edu.emory.clir.clearnlp.qa.util;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 
 public class StringUtils {
-    public static SemanticType extractSemanticRelation(String label)
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isDouble(String s) {
+        try {
+            Double.parseDouble(s);
+        } catch(NumberFormatException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static SemanticType getSemanticType(String relation)
     {
-        if (label == null || label.isEmpty()) return null;
-
-        String relation = "";
-
-        if (label.contains("-"))
+        if (relation.contains("-"))
         {
-            relation = label.split("-")[1];
+            relation = relation.split("-")[1];
         }
-        else if (label.contains("="))
+        else if (relation.contains("="))
         {
-            relation = label.split("=")[0];
-        }
-        else
-        {
-            relation = label;
+            relation = relation.split("=")[0];
         }
 
         switch (relation)
@@ -171,25 +183,5 @@ public class StringUtils {
             default:
                 return null;
         }
-    }
-
-    public static boolean isInteger(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch(NumberFormatException e) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public static boolean isDouble(String s) {
-        try {
-            Double.parseDouble(s);
-        } catch(NumberFormatException e) {
-            return false;
-        }
-
-        return true;
     }
 }

@@ -21,11 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.emory.clir.clearnlp.collection.pair.Pair;
-import edu.emory.clir.clearnlp.collection.set.DisjointSet;
-import edu.emory.clir.clearnlp.coreference.AbstractCoreferenceResolution;
-import edu.emory.clir.clearnlp.coreference.EnglishCoreferenceResolution;
-import edu.emory.clir.clearnlp.coreference.mention.Mention;
 import edu.emory.clir.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.pos.POSLibEn;
@@ -34,6 +29,8 @@ import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 import edu.emory.clir.clearnlp.qa.util.StringUtils;
+import edu.emory.clir.clearnlp.util.arc.DEPArc;
+import edu.emory.clir.clearnlp.util.arc.SRLArc;
 
 public abstract class AbstractDocument implements Serializable
 {
@@ -141,20 +138,27 @@ public abstract class AbstractDocument implements Serializable
 		entity.addInstance(instance);		
 	}
 
-    protected SemanticType getArgument(DEPNode parent, DEPNode child)
+    protected Map<SemanticType, DEPNode> getArguments(DEPNode node)
     {
-        SemanticType semanticType = null;
-        semanticType = StringUtils.extractSemanticRelation(child.getSemanticLabel(parent));
-        return semanticType;
+        if (node.getSemanticHeadArcList() == null) return null;
+
+        Map<SemanticType, DEPNode> semanticTypeMap = new HashMap();
+
+        for (SRLArc srlArc: node.getSemanticHeadArcList())
+        {
+            semanticTypeMap.put(StringUtils.getSemanticType(srlArc.getLabel()), srlArc.getNode());
+        }
+
+        return semanticTypeMap.size() > 0 ? semanticTypeMap : null;
     }
 
-    protected AttributeType getAttribute(DEPNode parent, DEPNode child)
+    protected AttributeType getAttribute(DEPNode child)
     {
         AttributeType attributeType = null;
 
         if (StringUtils.isDouble(child.getWordForm()) || StringUtils.isInteger(child.getWordForm()))
         {
-            /* Quantitive attribute */
+            /* Quantitative attribute */
             attributeType = AttributeType.QUANTITY;
         }
         else if (POSLibEn.isAdjective(child.getPOSTag()))
