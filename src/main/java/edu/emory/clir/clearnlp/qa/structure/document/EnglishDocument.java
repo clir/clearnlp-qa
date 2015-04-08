@@ -51,27 +51,29 @@ public class EnglishDocument extends AbstractDocument
     @Override
     public void addInstances(DEPTree tree)
     {
-        /* add root */
-        DEPNode root = tree.getFirstRoot();
-        Instance rootInstance = new Instance(root.getHead());
-        addInstance(root.getHead(), rootInstance);
-
-        for (DEPNode node: tree)
-        {
-            Instance newInstance = new Instance(node);
-            addInstance(node, newInstance);
-        }
 
         for (DEPNode node : tree) {
             if (POSLibEn.isPunctuation(node.getPOSTag())) {
                 continue;
             }
 
-            Instance nodeInstance       = getInstance(node);
-            DEPNode headNode            = node.getHead();
-            Instance headInstance       = getInstance(headNode);
+            Instance nodeInstance = null;
+            DEPNode headNode = node.getHead();
+            Instance headInstance = null;
 
+            Map<SemanticType, DEPNode> semanticTypeMap = null;
             AttributeType attributeType = null;
+
+            /* Create if necessary instances of node and headNode */
+            if ((nodeInstance = getInstance(node)) == null) {
+                nodeInstance = new Instance(node);
+                addInstance(node, nodeInstance);
+            }
+
+            if ((headInstance = getInstance(headNode)) == null) {
+                headInstance = new Instance(headNode);
+                addInstance(headNode, headInstance);
+            }
 
             /* Check if is Argument of the head */
             if ((semanticTypeMap = getArguments(node)) != null) {
