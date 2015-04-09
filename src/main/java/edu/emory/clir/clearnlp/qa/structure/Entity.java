@@ -15,14 +15,16 @@
  */
 package edu.emory.clir.clearnlp.qa.structure;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
 
-public class Entity
+public class Entity implements Serializable
 {
-	private Set<Instance> s_instances;
+    private static final long serialVersionUID = 1990738058561340684L;
+    private Set<Instance> s_instances;
     
 	public Entity(Instance... instances)
 	{
