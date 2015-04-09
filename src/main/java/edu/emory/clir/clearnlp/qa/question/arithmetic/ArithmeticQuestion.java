@@ -15,13 +15,13 @@ import java.util.*;
  * @author: Tomasz Jurczyk ({@code tomasz.jurczyk@emory.edu})
  */
 
-public class ArithmeticQuestion implements Serializable {
+public class ArithmeticQuestion implements Serializable, Comparable<ArithmeticQuestion> {
     private static final long serialVersionUID = 225832398333787185L;
     /* Rough part */
-    private EnglishDocument document;
-    private Instance questionRoot;
+    private transient EnglishDocument document;
+    private transient Instance questionRoot;
     private String questionText;
-    private HashMap<Instance,Boolean> visitedInstances = new HashMap();
+    private transient HashMap<Instance,Boolean> visitedInstances = new HashMap();
 
     public EnglishDocument getDocument()
     {
@@ -172,10 +172,10 @@ public class ArithmeticQuestion implements Serializable {
             }
         }
         /* Check for prep phrase in num */
-        else if (numInstance.getArgumentList(SemanticType.prep) != null
-                && numInstance.getArgumentList(SemanticType.prep).size() == 1
-                && (themeInstance = findNounInTree(numInstance.getArgumentList(SemanticType.prep).get(0))) != null) {
-        }
+//        else if (numInstance.getArgumentList(SemanticType.prep) != null
+//                && numInstance.getArgumentList(SemanticType.prep).size() == 1
+//                && (themeInstance = findNounInTree(numInstance.getArgumentList(SemanticType.prep).get(0))) != null) {
+//        }
         /* Check if A1 to a verb exist, search for a possible theme */
         else if (verbInstance.getArgumentList(SemanticType.A1) != null
                 && verbInstance.getArgumentList(SemanticType.A1).size() == 1
@@ -251,5 +251,28 @@ public class ArithmeticQuestion implements Serializable {
         }
 
         return null;
+    }
+
+    @Override
+    public int compareTo(ArithmeticQuestion aq)
+    {
+        if (this.verbs.size() != aq.verbs.size() || ! equalsTwoLists(this.verbs, aq.verbs)) return -1;
+        if (this.actors.size() != aq.actors.size() || ! equalsTwoLists(this.actors, aq.actors)) return -1;
+        if (this.actorsA2.size() != aq.actorsA2.size() || ! equalsTwoLists(this.actorsA2, aq.actorsA2)) return -1;
+        if (this.themes.size() != aq.themes.size() || ! equalsTwoLists(this.themes, aq.themes)) return -1;
+        if (this.attrs.size() != aq.attrs.size() || ! equalsTwoLists(this.attrs, aq.attrs)) return -1;
+        if (this.nums.size() != aq.nums.size() || ! equalsTwoLists(this.nums, aq.nums)) return -1;
+
+        return 0;
+    }
+
+    private boolean equalsTwoLists(List<String> l1, List<String> l2)
+    {
+        for(int i = 0; i < l1.size(); i++)
+        {
+            if (! l1.get(i).equals(l2.get(i))) return false;
+        }
+
+        return true;
     }
 }

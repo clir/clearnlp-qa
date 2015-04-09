@@ -42,11 +42,11 @@ import java.util.Map;
 
 public class EnglishDocument extends AbstractDocument
 {
-    private List<DEPTree> depTreeList = new ArrayList();
+    private transient List<DEPTree> depTreeList = new ArrayList();
 	private static final long serialVersionUID = -1190545348244741736L;
 
     private AbstractCoreferenceResolution coRef = new EnglishCoreferenceResolution();
-    private Pair<List<Mention>,DisjointSet> coRefEntities;
+    private transient Pair<List<Mention>,DisjointSet> coRefEntities;
 
     @Override
     public void addInstances(DEPTree tree)
