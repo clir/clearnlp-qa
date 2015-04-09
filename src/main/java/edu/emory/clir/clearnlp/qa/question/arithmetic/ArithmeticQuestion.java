@@ -8,13 +8,15 @@ import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
 import edu.emory.clir.clearnlp.qa.util.StringUtils;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * @author: Tomasz Jurczyk ({@code tomasz.jurczyk@emory.edu})
  */
 
-public class ArithmeticQuestion {
+public class ArithmeticQuestion implements Serializable {
+    private static final long serialVersionUID = 225832398333787185L;
     /* Rough part */
     private EnglishDocument document;
     private Instance questionRoot;
@@ -169,11 +171,42 @@ public class ArithmeticQuestion {
                 themeInstance = numHeadInstance.getArgumentList(SemanticType.conj).get(0);
             }
         }
+        /* Check for prep phrase in num */
+        else if (numInstance.getArgumentList(SemanticType.prep) != null
+                && numInstance.getArgumentList(SemanticType.prep).size() == 1
+                && (themeInstance = findNounInTree(numInstance.getArgumentList(SemanticType.prep).get(0))) != null) {
+        }
+        /* Check if A1 to a verb exist, search for a possible theme */
+        else if (verbInstance.getArgumentList(SemanticType.A1) != null
+                && verbInstance.getArgumentList(SemanticType.A1).size() == 1
+                && (themeInstance = findNounInTree(verbInstance.getArgumentList(SemanticType.A1).get(0))) != null) {}
+        /* Check if A3 to a verb exist, search for a possible theme */
+        else if (verbInstance.getArgumentList(SemanticType.A3) != null
+                && verbInstance.getArgumentList(SemanticType.A3).size() == 1
+                && (themeInstance = findNounInTree(verbInstance.getArgumentList(SemanticType.A3).get(0))) != null) {}
 
         verbs.add(document.getDEPNode(verbInstance).getLemma());
         nums.add(document.getDEPNode(numInstance).getWordForm());
 
-        themes.add(themeInstance != null ? document.getDEPNode(themeInstance).getLemma() : "");
+        /* If theme is empty, try to look in previous */
+        if (themeInstance == null && themes.size() > 0)
+        {
+            if (! themes.get(themes.size()-1).equals(""))
+            {
+                themes.add(themes.get(themes.size()-1));
+            }
+        }
+        else
+        {
+            themes.add(themeInstance != null ? document.getDEPNode(themeInstance).getLemma() : "");
+        }
+
+        /* Check if previous does not have theme */
+        if (themeInstance != null && themes.size() > 1 && themes.get(themes.size()-2).equals(""))
+        {
+            themes.set(themes.size()-2, document.getDEPNode(themeInstance).getLemma());
+        }
+
         actors.add(actorInstance != null ? document.getDEPNode(actorInstance).getLemma() : "");
         actorsA2.add(actorA2Instance != null ? document.getDEPNode(actorA2Instance).getLemma() : "");
         attrs.add(attrInstance != null ? document.getDEPNode(attrInstance).getLemma() : "");
@@ -181,7 +214,6 @@ public class ArithmeticQuestion {
 
     private void processQuestionState(Instance rootInstance)
     {
-
     }
 
     public String toString()
@@ -197,5 +229,27 @@ public class ArithmeticQuestion {
         sb.append("Actors A2: " + actorsA2 + "\n");
 
         return sb.toString();
+    }
+
+    private Instance findNounInTree(Instance instance)
+    {
+        Queue<Instance> queue = new ArrayDeque();
+        queue.add(instance);
+
+        while(! queue.isEmpty())
+        {
+            Instance current = queue.poll();
+            for (Instance inst: current.getArgumentList())
+            {
+                queue.add(inst);
+            }
+
+            if (POSLibEn.isNoun(document.getDEPNode(current).getPOSTag()))
+            {
+                return current;
+            }
+        }
+
+        return null;
     }
 }

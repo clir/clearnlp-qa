@@ -2,7 +2,9 @@ package edu.emory.clir.clearnlp.qa.question.arithmetic;
 
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,22 @@ public class Experiment {
         Experiment exp = new Experiment();
         exp.readQuestions();
         //exp.prepareDataset();
+
+        /* Serialize the list */
+        try
+        {
+            FileOutputStream fileOut = new FileOutputStream("q.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+            for (ArithmeticQuestion aq: exp.questions)
+            {
+                out.writeObject(aq);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private void readQuestions()
@@ -30,13 +48,11 @@ public class Experiment {
             ArithmeticQuestion aq;
             int i = 0;
 
-//            aq = areader.read("files/", "arith-qs.ah");
-//            arithmeticQuestions.add(aq);
-//            System.out.println("Question: " + aq.getQuestionText());
-//            System.out.println("States: " + aq.getQuestionTextStateList());
-//            System.out.println("Question State: " + aq.getQuestionState() + "\n");
+//            aq = reader.read("files/", "arith-qs.ew");
+//            questions.add(aq);
+//            System.out.println("Question: " + aq);
 
-            while (i < 20 && (aq = reader.read()) != null) {
+            while (i < 400 && (aq = reader.read()) != null) {
                 questions.add(aq);
 
                 System.out.println("Question: " + aq);
