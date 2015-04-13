@@ -172,10 +172,10 @@ public class ArithmeticQuestion implements Serializable, Comparable<ArithmeticQu
             }
         }
         /* Check for prep phrase in num */
-//        else if (numInstance.getArgumentList(SemanticType.prep) != null
-//                && numInstance.getArgumentList(SemanticType.prep).size() == 1
-//                && (themeInstance = findNounInTree(numInstance.getArgumentList(SemanticType.prep).get(0))) != null) {
-//        }
+        else if (numInstance.getArgumentList(SemanticType.prep) != null
+                && numInstance.getArgumentList(SemanticType.prep).size() == 1
+                && (themeInstance = findNounInTree(numInstance.getArgumentList(SemanticType.prep).get(0))) != null) {
+        }
         /* Check if A1 to a verb exist, search for a possible theme */
         else if (verbInstance.getArgumentList(SemanticType.A1) != null
                 && verbInstance.getArgumentList(SemanticType.A1).size() == 1
@@ -214,6 +214,89 @@ public class ArithmeticQuestion implements Serializable, Comparable<ArithmeticQu
 
     private void processQuestionState(Instance rootInstance)
     {
+        Instance themeInstance = null;
+        String theme = null;
+        String attr = null;
+        String actorA2 = null;
+        String actor = null;
+
+        /* Try to see if a theme is A1 of a predicate */
+        if (rootInstance.getArgumentList(SemanticType.A1) != null &&
+                rootInstance.getArgumentList(SemanticType.A1).size() == 1 &&
+                themes.contains(document.getDEPNode(rootInstance.getArgumentList(SemanticType.A1).get(0)).getLemma()))
+        {
+            themeInstance = rootInstance.getArgumentList(SemanticType.A1).get(0);
+            theme = document.getDEPNode(themeInstance).getLemma();
+        }
+
+        /* If A1 does not exist, try to match any word that appeared as theme in before */
+        Queue<Instance> instanceQueue = new ArrayDeque();
+        instanceQueue.addAll(rootInstance.getArgumentList());
+
+        while(! instanceQueue.isEmpty())
+        {
+            Instance current = instanceQueue.poll();
+            for (Instance inst: current.getArgumentList())
+            {
+                instanceQueue.add(inst);
+            }
+
+            /* Check if there was this word as a theme before */
+            if (themes.contains(document.getDEPNode(current).getLemma()))
+            {
+                themeInstance = current;
+                theme = document.getDEPNode(themeInstance).getLemma();
+
+                /* Check for any attribute (adjective) */
+                for (Instance inst: themeInstance.getArgumentList())
+                {
+                    if (POSLibEn.isAdjective(document.getDEPNode(inst).getPOSTag()))
+                    {
+                        attr = document.getDEPNode(inst).getPOSTag();
+                        break;
+                    }
+                }
+
+                break;
+            }
+            /* Check if there was this word as an actor before */
+            else if (actors.contains(document.getDEPNode(current).getLemma()))
+            {
+                int index = actors.indexOf(document.getDEPNode(current).getLemma());
+                theme = themes.get(index);
+
+                /* Check if there is an attribute for this theme */
+                if (! attrs.get(index).equals(""))
+                {
+                    attr = attrs.get(index);
+                }
+            }
+        }
+
+        /* Check if there is any A2 related instance */
+        if (rootInstance.getArgumentList(SemanticType.A2) != null &&
+                rootInstance.getArgumentList(SemanticType.A2).size() == 1)
+        {
+            actorA2 = document.getDEPNode(rootInstance.getArgumentList(SemanticType.A2).get(0)).getLemma();
+
+        }
+
+        /* Check if there is any A0 related instance */
+        if (rootInstance.getArgumentList(SemanticType.A0) != null &&
+                rootInstance.getArgumentList(SemanticType.A0).size() == 1)
+        {
+            actor = document.getDEPNode(rootInstance.getArgumentList(SemanticType.A0).get(0)).getLemma();
+        }
+
+//        System.out.println("Root in question lemma = " + document.getDEPNode(rootInstance).getLemma());
+//        if (themeInstance != null) System.out.println("Found theme = " + document.getDEPNode(themeInstance).getLemma());
+
+        if (theme == null ) System.out.println("1, question = " + questionText);
+
+        verbs.add(document.getDEPNode(rootInstance).getLemma());
+        themes.add(theme != null ? theme : "");
+        attrs.add(attr != null ? attr : "");
+        actorsA2.add(actorA2 != null ? actorA2 : "");
     }
 
     public String toString()
@@ -274,5 +357,10 @@ public class ArithmeticQuestion implements Serializable, Comparable<ArithmeticQu
         }
 
         return true;
+    }
+
+    private Instance processCoReference(Instance instance)
+    {
+        return null;
     }
 }

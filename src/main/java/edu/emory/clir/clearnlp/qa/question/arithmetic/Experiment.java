@@ -36,11 +36,11 @@ public class Experiment {
 //        }
 
         /* Deserialize list */
-        exp.deserializeDataSet(exp);
+        //exp.deserializeDataSet(exp);
 
         /* Compare result with deserialized */
-        System.out.println("Start comparing datasets.");
-        exp.compareDataSets(exp);
+        //System.out.println("Start comparing datasets.");
+        //exp.compareDataSets(exp);
 
         /* Serialize result */
         // serializeDataSet()
@@ -108,8 +108,8 @@ public class Experiment {
             while (i < 400 && (aq = reader.read()) != null) {
                 questions.add(aq);
 
-                //System.out.println("Question: " + aq);
-                //System.out.println("Question instance: " + aq.getQuestionRoot());
+//                System.out.println("Question: " + aq);
+//                System.out.println("Question instance: " + aq.getQuestionRoot());
 //                System.out.println("States: " + aq.getQuestionTextStateList());
 //                System.out.println("Question State: " + aq.getQuestionState() + "\n");
                 i++;
