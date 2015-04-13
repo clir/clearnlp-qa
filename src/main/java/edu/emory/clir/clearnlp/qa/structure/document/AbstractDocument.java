@@ -89,6 +89,22 @@ public abstract class AbstractDocument implements Serializable
 		}
 	}
 
+    public List<Instance> getCoReferentInstances(Instance instance)
+    {
+        Entity en = m_entities.get(instance);
+        List<Instance> list = new ArrayList();
+
+        for (Map.Entry<Instance,Entity> entry: m_entities.entrySet())
+        {
+            if (entry.getValue() == en && entry.getKey() != instance)
+            {
+                list.add(entry.getKey());
+            }
+        }
+
+        return list;
+    }
+
     public Instance getInstance(DEPNode node)
     {
         return m_instances.get(node);
