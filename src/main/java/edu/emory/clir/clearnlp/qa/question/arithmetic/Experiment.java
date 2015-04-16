@@ -101,14 +101,14 @@ public class Experiment {
             ArithmeticQuestion aq;
             int i = 0;
 
-//            aq = reader.read("files/", "arith-qs.ew");
+//            aq = reader.read("files/", "arith-qs.af");
 //            questions.add(aq);
 //            System.out.println("Question: " + aq);
 
             while (i < 400 && (aq = reader.read()) != null) {
                 questions.add(aq);
 
-//                System.out.println("Question: " + aq);
+
 //                System.out.println("Question instance: " + aq.getQuestionRoot());
 //                System.out.println("States: " + aq.getQuestionTextStateList());
 //                System.out.println("Question State: " + aq.getQuestionState() + "\n");

@@ -220,6 +220,20 @@ public class ArithmeticQuestion implements Serializable, Comparable<ArithmeticQu
         String actorA2 = null;
         String actor = null;
 
+        /* Check if there is any A2 related instance */
+        if (rootInstance.getArgumentList(SemanticType.A2) != null &&
+                rootInstance.getArgumentList(SemanticType.A2).size() == 1)
+        {
+            actorA2 = document.getDEPNode(processCoReferenceActors(rootInstance.getArgumentList(SemanticType.A2).get(0), actorsA2)).getLemma();
+        }
+
+        /* Check if there is any A0 related instance */
+        if (rootInstance.getArgumentList(SemanticType.A0) != null &&
+                rootInstance.getArgumentList(SemanticType.A0).size() == 1)
+        {
+            actor = document.getDEPNode(processCoReferenceActors(rootInstance.getArgumentList(SemanticType.A0).get(0), actors)).getLemma();
+        }
+
         /* Try to see if a theme is A1 of a predicate */
         if (rootInstance.getArgumentList(SemanticType.A1) != null &&
                 rootInstance.getArgumentList(SemanticType.A1).size() == 1 &&
@@ -259,43 +273,56 @@ public class ArithmeticQuestion implements Serializable, Comparable<ArithmeticQu
 
                 break;
             }
+
             /* Check if there was this word as an actor before */
             else if (actors.contains(document.getDEPNode(current).getLemma()))
             {
                 int index = actors.indexOf(document.getDEPNode(current).getLemma());
-                theme = themes.get(index);
 
-                /* Check if there is an attribute for this theme */
-                if (! attrs.get(index).equals(""))
+                if (index >= 0)
                 {
-                    attr = attrs.get(index);
+                    theme = themes.get(index);
+
+                    /* Check if there is an attribute for this theme */
+                    if (!attrs.get(index).equals("")) {
+                        attr = attrs.get(index);
+                    }
+
+                    break;
                 }
             }
         }
 
-        /* Check if there is any A2 related instance */
-        if (rootInstance.getArgumentList(SemanticType.A2) != null &&
-                rootInstance.getArgumentList(SemanticType.A2).size() == 1)
+        /* If theme still empty, try to get from an actor from the before */
+        if (theme == null && (actor != null || actorA2 != null))
         {
-            actorA2 = document.getDEPNode(rootInstance.getArgumentList(SemanticType.A2).get(0)).getLemma();
-
+            int index;
+            if (actor != null && actors.contains(actor))
+            {
+                index = actors.indexOf(actor);
+                theme = themes.get(index);
+            }
+            else if (actorA2 != null && actorsA2.contains(actorA2))
+            {
+                index = actorsA2.indexOf(actorA2);
+                theme = themes.get(index);
+            }
         }
 
-        /* Check if there is any A0 related instance */
-        if (rootInstance.getArgumentList(SemanticType.A0) != null &&
-                rootInstance.getArgumentList(SemanticType.A0).size() == 1)
+        /* If there is still no match, take the A1 if exist */
+        if (theme == null && rootInstance.getArgumentList(SemanticType.A1) != null &&
+                rootInstance.getArgumentList(SemanticType.A1).size() == 1)
         {
-            actor = document.getDEPNode(rootInstance.getArgumentList(SemanticType.A0).get(0)).getLemma();
+            themeInstance = rootInstance.getArgumentList(SemanticType.A1).get(0);
+            theme = document.getDEPNode(themeInstance).getLemma();
         }
 
-//        System.out.println("Root in question lemma = " + document.getDEPNode(rootInstance).getLemma());
-//        if (themeInstance != null) System.out.println("Found theme = " + document.getDEPNode(themeInstance).getLemma());
-
-        if (theme == null ) System.out.println("1, question = " + questionText);
+        //if (theme == null ) System.out.println("1, question = " + questionText);
 
         verbs.add(document.getDEPNode(rootInstance).getLemma());
         themes.add(theme != null ? theme : "");
         attrs.add(attr != null ? attr : "");
+        actors.add(actor != null ? actor : "");
         actorsA2.add(actorA2 != null ? actorA2 : "");
     }
 
@@ -359,8 +386,20 @@ public class ArithmeticQuestion implements Serializable, Comparable<ArithmeticQu
         return true;
     }
 
-    private Instance processCoReference(Instance instance)
+    private Instance processCoReferenceActors(Instance instance, List<String> list)
     {
-        return null;
+        List<Instance> coReferentInstances = document.getCoReferentInstances(instance);
+
+        for (Instance inst: coReferentInstances)
+        {
+            String instanceString = document.getDEPNode(inst).getLemma();
+
+            if (list.contains(instanceString))
+            {
+                return inst;
+            }
+        }
+
+        return instance;
     }
 }
