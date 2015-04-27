@@ -1,19 +1,14 @@
 package edu.emory.clir.clearnlp.qa;
 
-import edu.emory.clir.clearnlp.component.AbstractComponent;
-import edu.emory.clir.clearnlp.dependency.DEPLib;
-import edu.emory.clir.clearnlp.dependency.DEPNode;
-import edu.emory.clir.clearnlp.dependency.DEPTree;
+import com.clearnlp.component.AbstractComponent;
+import com.clearnlp.dependency.DEPTree;
+import com.clearnlp.nlp.NLPGetter;
+import com.clearnlp.reader.AbstractReader;
+import com.clearnlp.tokenization.AbstractTokenizer;
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
-import edu.emory.clir.clearnlp.reader.TSVReader;
-import edu.emory.clir.clearnlp.srl.SRLTree;
-import edu.emory.clir.clearnlp.tokenization.AbstractTokenizer;
-import edu.emory.clir.clearnlp.util.IOUtils;
-import edu.emory.clir.clearnlp.util.arc.SRLArc;
-import edu.emory.clir.clearnlp.util.lang.TLanguage;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.clearnlp.nlp.*;
+
 
 /**
  * Hello world!
@@ -25,23 +20,32 @@ public class App
 
     public App()
     {
+        final String language = AbstractReader.LANG_EN;
         document = new EnglishDocument();
-
-        String filename = "emory.txt.cnlp";
-        TSVReader reader = new TSVReader(0,1,2,3,4,5,6,7);
-        reader.open(IOUtils.createFileInputStream(filename));
-        List<DEPTree> treeList = new ArrayList();
-
+        String s = "Tomasz walked to cinema.";
         DEPTree tree = null;
 
-        while ((tree = reader.next()) != null)
+        try
         {
-            treeList.add(tree);
+            AbstractTokenizer tokenizer = NLPGetter.getTokenizer(language);
+            AbstractComponent tagger = NLPGetter.getComponent("general-en", language, NLPMode.MODE_POS);
+            AbstractComponent parser = NLPGetter.getComponent("general-en", language, NLPMode.MODE_DEP);
+            AbstractComponent identifier = NLPGetter.getComponent("general-en", language, NLPMode.MODE_PRED);
+            AbstractComponent classifier = NLPGetter.getComponent("general-en", language, NLPMode.MODE_ROLE);
+            AbstractComponent labeler = NLPGetter.getComponent("general-en", language, NLPMode.MODE_SRL);
+
+            AbstractComponent[] components = {tagger, parser, identifier, classifier, labeler};
+
+            tree = NLPGetter.toDEPTree(tokenizer.getTokens(s));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
 
-        document.addInstances(treeList);
-        System.out.println("Document mapped to structure:");
-        System.out.println(document);
+        System.out.println("Document mapped to structure:" + tree);
+
+
     }
 
 

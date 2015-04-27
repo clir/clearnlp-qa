@@ -75,6 +75,12 @@ public class EnglishDocument extends AbstractDocument
                 addInstance(headNode, headInstance);
             }
 
+            /* If this is first root, add a link to the sentence */
+            if (node == tree.getFirstRoot())
+            {
+                addSentence(nodeInstance);
+            }
+
             /* Check if is Argument of the head */
             if ((semanticTypeMap = getArguments(node)) != null) {
                 Instance SemanticHeadInstance = null;

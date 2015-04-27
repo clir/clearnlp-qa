@@ -37,6 +37,7 @@ public abstract class AbstractDocument implements Serializable
 	private static final long serialVersionUID  = -7660427524131511673L;
 	private Map<DEPNode,Instance> m_instances;
 	private Map<Instance,Entity>  m_entities;
+    private Map<Integer,Instance> m_sentences;
 
 	public AbstractDocument()
 	{
@@ -47,6 +48,11 @@ public abstract class AbstractDocument implements Serializable
 	public abstract void addInstances(DEPTree tree);
 
     public abstract void addInstances(List<DEPTree> tree);
+
+    public void addSentence(Instance instance)
+    {
+        m_sentences.put(m_sentences.size(), instance);
+    }
 	
 	public void coreference(DEPNode node1, DEPNode node2)
 	{
