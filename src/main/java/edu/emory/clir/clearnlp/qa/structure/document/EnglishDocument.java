@@ -15,14 +15,14 @@
  */
 package edu.emory.clir.clearnlp.qa.structure.document;
 
+import com.clearnlp.dependency.DEPNode;
+import com.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.collection.pair.Pair;
 import edu.emory.clir.clearnlp.collection.set.DisjointSet;
 import edu.emory.clir.clearnlp.coreference.AbstractCoreferenceResolution;
 import edu.emory.clir.clearnlp.coreference.EnglishCoreferenceResolution;
 import edu.emory.clir.clearnlp.coreference.mention.Mention;
 import edu.emory.clir.clearnlp.dependency.DEPLib;
-import edu.emory.clir.clearnlp.dependency.DEPNode;
-import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
@@ -30,10 +30,7 @@ import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 import edu.emory.clir.clearnlp.qa.util.StringUtils;
 import edu.emory.clir.clearnlp.util.arc.SRLArc;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -47,13 +44,16 @@ public class EnglishDocument extends AbstractDocument
 
     private AbstractCoreferenceResolution coRef = new EnglishCoreferenceResolution();
     private Pair<List<Mention>,DisjointSet> coRefEntities;
+    private List<DEPNode> addedNodes = new ArrayList();
 
     @Override
     public void addInstances(DEPTree tree)
     {
 
         for (DEPNode node : tree) {
-            if (POSLibEn.isPunctuation(node.getPOSTag())) {
+            System.out.println("Working on node: " + node.form);
+
+            if (POSLibEn.isPunctuation(node.toStringPOS()) || addedNodes.contains(node)) {
                 continue;
             }
 
@@ -68,12 +68,20 @@ public class EnglishDocument extends AbstractDocument
             if ((nodeInstance = getInstance(node)) == null) {
                 nodeInstance = new Instance(node);
                 addInstance(node, nodeInstance);
+                addedNodes.add(node);
+            }
+
+            if (headNode == null)
+            {
+                continue;
             }
 
             if ((headInstance = getInstance(headNode)) == null) {
                 headInstance = new Instance(headNode);
                 addInstance(headNode, headInstance);
             }
+
+            System.out.println("Head node: " + headNode.form);
 
             /* If this is first root, add a link to the sentence */
             if (node == tree.getFirstRoot())
@@ -91,8 +99,21 @@ public class EnglishDocument extends AbstractDocument
                         addInstance(entry.getValue(), SemanticHeadInstance);
                     }
 
-                    nodeInstance.putPredicateList(entry.getKey(), SemanticHeadInstance);
-                    SemanticHeadInstance.putArgumentList(entry.getKey(), nodeInstance);
+                    /* Check if it is a prep relation */
+                    if (node.getLabel().equals("prep"))
+                    {
+                        System.out.println("Found prep for dep node = " + node.toStringSRL());
+                        Instance newSemanticChildInstance = processSemanticPrep(node);
+                        SemanticHeadInstance.putArgumentList(entry.getKey(), newSemanticChildInstance);
+                        newSemanticChildInstance.putPredicateList(entry.getKey(), SemanticHeadInstance);
+                    }
+                    else
+                    {
+                        SemanticHeadInstance.putArgumentList(entry.getKey(), nodeInstance);
+                        nodeInstance.putPredicateList(entry.getKey(), SemanticHeadInstance);
+                    }
+
+
                 }
             }
             /* Check if is Attribute of the head */
@@ -116,6 +137,46 @@ public class EnglishDocument extends AbstractDocument
         }
     }
 
+    private Instance processSemanticPrep(DEPNode prepNode)
+    {
+        /* Find pobj in the subtree */
+        Queue<DEPNode> q = new ArrayDeque();
+        q.add(prepNode);
+        Instance returnInstance = null;
+        List<Instance> attributeList = new ArrayList();
+
+        while(! q.isEmpty())
+        {
+            DEPNode node = q.poll();
+            Instance nodeInstance;
+
+            if ((nodeInstance = getInstance(node)) == null) {
+                nodeInstance = new Instance(node);
+                addInstance(node, nodeInstance);
+                addedNodes.add(node);
+            }
+
+            if (node.getLabel().equals("pobj"))
+            {
+                returnInstance = nodeInstance;
+            }
+            else
+            {
+                attributeList.add(nodeInstance);
+            }
+
+            q.addAll(node.getDependentNodeList());
+        }
+
+        /* Add all other instances as an Attribute */
+        for (Instance i: attributeList)
+        {
+            returnInstance.putAttribute(AttributeType.QUALITY, i);
+        }
+
+        return returnInstance;
+    }
+
 	@Override
 	public void addInstances(List<DEPTree> treeList)
     {
@@ -126,8 +187,8 @@ public class EnglishDocument extends AbstractDocument
         }
 
         /* Get Coreference resolutions */
-        depTreeList.addAll(treeList);
-        coRefEntities = coRef.getEntities(depTreeList);
+        //depTreeList.addAll(treeList);
+        //coRefEntities = coRef.getEntities(depTreeList);
 
 //        for (int i = 0; i < coRefEntities.o1.size(); i++)
 //        {
@@ -138,20 +199,20 @@ public class EnglishDocument extends AbstractDocument
 //
 //        System.out.println("Coref = " + coRefEntities);
 
-        processCoReference();
+        //processCoReference();
     }
 
-    private void processCoReference()
-    {
-        int i = 0;
-        for (; i < coRefEntities.o1.size(); i++)
-        {
-            if (coRefEntities.o2.find(i) != -1)
-            {
-                DEPNode n1 = coRefEntities.o1.get(i).getNode();
-                DEPNode n2 = coRefEntities.o1.get(coRefEntities.o2.find(i)).getNode();
-                coreference(n1, n2);
-            }
-        }
-    }
+//    private void processCoReference()
+//    {
+//        int i = 0;
+//        for (; i < coRefEntities.o1.size(); i++)
+//        {
+//            if (coRefEntities.o2.find(i) != -1)
+//            {
+//                DEPNode n1 = coRefEntities.o1.get(i).getNode();
+//                DEPNode n2 = coRefEntities.o1.get(coRefEntities.o2.find(i)).getNode();
+//                coreference(n1, n2);
+//            }
+//        }
+//    }
 }

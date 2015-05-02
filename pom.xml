@@ -75,6 +75,36 @@
       <artifactId>clearnlp</artifactId>
       <version>3.0.0</version>
     </dependency>
+
+      <!-- Section added from 2.0.* branch -->
+      <dependency>
+          <groupId>com.clearnlp</groupId>
+          <artifactId>clearnlp</artifactId>
+          <version>2.0.2</version>
+      </dependency>
+      <dependency>
+          <groupId>com.clearnlp</groupId>
+          <artifactId>clearnlp-dictionary</artifactId>
+          <version>1.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.clearnlp</groupId>
+          <artifactId>clearnlp-general-en-pos</artifactId>
+          <version>1.1</version>
+      </dependency>
+      <dependency>
+          <groupId>com.clearnlp</groupId>
+          <artifactId>clearnlp-general-en-dep</artifactId>
+          <version>1.2</version>
+      </dependency>
+      <dependency>
+          <groupId>com.clearnlp</groupId>
+          <artifactId>clearnlp-general-en-srl</artifactId>
+          <version>1.1</version>
+      </dependency>
+
+      <!-- End of section 2.0.*            -->
+
     <dependency>
       <groupId>edu.emory.clir</groupId>
       <artifactId>clearnlp-dictionary</artifactId>
@@ -86,4 +116,5 @@
           <version>18.0</version>
       </dependency>
   </dependencies>
+
 </project>

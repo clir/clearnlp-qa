@@ -16,21 +16,17 @@
 package edu.emory.clir.clearnlp.qa.structure.document;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import edu.emory.clir.clearnlp.dependency.DEPNode;
-import edu.emory.clir.clearnlp.dependency.DEPTree;
+import com.clearnlp.dependency.DEPNode;
+import com.clearnlp.dependency.DEPTree;
+import com.clearnlp.dependency.srl.SRLArc;
 import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.structure.Entity;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
 import edu.emory.clir.clearnlp.qa.structure.SemanticType;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 import edu.emory.clir.clearnlp.qa.util.StringUtils;
-import edu.emory.clir.clearnlp.util.arc.DEPArc;
-import edu.emory.clir.clearnlp.util.arc.SRLArc;
 
 public abstract class AbstractDocument implements Serializable
 {
@@ -43,6 +39,7 @@ public abstract class AbstractDocument implements Serializable
 	{
 		m_instances = new HashMap<>();
 		m_entities  = new HashMap<>();
+        m_sentences = new HashMap<>();
 	}
 	
 	public abstract void addInstances(DEPTree tree);
@@ -143,7 +140,7 @@ public abstract class AbstractDocument implements Serializable
     {
         for (Map.Entry<DEPNode, Instance> entry : m_instances.entrySet())
         {
-            System.out.println("Node: " + entry.getKey().getWordForm() + " has an instance: " + entry.getValue());
+            System.out.println("Node: " + entry.getKey().toString() + " has an instance: " + entry.getValue());
         }
     }
 	
@@ -162,11 +159,11 @@ public abstract class AbstractDocument implements Serializable
 
     protected Map<SemanticType, DEPNode> getArguments(DEPNode node)
     {
-        if (node.getSemanticHeadArcList() == null) return null;
+        if (node.getSHeads() == null) return null;
 
         Map<SemanticType, DEPNode> semanticTypeMap = new HashMap();
 
-        for (SRLArc srlArc: node.getSemanticHeadArcList())
+        for (SRLArc srlArc: node.getSHeads())
         {
             semanticTypeMap.put(StringUtils.getSemanticType(srlArc.getLabel()), srlArc.getNode());
         }
@@ -178,12 +175,12 @@ public abstract class AbstractDocument implements Serializable
     {
         AttributeType attributeType = null;
 
-        if (StringUtils.isDouble(child.getWordForm()) || StringUtils.isInteger(child.getWordForm()))
+        if (StringUtils.isDouble(child.form) || StringUtils.isInteger(child.form))
         {
             /* Quantitative attribute */
             attributeType = AttributeType.QUANTITY;
         }
-        else if (POSLibEn.isAdjective(child.getPOSTag()))
+        else if (POSLibEn.isAdjective(child.toStringPOS()))
         {
             /* Quality attribute */
             attributeType = AttributeType.QUALITY;
@@ -195,42 +192,88 @@ public abstract class AbstractDocument implements Serializable
     {
         StringBuilder sb = new StringBuilder("Instances:\n\n");
 
-        for (Map.Entry<DEPNode, Instance> entry : m_instances.entrySet())
+        for (Map.Entry<Integer,Instance> sentence: m_sentences.entrySet())
         {
-            sb.append("Instance: " + entry.getKey().getWordForm() + "\n");
-
-            for (SemanticType type : entry.getValue().getArgumentTypeSet())
+            sb.append("Sentence: " + sentence.getKey() + "\n");
+            Queue<Instance> q = new ArrayDeque();
+            q.add(sentence.getValue());
+            Instance i;
+            while(! q.isEmpty())
             {
-                for (Instance i : entry.getValue().getArgumentList(type))
-                {
-                    sb.append("has an argument relation " + type.toString() + " to -> " + getDEPNode(i).getWordForm() + "\n");
-                }
-            }
+                i = q.poll();
+                sb.append("Instance: " + getDEPNode(i).form + ":\n");
 
-            for (SemanticType type : entry.getValue().getPredicateTypeSet())
-            {
-                for (Instance i : entry.getValue().getPredicateList(type))
-                {
-                    sb.append("has a predicate relation " + type.toString() + " to -> " + getDEPNode(i).getWordForm() + "\n");
+                for (SemanticType type : i.getArgumentTypeSet()) {
+                    for (Instance j : i.getArgumentList(type)) {
+                        sb.append("has an argument relation " + type.toString() + " to -> " + getDEPNode(j).form + "\n");
+                        q.add(j);
+                    }
                 }
-            }
 
-            for (AttributeType type : entry.getValue().getAttributeTypeSet())
-            {
-                for (Instance i : entry.getValue().getAttributeList(type))
-                {
-                    sb.append("has an attribute relation " + type.toString() + " to -> " + getDEPNode(i).getWordForm() + "\n");
+                for (SemanticType type : i.getPredicateTypeSet()) {
+                    for (Instance j : i.getPredicateList(type)) {
+                        sb.append("has a predicate relation " + type.toString() + " to -> " + getDEPNode(j).form + "\n");
+                    }
                 }
-            }
 
-            sb.append("\n");
+                for (AttributeType type : i.getAttributeTypeSet()) {
+                    for (Instance j : i.getAttributeList(type)) {
+                        sb.append("has an attribute relation " + type.toString() + " to -> " + getDEPNode(j).form + "\n");
+                        q.add(j);
+                    }
+                }
+                sb.append("\n");
+            }
+//            for (Map.Entry<DEPNode, Instance> entry : m_instances.entrySet()) {
+//                if (entry.getKey() == null) {
+//                    sb.append("empty Instance, skip" + "\n");
+//                    continue;
+//                } else {
+//                    sb.append("Instance: " + entry.getKey().form + "\n");
+//                }
+//
+//                for (SemanticType type : entry.getValue().getArgumentTypeSet()) {
+//                    for (Instance i : entry.getValue().getArgumentList(type)) {
+//                        sb.append("has an argument relation " + type.toString() + " to -> " + getDEPNode(i).form + "\n");
+//                    }
+//                }
+//
+//                for (SemanticType type : entry.getValue().getPredicateTypeSet()) {
+//                    for (Instance i : entry.getValue().getPredicateList(type)) {
+//                        sb.append("has a predicate relation " + type.toString() + " to -> " + getDEPNode(i).form + "\n");
+//                    }
+//                }
+//
+//                for (AttributeType type : entry.getValue().getAttributeTypeSet()) {
+//                    for (Instance i : entry.getValue().getAttributeList(type)) {
+//                        sb.append("has an attribute relation " + type.toString() + " to -> " + getDEPNode(i).form + "\n");
+//                    }
+//                }
+//
+//                sb.append("\n");
+//            }
         }
 
         for (Map.Entry<Instance, Entity> entry: m_entities.entrySet())
         {
-            sb.append("Instance: " + entry.getKey().getDepNode().getLemma() + ", in entity: " + entry.getValue() + "\n");
+            sb.append("Instance: " + entry.getKey().getDepNode().form + ", in entity: " + entry.getValue() + "\n");
         }
 
         return sb.toString();
+    }
+
+    public void test()
+    {
+        System.out.println("Size of instances = " + m_instances.size());
+        for (Map.Entry<DEPNode, Instance> entry : m_instances.entrySet())
+        {
+            if (entry.getKey() == null)
+            {
+                System.out.println("Empty");
+                continue;
+            }
+
+            System.out.println("Key = " + entry.getKey().form);
+        }
     }
 }

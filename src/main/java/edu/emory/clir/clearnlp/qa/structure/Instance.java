@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import edu.emory.clir.clearnlp.dependency.DEPNode;
+import com.clearnlp.dependency.DEPNode;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AbstractAttribute;
 import edu.emory.clir.clearnlp.qa.structure.attribute.AttributeType;
 

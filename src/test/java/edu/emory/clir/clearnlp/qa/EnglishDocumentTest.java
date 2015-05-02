@@ -18,9 +18,9 @@ package edu.emory.clir.clearnlp.qa;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import com.clearnlp.dependency.DEPTree;
 import org.junit.Test;
 
-import edu.emory.clir.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
 import edu.emory.clir.clearnlp.reader.TSVReader;
 
@@ -39,9 +39,9 @@ public class EnglishDocumentTest {
 		DEPTreeReader.open(new FileInputStream(FILEPATH));
 		EnglishDocument testEngine = new EnglishDocument();
 		
-		DEPTree tree = DEPTreeReader.next();
+//		DEPTree tree = DEPTreeReader.next();
 //		while(tree != null){
-			testEngine.addInstances(tree);
+//			testEngine.addInstances(tree);
 //			tree = DEPTreeReader.next();
 //		}	
 	}

@@ -25,6 +25,14 @@ public class StringUtils {
 
     public static SemanticType getSemanticType(String relation)
     {
+        /* This is because in 2.0 root is not being returned in getLabel() */
+        if (relation == null) {
+            return SemanticType.root;
+        }
+        /* ********************************** */
+
+        System.out.println("Relation = " + relation);
+
         if (relation.contains("-"))
         {
             relation = relation.split("-")[1];

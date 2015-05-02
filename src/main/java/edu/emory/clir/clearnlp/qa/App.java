@@ -1,6 +1,7 @@
 package edu.emory.clir.clearnlp.qa;
 
 import com.clearnlp.component.AbstractComponent;
+import com.clearnlp.dependency.DEPNode;
 import com.clearnlp.dependency.DEPTree;
 import com.clearnlp.nlp.NLPGetter;
 import com.clearnlp.reader.AbstractReader;
@@ -9,49 +10,87 @@ import edu.emory.clir.clearnlp.qa.structure.document.EnglishDocument;
 
 import com.clearnlp.nlp.*;
 
+import org.apache.log4j.*;
 
-/**
- * Hello world!
- *
- */
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class App 
 {
+    final String language = AbstractReader.LANG_EN;
+    final String modelType  = "general-en";
+
     private EnglishDocument document;
+    AbstractTokenizer tokenizer;
+    AbstractComponent[] components = new AbstractComponent[5];
 
     public App()
     {
-        final String language = AbstractReader.LANG_EN;
-        document = new EnglishDocument();
-        String s = "Tomasz walked to cinema.";
-        DEPTree tree = null;
 
-        try
-        {
-            AbstractTokenizer tokenizer = NLPGetter.getTokenizer(language);
-            AbstractComponent tagger = NLPGetter.getComponent("general-en", language, NLPMode.MODE_POS);
-            AbstractComponent parser = NLPGetter.getComponent("general-en", language, NLPMode.MODE_DEP);
-            AbstractComponent identifier = NLPGetter.getComponent("general-en", language, NLPMode.MODE_PRED);
-            AbstractComponent classifier = NLPGetter.getComponent("general-en", language, NLPMode.MODE_ROLE);
-            AbstractComponent labeler = NLPGetter.getComponent("general-en", language, NLPMode.MODE_SRL);
+        BasicConfigurator.configure();
+        try {
+            tokenizer = NLPGetter.getTokenizer(language);
 
-            AbstractComponent[] components = {tagger, parser, identifier, classifier, labeler};
-
-            tree = NLPGetter.toDEPTree(tokenizer.getTokens(s));
+            components[0] = NLPGetter.getComponent(modelType, language, NLPMode.MODE_POS);
+            components[1] = NLPGetter.getComponent(modelType, language, NLPMode.MODE_DEP);
+            components[2] = NLPGetter.getComponent(modelType, language, NLPMode.MODE_PRED);
+            components[3] = NLPGetter.getComponent(modelType, language, NLPMode.MODE_ROLE);
+            components[4] = NLPGetter.getComponent(modelType, language, NLPMode.MODE_SRL);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-
-        System.out.println("Document mapped to structure:" + tree);
-
-
     }
 
+    public void experiment()
+    {
+        document = new EnglishDocument();
 
+        /* Read the input */
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("data/qa1_single-supporting-fact_test.txt"));
+            String s;
+            DEPTree tree;
+
+            while((s = bufferedReader.readLine()) != null)
+            {
+                tree = NLPGetter.toDEPTree(tokenizer.getTokens(s));
+
+                for (AbstractComponent component : components)
+                {
+                    component.process(tree);
+                }
+
+                //System.out.println("Before: " + tree.toStringSRL());
+
+                document.addInstances(tree);
+            }
+
+            document.test();
+            System.out.println("Document parsed to: " + document);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+
+        String s = "Tomasz walked to the cinema.";
+//        DEPTree tree;
+//
+//        tree = NLPGetter.toDEPTree(tokenizer.getTokens(s));
+//
+//        for (AbstractComponent component : components)
+//            component.process(tree);
+//
+//        System.out.println("Document mapped to structure:" + tree.toStringSRL());
+    }
 
     public static void main( String[] args )
     {
         App app = new App();
+        app.experiment();
     }
 }
