@@ -34,12 +34,14 @@ public abstract class AbstractDocument implements Serializable
 	private Map<DEPNode,Instance> m_instances;
 	private Map<Instance,Entity>  m_entities;
     private Map<Integer,Instance> m_sentences;
+    private Map<Integer,List<DEPNode>> m_depnodes;
 
 	public AbstractDocument()
 	{
 		m_instances = new HashMap<>();
 		m_entities  = new HashMap<>();
         m_sentences = new HashMap<>();
+        m_depnodes  = new HashMap<>();
 	}
 	
 	public abstract void addInstances(DEPTree tree);
@@ -49,6 +51,26 @@ public abstract class AbstractDocument implements Serializable
     public void addSentence(Instance instance)
     {
         m_sentences.put(m_sentences.size(), instance);
+    }
+
+    public Instance getSentence(int id)
+    {
+        return m_sentences.get(id);
+    }
+
+    public List<DEPNode> getDEPNodesFromSentence(int sentence)
+    {
+        return m_depnodes.get(sentence);
+    }
+
+    public List<DEPNode> getDEPNodesFromSentence()
+    {
+        return m_depnodes.get(m_depnodes.size()-1);
+    }
+
+    public int getSentencesCount()
+    {
+        return m_sentences.size();
     }
 	
 	public void coreference(DEPNode node1, DEPNode node2)
@@ -131,9 +153,15 @@ public abstract class AbstractDocument implements Serializable
         return null;
     }
 
+    public void newSentence()
+    {
+        m_depnodes.put(m_sentences.size(), new ArrayList());
+    }
+
     public void addInstance(DEPNode node, Instance instance)
     {
         m_instances.put(node, instance);
+        m_depnodes.get(m_depnodes.size()-1).add(node);
     }
 
     public void printInstances()
@@ -198,15 +226,24 @@ public abstract class AbstractDocument implements Serializable
             Queue<Instance> q = new ArrayDeque();
             q.add(sentence.getValue());
             Instance i;
+            HashMap<Instance,Boolean> alreadyTraversed = new HashMap();
+
             while(! q.isEmpty())
             {
                 i = q.poll();
+                alreadyTraversed.put(i, true);
+
                 sb.append("Instance: " + getDEPNode(i).form + ":\n");
+
 
                 for (SemanticType type : i.getArgumentTypeSet()) {
                     for (Instance j : i.getArgumentList(type)) {
                         sb.append("has an argument relation " + type.toString() + " to -> " + getDEPNode(j).form + "\n");
-                        q.add(j);
+
+                        if (! alreadyTraversed.containsKey(j))
+                        {
+                            q.add(j);
+                        }
                     }
                 }
 
@@ -219,7 +256,6 @@ public abstract class AbstractDocument implements Serializable
                 for (AttributeType type : i.getAttributeTypeSet()) {
                     for (Instance j : i.getAttributeList(type)) {
                         sb.append("has an attribute relation " + type.toString() + " to -> " + getDEPNode(j).form + "\n");
-                        q.add(j);
                     }
                 }
                 sb.append("\n");
@@ -273,7 +309,9 @@ public abstract class AbstractDocument implements Serializable
                 continue;
             }
 
-            System.out.println("Key = " + entry.getKey().form);
+//            System.out.println("Key = " + entry.getKey().form);
+//            System.out.println("Set of arguments: ");
+//            List<SemanticType> x = entry.getKey().
         }
     }
 }

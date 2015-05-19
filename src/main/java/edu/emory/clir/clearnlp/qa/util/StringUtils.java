@@ -31,8 +31,6 @@ public class StringUtils {
         }
         /* ********************************** */
 
-        System.out.println("Relation = " + relation);
-
         if (relation.contains("-"))
         {
             relation = relation.split("-")[1];
@@ -189,7 +187,7 @@ public class StringUtils {
             case "xsubj":
                 return SemanticType.xsubj;
             default:
-                return null;
+                return SemanticType.undefined;
         }
     }
 }

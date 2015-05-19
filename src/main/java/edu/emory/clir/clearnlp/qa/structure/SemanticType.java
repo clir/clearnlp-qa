@@ -94,5 +94,6 @@ public enum SemanticType
     rnr,
     ref,
     gap,
-    xsubj;
+    xsubj,
+    undefined;
 }

@@ -76,6 +76,12 @@
       <version>3.0.0</version>
     </dependency>
 
+      <dependency>
+          <groupId>org.elasticsearch</groupId>
+          <artifactId>elasticsearch</artifactId>
+          <version>1.5.2</version>
+      </dependency>
+
       <!-- Section added from 2.0.* branch -->
       <dependency>
           <groupId>com.clearnlp</groupId>
@@ -101,6 +107,11 @@
           <groupId>com.clearnlp</groupId>
           <artifactId>clearnlp-general-en-srl</artifactId>
           <version>1.1</version>
+      </dependency>
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+          <version>20141113</version>
       </dependency>
 
       <!-- End of section 2.0.*            -->

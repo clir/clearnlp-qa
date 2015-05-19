@@ -50,8 +50,8 @@ public class EnglishDocument extends AbstractDocument
     public void addInstances(DEPTree tree)
     {
 
+        newSentence();
         for (DEPNode node : tree) {
-            System.out.println("Working on node: " + node.form);
 
             if (POSLibEn.isPunctuation(node.toStringPOS()) || addedNodes.contains(node)) {
                 continue;
@@ -81,8 +81,6 @@ public class EnglishDocument extends AbstractDocument
                 addInstance(headNode, headInstance);
             }
 
-            System.out.println("Head node: " + headNode.form);
-
             /* If this is first root, add a link to the sentence */
             if (node == tree.getFirstRoot())
             {
@@ -102,7 +100,6 @@ public class EnglishDocument extends AbstractDocument
                     /* Check if it is a prep relation */
                     if (node.getLabel().equals("prep"))
                     {
-                        System.out.println("Found prep for dep node = " + node.toStringSRL());
                         Instance newSemanticChildInstance = processSemanticPrep(node);
                         SemanticHeadInstance.putArgumentList(entry.getKey(), newSemanticChildInstance);
                         newSemanticChildInstance.putPredicateList(entry.getKey(), SemanticHeadInstance);
@@ -172,6 +169,11 @@ public class EnglishDocument extends AbstractDocument
         for (Instance i: attributeList)
         {
             returnInstance.putAttribute(AttributeType.QUALITY, i);
+            i.putAttribute(AttributeType.QUALITY, returnInstance);
+
+            SemanticType semanticType = StringUtils.getSemanticType(getDEPNode(i).getLabel());
+            returnInstance.putArgumentList(SemanticType.aux, i);
+            i.putPredicateList(SemanticType.aux, returnInstance);
         }
 
         return returnInstance;
