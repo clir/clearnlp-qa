@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class App 
 {
@@ -41,9 +42,7 @@ public class App
     List<SemanticType> semanticRelations = new ArrayList();
     HashMap<String, Boolean> stopwordMap = new HashMap();
     List<String> fieldList = new ArrayList();
-    String [] fieldsSettingInQuery = {"text", "verb", "sentence_id", "argument_words",
-            "single_semantic_relations", "double_semantic_relations", "dependency_labels",
-            "dependency_label_word_pairs"};
+    List<String> fieldsSettingInQuery = new ArrayList();
 
     private EnglishDocument document;
     AbstractTokenizer tokenizer;
@@ -134,50 +133,13 @@ public class App
                 /* Add to index */
                 Instance root = document.getSentence(document.getSentencesCount()-1);
 
-//                String query = document.getDEPNode(root).lemma + " ";
-//
-//                for (SemanticType semanticType: semanticRelations)
-//                {
-//                    if (root.getArgumentList(semanticType) == null) continue;
-//
-//                    for (Instance i: root.getArgumentList(semanticType))
-//                    {
-//                        /* Check if this is Wh* word */
-//                        if (WhStrings.containsKey(document.getDEPNode(i).lemma))
-//                        {
-//                            query += "*" + "_" + semanticType.toString() + " ";
-//                        }
-//                        else
-//                        {
-//                            query += document.getDEPNode(i).lemma + "_" + semanticType.toString() + " ";
-//                        }
-//                    }
-//                }
-//
-//                /* Add dependency labels */
-//                for (DEPNode node: document.getDEPNodesFromSentence())
-//                {
-//                    query += node.lemma + "_" + node.getLabel() + " ";
-//                }
-
                 if (! isQuestion(tree))
                 {
                     processSentence(document.getSentencesCount()-1, s);
                 }
                 else
                 {
-
                     processQuestionSentence(document.getSentencesCount()-1, s);
-
-//                    System.out.print("For question: " + s + " ");
-//                    if (performSearch(correctSentenceAnswer, answer, query))
-//                    {
-//                        System.out.println("answer HAS BEEN FOUND");
-//                    }
-//                    else
-//                    {
-//                        System.out.println("answer HAS NOT BEEN FOUND");
-//                    }
                 }
             }
 
@@ -217,13 +179,14 @@ public class App
         /* Refresh the index */
         client.admin().indices().prepareRefresh().execute().actionGet();
 
-        HashMap<Integer, HashMap<String, Double>> questionMatrix = new HashMap();
+        HashMap<Integer, HashMap<String, Float>> questionMatrix = new HashMap();
 
         SentenceRepresentation SR = extractSentence(sentenceID, sentence, true);
 
         /* Execute all queries and collect their results */
         for (String field: fieldList)
         {
+
             System.out.println("Trying to do query for field: " + field + ", with text of: " + SR.getField(field));
 
             QueryStringQueryBuilder sq = new QueryStringQueryBuilder(SR.getField(field));
@@ -232,13 +195,53 @@ public class App
             /* Send a request and retrieve the hits */
             SearchRequestBuilder requestBuilder = client.prepareSearch("index").setTypes("sentence");
             requestBuilder.setSize(5);
-            requestBuilder.addFields(fieldsSettingInQuery);
+            requestBuilder.addFields(fieldsSettingInQuery.toArray(new String[fieldsSettingInQuery.size()]));
             requestBuilder.setQuery(sq);
 
-            System.out.println("Query = " + requestBuilder.toString());
             SearchResponse searchResponse = requestBuilder.execute().actionGet();
 
-            System.out.println("Result = " + searchResponse.toString());
+            /* Process response */
+            /* If no hits, move to next one */
+            if (searchResponse.getHits().getTotalHits() == 0) continue;
+
+            /* Iterate through all hits and collect their scores */
+            for (SearchHit s: searchResponse.getHits().getHits())
+            {
+                int sentence_id = Integer.parseInt((String )s.getFields().get("sentence_id").getValue());
+                HashMap<String, Float> sentenceMap;
+
+                if (! questionMatrix.containsKey(sentence_id))
+                {
+                    sentenceMap = new HashMap();
+                    questionMatrix.put(sentence_id, sentenceMap);
+                }
+                else
+                {
+                    sentenceMap = questionMatrix.get(sentence_id);
+                }
+
+                sentenceMap.put(field, s.getScore());
+            }
+        }
+
+        /* Print the results */
+        System.out.println("Question sentence " + sentenceID);
+        for (Map.Entry<Integer, HashMap<String, Float>> entry: questionMatrix.entrySet())
+        {
+            System.out.print("Sentence id " + entry.getKey() + ": ");
+            for (String field: fieldList)
+            {
+                if (! entry.getValue().containsKey(field))
+                {
+                    System.out.print("0.0 ");
+                }
+                else
+                {
+                    System.out.print(entry.getValue().get(field) + " ");
+                }
+            }
+
+            System.out.println();
         }
     }
 
@@ -250,6 +253,7 @@ public class App
         Instance root = document.getSentence(document.getSentencesCount()-1);
         DEPNode rootNode = document.getDEPNode(root);
         SR.setVerb(rootNode.lemma);
+        SR.setText(sentence);
 
         for (SemanticType semanticType: semanticRelations)
         {
@@ -481,12 +485,16 @@ public class App
         WhStrings.put("who", true);
         WhStrings.put("where", true);
 
+        fieldList.add("text");
         fieldList.add("verb");
         fieldList.add("argument_words");
         fieldList.add("single_semantic_relations");
         fieldList.add("double_semantic_relations");
         fieldList.add("dependency_labels");
         fieldList.add("dependency_label_word_pairs");
+
+        fieldsSettingInQuery.add("text");
+        fieldsSettingInQuery.add("sentence_id");
 
         stopwordMap.put("a", true);
         stopwordMap.put("about", true);

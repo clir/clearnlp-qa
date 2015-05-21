@@ -1,3 +1,15 @@
 1 Fred picked up the football there.
 2 Fred gave the football to Jeff.
 3 What did Fred give to Jeff? 	football	2
+4 Bill went back to the bathroom.
+5 Jeff grabbed the milk there.
+6 Who gave the football to Jeff? 	Fred	2
+7 Jeff gave the football to Fred.
+8 Fred handed the football to Jeff.
+9 What did Fred give to Jeff? 	football	8
+10 Jeff handed the football to Fred.
+11 Fred gave the football to Jeff.
+12 Who did Fred give the football to? 	Jeff	11
+13 Jeff gave the football to Fred.
+14 Jeff put down the milk.
+15 Who did Jeff give the football to? 	Fred	13

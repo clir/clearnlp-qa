@@ -4,6 +4,15 @@ package edu.emory.clir.clearnlp.qa;
  * @author: Tomasz Jurczyk ({@code tomasz.jurczyk@emory.edu})
  */
 public class SentenceRepresentation {
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    private String text = "";
     private String sentenceID = "";
     private String verb = "";
     private String argumentWords = "";
@@ -75,6 +84,8 @@ public class SentenceRepresentation {
     {
         switch(fieldName)
         {
+            case "text":
+                return getText();
             case "verb":
                 return getVerb();
             case "argument_words":
