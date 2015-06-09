@@ -19,9 +19,6 @@ import com.clearnlp.dependency.DEPNode;
 import com.clearnlp.dependency.DEPTree;
 import edu.emory.clir.clearnlp.collection.pair.Pair;
 import edu.emory.clir.clearnlp.collection.set.DisjointSet;
-import edu.emory.clir.clearnlp.coreference.AbstractCoreferenceResolution;
-import edu.emory.clir.clearnlp.coreference.EnglishCoreferenceResolution;
-import edu.emory.clir.clearnlp.coreference.mention.Mention;
 import edu.emory.clir.clearnlp.dependency.DEPLib;
 import edu.emory.clir.clearnlp.pos.POSLibEn;
 import edu.emory.clir.clearnlp.qa.structure.Instance;
@@ -42,8 +39,8 @@ public class EnglishDocument extends AbstractDocument
     private List<DEPTree> depTreeList = new ArrayList();
 	private static final long serialVersionUID = -1190545348244741736L;
 
-    private AbstractCoreferenceResolution coRef = new EnglishCoreferenceResolution();
-    private Pair<List<Mention>,DisjointSet> coRefEntities;
+    //private AbstractCoreferenceResolution coRef = new EnglishCoreferenceResolution();
+    //private Pair<List<Mention>,DisjointSet> coRefEntities;
     private List<DEPNode> addedNodes = new ArrayList();
 
     @Override

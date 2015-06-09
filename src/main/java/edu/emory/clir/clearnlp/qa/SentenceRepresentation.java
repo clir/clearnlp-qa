@@ -20,6 +20,15 @@ public class SentenceRepresentation {
     private String doubleSemanticRelations = "";
     private String dependencyLabels = "";
     private String dependencyLabelWordPairs = "";
+    private String verbSynonyms = "";
+
+    public String getVerbSynonyms() {
+        return verbSynonyms;
+    }
+
+    public void setVerbSynonyms(String verbSynonyms) {
+        this.verbSynonyms = verbSynonyms;
+    }
 
     public String getDoubleSemanticRelations() {
         return doubleSemanticRelations;
@@ -98,6 +107,8 @@ public class SentenceRepresentation {
                 return getDependencyLabels();
             case "dependency_label_word_pairs":
                 return getDependencyLabelWordPairs();
+            case "verb_synonyms":
+                return getVerbSynonyms();
             default:
                 return null;
         }
