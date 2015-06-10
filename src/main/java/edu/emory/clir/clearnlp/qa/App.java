@@ -54,32 +54,28 @@ public class App
     WordNetDatabase wDatabase;
 
     /* Experiment settings */
-    final int mode = 0; // 0 for train, 1 for test
+    final int mode = 1; // 0 for train, 1 for test
     final int N = 40;
     final String ESServerAddress = "127.0.0.1";
     final int ESServerPort = 9300;
-    final int ESResultsLimit = 10;
-    final String TrainFile = "data/qa1_single-supporting-fact_train.txt";
-    final String TestFile = "data/qa1_single-supporting-fact_test.txt";
+    final int ESResultsLimit = 20;
+    final String TrainFile = "data/qa5_three-arg-relations_train.txt";
+    final String TestFile = "data/qa5_three-arg-relations_test.txt";
     // Answer selection settings
     final int ASMode = -1; // -1 for disabled (default locateAnswer used), 0 for train, 1 for test
 
-
-    /* Statistics for questions */
-    int numberOfQuestions = 0;
-    int processedQuestions = 0;
-    int selectedQuestions = 0;
-    int notSelectedQuestions = 0;
-    int answeredQuestions = 0;
-    int notAnsweredQuestions = 0;
+    int line = 0;
 
     /* Settings for model */
     PModel pModel;
-    //double [] lambdas = {0.04405, 0.03563, 0.12167, 0.43630, 0.04852, 0.06744, 0.03468, 0.10674, 1.30414};
-    double [] lambdas = {1, 1, 1, 1, 1, 1, 1, 1, 1};
+    ResultCollector resultCollector;
+    double [] lambdas = {0.00231, 0.00300, 0.01308, 0.02597, 0.00318, 0.00553, 0.00170, 0.05347, 1.06923, 0.95373, 1.04458, 1.00000, 1.00000, 1.00000, 1.15622};
+    //double [] lambdas = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
     public App()
     {
+        resultCollector = new ResultCollector();
+
         System.setProperty("wordnet.database.dir", "wordnet_dict/");
         wDatabase = WordNetDatabase.getFileInstance();
 
@@ -134,14 +130,13 @@ public class App
             DEPTree tree;
             int correctSentenceAnswer = 0;
             String answer = "";
-            int line = 0;
+
 
             document = new EnglishDocument();
 
             while ((s = bufferedReader.readLine()) != null)
             {
-//                System.out.println("Working on line: " + line);
-//                line++;
+
                 /* Split a line by spaces */
                 String[] stringList = s.split("\\s+");
 
@@ -197,6 +192,8 @@ public class App
                 {
                     processQuestionSentence(document.getSentencesCount()-1, s, correctSentenceAnswer, answer);
                 }
+
+                line++;
             }
 
             System.out.println("At the end of iteration, lambdas: ");
@@ -238,6 +235,12 @@ public class App
                 "double_semantic_relations: \"" + SR.getDoubleSemanticRelations() + "\", " +
                 "dependency_labels: \"" + SR.getDependencyLabels() + "\", " +
                 "dependency_label_word_pairs: \"" + SR.getDependencyLabelWordPairs() + "\", " +
+                "sem_a0: \"" + SR.getA0Label() + "\", " +
+                "sem_a1: \"" + SR.getA1Label() + "\", " +
+                "sem_a2: \"" + SR.getA2Label() + "\", " +
+                "sem_a4: \"" + SR.getA4Label() + "\", " +
+                "sem_loc: \"" + SR.getLOCLabel() + "\", " +
+                "sem_dir: \"" + SR.getDIRLabel() + "\", " +
                 "verb_synonyms: \"" + SR.getVerbSynonyms() + "\"};";
 
         client.prepareIndex("index", "sentence")
@@ -254,13 +257,19 @@ public class App
         HashMap<Integer, HashMap<String, Float>> questionMatrix = new HashMap();
         HashMap<Integer, String> singleRelations = new HashMap();
 
-        SentenceRepresentation SR = extractSentence(sentenceID, sentence, true);
+        resultCollector.addQuestion();
 
-        numberOfQuestions++;
+        SentenceRepresentation SR = extractSentence(sentenceID, sentence, true);
 
         /* Execute all queries and collect their results */
         for (String field: fieldList)
         {
+            if (SR.getField(field).equals(""))
+            {
+                // Empty query (no need to perform)
+                continue;
+            }
+
             QueryStringQueryBuilder sq = new QueryStringQueryBuilder(SR.getField(field));
             sq.defaultField(field);
 
@@ -338,6 +347,8 @@ public class App
             iterator++;
         }
 
+
+
         // Print matrix
 //        System.out.println("sentence = " + sentence);
 //        System.out.print("S\t");
@@ -358,15 +369,21 @@ public class App
 //            }
 //            System.out.println();
 //        }
+//
+//        if (indexToPass == -1)
+//        {
+//            notAnsweredQuestions++;
+//            return;
+//        }
+
 
         if (indexToPass == -1)
         {
-            notAnsweredQuestions++;
-            return;
+            System.out.println("For sentence: " + sentence + ", correct index not found, line = " + line);
+            System.exit(1);
         }
 
-
-        processedQuestions++;
+        resultCollector.processQuestion();
 
         /* If train mode, make an iteration */
         if (mode == 0)
@@ -380,12 +397,11 @@ public class App
             if (modelOutput == -1)
             {
                 //System.out.println("Not selected for question: " + sentence);
-                notSelectedQuestions++;
-                notAnsweredQuestions++;
             }
             else
             {
-                selectedQuestions++;
+                resultCollector.selectQuestion();
+
                 if (ASMode == 0)
                 {
                     ASModel asModel = new ASModel(document, sentenceID, sentenceIDArray[modelOutput]);
@@ -397,11 +413,11 @@ public class App
                 }
                 else if (locateAnswer(SR.getSingleSemanticRelations(), singleRelationsArray[modelOutput], answer) == 0)
                 {
-                    answeredQuestions++;
+                    resultCollector.answerQuestion();
                 }
                 else
                 {
-                    notAnsweredQuestions++;
+                    // Question not answered
                 }
             }
         }
@@ -421,6 +437,8 @@ public class App
         {
             if (root.getArgumentList(semanticType) == null) continue;
 
+            String singleNodes = "";
+
             for (Instance i: root.getArgumentList(semanticType))
             {
                 String word = document.getDEPNode(i).lemma;
@@ -433,11 +451,13 @@ public class App
                 }
                 else
                 {
+                    SR.addSingleSemanticNode(semanticType, word);
                     SR.addArgumentWords(word);
                     SR.addSingleSemanticRelations(word + "_" + srlLabel);
                     SR.addDoubleSemanticRelations(word + "_" + srlLabel + "_" + SR.getVerb());
                 }
             }
+
         }
 
         /* Extract verb synonyms */
@@ -465,115 +485,6 @@ public class App
         }
 
         return SR;
-    }
-
-    private boolean performSearch(int sentenceID, String answer, String query)
-    {
-        /* Refresh the index */
-        client.admin().indices().prepareRefresh().execute().actionGet();
-
-        /* Build the query to ask */
-        QueryStringQueryBuilder sq = new QueryStringQueryBuilder(query);
-        System.out.println("\n\nquery = " + sq + ", sentenceID = " + sentenceID);
-
-        /* Send a request and retrieve the hits */
-        SearchResponse response = client.prepareSearch("index")
-                .setTypes("sentence")
-                .setQuery(sq)
-                .execute()
-                .actionGet();
-
-        SearchHit[] searchHits = response.getHits().getHits();
-
-        System.out.println("Search hit = " + response.getHits().toString());
-        return extractAnswer(sentenceID, answer, query, searchHits);
-
-        //int length = searchHits.length;
-
-//        for (int i = 0; i < length; i++) {
-//            if (i == 3)
-//            {
-//                break;
-//            }
-//            JSONObject obj = new JSONObject(searchHits[i].getSourceAsString());
-//            int foundSentenceID = obj.getInt("sentenceID");
-//
-//            System.out.println("Correct sentenceID = " + sentenceID + ", found = " + (foundSentenceID+1));
-//
-//            if ((foundSentenceID+1) == sentenceID)
-//            {
-//                System.out.println("SentenceID correctly identified in hit nr: " + i);
-//                return;
-//            }
-//        }
-//
-//        System.out.println("SentenceID not recognized");
-
-        //System.out.println("Response hits = " +response.getHits());
-    }
-
-    private boolean extractAnswer(int answerSentenceID, String answer, String queryText, SearchHit [] searchHits)
-    {
-        HashMap<Integer, Boolean> alreadyChecked = new HashMap();
-
-        /* Parse all SearchHits */
-        JSONObject [] hitsArray = new JSONObject[searchHits.length];
-        for (int i = 0; i < searchHits.length; i++)
-        {
-            hitsArray[i] = new JSONObject(searchHits[i].getSourceAsString());
-        }
-
-
-        /* Extract semantic relation from query by locating the wildcard item */
-        String semanticRelation = null;
-        for (String s: queryText.split(" "))
-        {
-            if (s.contains("*"))
-            {
-                semanticRelation = s;
-                break;
-            }
-        }
-
-        if (semanticRelation == null) return false;
-        semanticRelation = semanticRelation.split("_")[1];
-
-        while (alreadyChecked.size() != hitsArray.length)
-        {
-            int difference = 0;
-            JSONObject candidate = null;
-
-            for (int i = 0; i < hitsArray.length; i++)
-            {
-                if (candidate == null && ! alreadyChecked.containsKey(hitsArray[i].getInt("sentenceID")))
-                {
-                    difference = Math.abs(hitsArray[i].getInt("sentenceID") - answerSentenceID);
-                    candidate = hitsArray[i];
-                }
-                else if (Math.abs(hitsArray[i].getInt("sentenceID") - answerSentenceID) < difference &&
-                        ! alreadyChecked.containsKey(hitsArray[i].getInt("sentenceID")))
-                {
-                    difference = Math.abs(hitsArray[i].getInt("sentenceID") - answerSentenceID);
-                    candidate = hitsArray[i];
-                }
-            }
-
-            System.out.println("Looking for answer of semantic Relation: " + semanticRelation + ", in candidate: " + candidate.getString("text") +
-                    " that has ID of: " + (candidate.getInt("sentenceID") + 1)  + " correctAnswerSentence ID: " + answerSentenceID);
-
-            alreadyChecked.put(candidate.getInt("sentenceID"), true);
-            //int searchResult = locateAnswer(semanticRelation, candidate.getString("text"), answer);
-//            if (searchResult == 1)
-//            {
-//                return true;
-//            }
-//            else if (searchResult == -1)
-//            {
-//                return false;
-//            }
-        }
-
-        return false;
     }
 
     private int locateAnswer(String qText, String aText, String answer)
@@ -653,14 +564,7 @@ public class App
 
         System.out.println("f[" + i + "]: distance");
 
-        System.out.println("number of questions: " + app.numberOfQuestions);
-        System.out.println("number of processed questions = " + app.processedQuestions);
-
-        System.out.println("number of selected questions: " + app.selectedQuestions);
-        System.out.println("number of not selected questions: " + app.notSelectedQuestions);
-
-        System.out.println("Number of answered questions: " + app.answeredQuestions);
-        System.out.println("Number of not answered questions: " + app.notAnsweredQuestions);
+        System.out.println(app.resultCollector);
     }
 
     public void initData()
@@ -691,6 +595,12 @@ public class App
         fieldList.add("dependency_labels");
         fieldList.add("dependency_label_word_pairs");
         fieldList.add("verb_synonyms");
+        fieldList.add("sem_a0");
+        fieldList.add("sem_a1");
+        fieldList.add("sem_a2");
+        fieldList.add("sem_a4");
+        fieldList.add("sem_dir");
+        fieldList.add("sem_loc");
 
         //pModel = new PModel(fieldList.size() + 1);
         pModel = new PModel(fieldList.size() + 1, lambdas);
